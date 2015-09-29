@@ -1,5 +1,6 @@
 package com.example.wade.gabote;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v4.os.AsyncTaskCompat;
 import android.util.Log;
@@ -7,45 +8,61 @@ import android.widget.TextView;
 
 import java.sql.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import com.example.wade.gabote.ResultListener;
 
-class GetNetworkConn extends AsyncTask<String,Void,Connection> {
+import javax.xml.transform.Result;
 
-    Connection cn;
+class GetNetworkConn extends AsyncTask<String,Void,List> {
 
-    protected Connection doInBackground(String... urls) {
+    ResultListener listener;
+    public void setOnResultsListener(ResultListener listener){
+        this.listener = listener;
+    }
+
+    protected List doInBackground(String... query) {
+        Connection cn = null;
         try {
             Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://10.0.2.2/";
             Properties props = new Properties();
             props.setProperty("user","nfldb");
             props.setProperty("password", "Wg2002!");
-            Connection cn = DriverManager.getConnection(url, props);
-            Log.e("serv","SUCCESS");
+            cn = DriverManager.getConnection(url, props);
+
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM game WHERE finished='f' AND week='3' ORDER BY start_time ASC LIMIT 10");
+            ResultSet rs = st.executeQuery(query[0]);
+            List<String[]> gameList = new ArrayList<>();
+
+            int columnCount = rs.getMetaData().getColumnCount();
+            String[] temp = new String[columnCount];
             while(rs.next())
             {
-                Log.e("game_score",rs.getString(9) + rs.getString(10) + rs.getString(17) + rs.getString(18));
+                for(int i =0; i < columnCount; i++)
+                {
+                    temp[i]=rs.getString(i+1);
+                }
+                gameList.add(temp);
+
             }
-            return cn;
+            temp=null;
+            System.gc();
+            return gameList;
         } catch (Exception e) {
-            Log.e("serv","failed");
-            Log.e("serv",e.getCause().toString());
+            e.printStackTrace();
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
 
-    protected void onPostExecute() {
-
-        // TODO: check this.exception
-        // TODO: do something with the feed
-    }
-    public void closeNetworkConnection() {
-        try {
-            cn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    protected void onPostExecute(List<String> result) {
+        listener.onResultSuccess(result);
     }
 }

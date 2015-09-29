@@ -1,16 +1,10 @@
 package com.example.wade.gabote;
-
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-import java.sql.*;
-import java.util.Properties;
-import java.util.concurrent.ExecutionException;
+import java.util.List;
 
 public class GameScores extends AppCompatActivity {
 
@@ -19,25 +13,11 @@ public class GameScores extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_scores);
-        new GetNetworkConn().execute();
+
     }
-  /*  public void displayGameScores(){
-        GetNetworkConn conn = new GetNetworkConn();
-        try {
-            Connection cn = conn.execute("").get();
-
-            rs.close();
-            st.close();
-            cn.close();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }*/
+    public void displayGameScores(){
+        GetData d = new GetData();
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -59,4 +39,5 @@ public class GameScores extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
