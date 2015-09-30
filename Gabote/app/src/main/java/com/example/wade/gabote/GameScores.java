@@ -13,7 +13,7 @@ public class GameScores extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_scores);
-
+        displayGameScores();
     }
     public void displayGameScores(){
         GetData d = new GetData();
