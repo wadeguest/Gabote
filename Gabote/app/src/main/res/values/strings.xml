@@ -3,4 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!--Activity Headers -->
+    <string name="game_scores">Game Scores</string>
+    <string name="fantasy_menu">Fantasy Menu</string>
+    <string name="fantasy_matchup">Fantasy Matchup</string>
 </resources>

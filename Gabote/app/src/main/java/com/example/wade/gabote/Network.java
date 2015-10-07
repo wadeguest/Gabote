@@ -18,6 +18,7 @@ import javax.xml.transform.Result;
 class GetNetworkConn extends AsyncTask<String,Void,List> {
 
     ResultListener listener;
+    ArrayList<String[]> gameList = new ArrayList<>();
     public void setOnResultsListener(ResultListener listener){
         this.listener = listener;
     }
@@ -34,35 +35,27 @@ class GetNetworkConn extends AsyncTask<String,Void,List> {
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query[0]);
-            List<String[]> gameList = new ArrayList<>();
+
 
             int columnCount = rs.getMetaData().getColumnCount();
-            String[] temp = new String[columnCount];
-            while(rs.next())
-            {
-                for(int i =0; i < columnCount; i++)
+
+            while(rs.next()) {
+                String[] temp = new String[columnCount+1];
+                for(int i=0;i<columnCount;i++)
                 {
-                    temp[i]=rs.getString(i+1);
+                    temp[i] = rs.getString(i+1);
                 }
                 gameList.add(temp);
-
+                temp=null;
             }
-            temp=null;
-            System.gc();
             return gameList;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                cn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-        return null;
+        return gameList;
     }
 
-    protected void onPostExecute(List<String> result) {
+    protected void onPostExecute(ArrayList<String[]> result) {
         listener.onResultSuccess(result);
     }
 }

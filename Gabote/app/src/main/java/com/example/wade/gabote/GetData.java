@@ -1,12 +1,14 @@
 package com.example.wade.gabote;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class GetData implements ResultListener{
+public class GetData {
     protected GetData() {
-      //Constructor
+        //Constructor
     }
-    protected class WeekDataTable{
+
+    protected static class WeekDataTable implements ResultListener {
         //Column Variables
         private int gsis_id;
         private int gamekey;
@@ -26,26 +28,29 @@ public class GetData implements ResultListener{
         private int home_turnovers;
         private String away_team;
         private int away_score;
+        private int away_score_q1;
+        private int away_score_q2;
+        private int away_score_q3;
+        private int away_score_q4;
+        private int away_score_q5;
+        private int away_turnovers;
+        private String time_inserted;
+        private String time_updated;
 
+        ArrayList<String[]> tableData = new ArrayList<>();
 
+        public WeekDataTable(int week) {
 
+            GetNetworkConn task = new GetNetworkConn();
+            task.setOnResultsListener(this);
+            task.execute("SELECT * FROM game WHERE week=" + week + " AND season_year='2015' AND season_type='Regular' ORDER BY start_time");
+        }
 
-    }
-
-
-
-
-    private List<String> tableData;
-    protected List<String> returnWeekData(int week) {
-        GetNetworkConn task = new GetNetworkConn();
-        task.setOnResultsListener(this);
-        task.execute("SELECT * FROM game WHERE finished='f' AND week='4' ORDER BY start_time ASC LIMIT 3");
-
-        return null;
-    }
-
-    @Override
-    public void onResultSuccess(List<String> result) {
-        tableData=result;
+        @Override
+        public void onResultSuccess(ArrayList<String[]> result) {
+            tableData = result;
+            this.gsis_id=Integer.parseInt(tableData.get(0)[0]);
+            this.gamekey=Integer.parseInt(tableData.get(1)[0]);
+        }
     }
 }
