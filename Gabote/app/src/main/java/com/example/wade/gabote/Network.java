@@ -15,7 +15,7 @@ import com.example.wade.gabote.ResultListener;
 
 import javax.xml.transform.Result;
 
-class GetNetworkConn extends AsyncTask<String,Void,List> {
+class GetNetworkConn extends AsyncTask<String,Void,ArrayList> {
 
     ResultListener listener;
     ArrayList<String[]> gameList = new ArrayList<>();
@@ -23,11 +23,11 @@ class GetNetworkConn extends AsyncTask<String,Void,List> {
         this.listener = listener;
     }
 
-    protected List doInBackground(String... query) {
+    protected ArrayList doInBackground(String... query) {
         Connection cn = null;
         try {
             Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://10.0.2.2/";
+            String url = "jdbc:postgresql://172.16.1.74/";
             Properties props = new Properties();
             props.setProperty("user","nfldb");
             props.setProperty("password", "Wg2002!");
@@ -53,9 +53,11 @@ class GetNetworkConn extends AsyncTask<String,Void,List> {
             e.printStackTrace();
         }
         return gameList;
+
     }
 
-    protected void onPostExecute(ArrayList<String[]> result) {
+    protected void onPostExecute(ArrayList result) {
         listener.onResultSuccess(result);
     }
+
 }

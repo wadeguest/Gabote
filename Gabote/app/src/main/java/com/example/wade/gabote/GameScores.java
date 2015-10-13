@@ -1,10 +1,15 @@
 package com.example.wade.gabote;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,26 +25,40 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
-
+import com.example.wade.gabote.GetData;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class GameScores extends AppCompatActivity {
+public class GameScores extends Activity {
 
     ListView mDrawerList;
     RelativeLayout mDrawerPane;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
-
     ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_scores);
+
+        final SwipeRefreshLayout swipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipeLayout);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeLayout.setRefreshing(true);
+                (new Handler()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeLayout.setRefreshing(false);
+                        displayGameScores(4);
+                    }
+                }, 5000);
+            }
+        });
+
         mNavItems.add(new NavItem("Game Scores", "Display Scores of NFL Games", 0));
         mNavItems.add(new NavItem("Fantasy Menu", "Show all Fantasy Football Options", 0));
         mNavItems.add(new NavItem("Chat Rooms","Show Active Chat Rooms",0));
@@ -51,27 +70,10 @@ public class GameScores extends AppCompatActivity {
         mDrawerList = (ListView)findViewById(R.id.navList);
         DrawerListAdapter adapter = new DrawerListAdapter(this, mNavItems);
         mDrawerList.setAdapter(adapter);
-
-   //     mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-    //        @Override
-     //       public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-      //          selectItemFromDrawer(position);
-       //     }
-        //});
-
-        displayGameScores();
+        displayGameScores(3);
     }
-    public void displayGameScores(){
-        //GetData.WeekDataTable a = new GetData.WeekDataTable(4);
-        ListView lv = (ListView)findViewById(R.id.listView);
-        String[] games = {"[Icon] Team 1: 99    [Icon]Team 2: 99", "[Icon] Team 3: 99    [Icon]Team 4: 99", "...", "[Icon] Team n: 99    [Icon]Team m: 99"};
-        ArrayList<String> gameList = new ArrayList<String>();
-        gameList.addAll(Arrays.asList(games));
-
-        ArrayAdapter<String> la = new ArrayAdapter<String>(this,R.layout.rowdef,gameList);
-        lv.setAdapter(la);
-
-
+    public void displayGameScores(int week){
+        GetData.WeekDataTable tableView = new GetData.WeekDataTable(week,this);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
