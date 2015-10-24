@@ -5,4 +5,16 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="winning_matchup">
+        <item name="android:textColor">@android:color/holo_green_light</item>
+        <item name="android:textSize">@android:dimen/dialog_min_width_major</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="losing_matchup">
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:textSize">@android:dimen/dialog_min_width_major</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
 </resources>

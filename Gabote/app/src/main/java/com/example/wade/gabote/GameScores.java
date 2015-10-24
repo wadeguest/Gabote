@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -43,22 +44,21 @@ public class GameScores extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_scores);
-
-        final SwipeRefreshLayout swipeLayout = (SwipeRefreshLayout)findViewById(R.id.swipeLayout);
-        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        Spinner wk = (Spinner)findViewById(R.id.weekDropDown);
+        ArrayAdapter<CharSequence> adsp = ArrayAdapter.createFromResource(this,R.array.spinnerWeeks,android.R.layout.simple_spinner_item);
+        adsp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        wk.setAdapter(adsp);
+        wk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onRefresh() {
-                swipeLayout.setRefreshing(true);
-                (new Handler()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeLayout.setRefreshing(false);
-                        displayGameScores(4);
-                    }
-                }, 5000);
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                displayGameScores(position+1);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                displayGameScores(1);
             }
         });
-
         mNavItems.add(new NavItem("Game Scores", "Display Scores of NFL Games", 0));
         mNavItems.add(new NavItem("Fantasy Menu", "Show all Fantasy Football Options", 0));
         mNavItems.add(new NavItem("Chat Rooms","Show Active Chat Rooms",0));
@@ -70,10 +70,10 @@ public class GameScores extends Activity {
         mDrawerList = (ListView)findViewById(R.id.navList);
         DrawerListAdapter adapter = new DrawerListAdapter(this, mNavItems);
         mDrawerList.setAdapter(adapter);
-        displayGameScores(3);
-    }
+        displayGameScores(1);
+}
     public void displayGameScores(int week){
-        GetData.WeekDataTable tableView = new GetData.WeekDataTable(week,this);
+        GetData.WeekDataTable tableView = new GetData.WeekDataTable(week, this);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

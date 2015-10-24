@@ -1,121 +1,129 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:stretchColumns="0,1,2,3,4,5"
-    android:orientation="vertical"
-    tools:context="com.example.wade.gabote.FantasyMatchup"
-    android:background="#ff0000">
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000"
-        android:layout_margin="2dp">
-        <TextView
-            android:text="Position"
-            android:textColor="#FFF">
-        </TextView>
-       <TextView
-           android:textColor="#FFF"
-           android:text="User's Team" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="Score" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="Opponent Team" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="Score" />
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:textColor="#FFF"
-            android:text="QB">
-        </TextView>
-        <TextView
-            android:textColor="#FFF"
-            android:text="Peyton Manning" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="30" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="Matt Ryan" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="5" />
-    </TableRow>
-    <TableRow>
+<RelativeLayout
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:text="Edit User Team"
+        android:id="@+id/bEditUserTeam"
+        android:gravity="left"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:text="Edit Opponent Team"
+        android:id="@+id/bEditOpponentTeam"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="right"/>
+<RelativeLayout
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/back"
+    android:layout_below="@+id/bEditUserTeam"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:id="@+id/relativeLayout"
+    android:layout_alignRight="@+id/bEditUserTeam"
+    android:layout_alignEnd="@+id/bEditUserTeam">
         <TextView
-            android:textColor="#FFF"
-            android:text="RB">
-        </TextView>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="User Team Name"
+            android:id="@+id/userTeamName"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="5dp" />
         <TextView
-            android:textColor="#FFF"
-            android:text="Adrian Peterson" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="45" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="Eddie Lacy" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="8" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="150"
+            android:textSize="50dp"
+            android:gravity="center_vertical"
+            android:id="@+id/userTeamScore"
+            android:layout_below="@+id/userTeamName"
+            android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/back"
+    android:layout_alignTop="@+id/relativeLayout"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
+    android:layout_alignBottom="@+id/relativeLayout"
+    android:layout_alignLeft="@+id/bEditOpponentTeam"
+    android:layout_alignStart="@+id/bEditOpponentTeam">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Opponent Team Name"
+        android:id="@+id/opponentTeamName"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="150"
+        android:textSize="50dp"
+        android:gravity="center_vertical"
+        android:id="@+id/opponentTeamScore"
+        android:layout_below="@+id/opponentTeamName"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="144dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TableRow
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent">
+            <TextView
+                android:layout_column="1"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Player Name" />
+            <TextView
+                android:layout_column="2"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Score" />
+            <TextView
+                android:layout_column="3"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Role" />
+            <TextView
+                android:layout_column="4"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Score" />
+            <TextView
+                android:layout_column="5"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Player Name" />
         </TableRow>
-        <TableRow>
-            <TextView
-                android:textColor="#FFF"
-                android:text="WR">
-            </TextView>
-            <TextView
-                android:textColor="#FFF"
-                android:text="Randall Cobb" />
-            <TextView
-                android:textColor="#FFF"
-                android:text="34" />
-            <TextView
-                android:textColor="#FFF"
-                android:text="James Jones" />
-            <TextView
-                android:textColor="#FFF"
-                android:text="4.5" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:textColor="#FFF"
-                android:text="TE">
-            </TextView>
-            <TextView
-                android:textColor="#FFF"
-                android:text="Travis Kelce" />
-            <TextView
-                android:textColor="#FFF"
-                android:text="11.5" />
-            <TextView
-                android:textColor="#FFF"
-                android:text="Bennett" />
-            <TextView
-                android:textColor="#FFF"
-                android:text="IR" />
-        </TableRow>
-    <TableRow>
-        <TextView
-            android:textColor="#FFF"
-            android:text="DEF">
-        </TextView>
-        <TextView
-            android:textColor="#FFF"
-            android:text="Ravens" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="5" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="Cardinals" />
-        <TextView
-            android:textColor="#FFF"
-            android:text="3" />
-    </TableRow>
-</TableLayout>
+    </TableLayout>
+
+</RelativeLayout>
+
+</RelativeLayout>

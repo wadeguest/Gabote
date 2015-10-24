@@ -1,23 +1,38 @@
 package com.example.wade.gabote;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
+import android.app.ListActivity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.MainThread;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.wade.gabote.GameScores;
+
+import static android.app.PendingIntent.getActivity;
 
 public class GetData {
     protected GetData() {
         //Constructor
     }
 
-    protected static class WeekDataTable implements ResultListener {
+    protected static class WeekDataTable implements ResultListener  {
+
         //Column Variables
         private int[] gsis_id;
         private int[] gamekey;
@@ -49,7 +64,7 @@ public class GetData {
         private int gameCount;
         private Activity activity;
 
-        public WeekDataTable(int week,Activity activity) {
+        public WeekDataTable(int week, Activity activity) {
             this.activity = activity;
             gsis_id = new int[16];
             gamekey = new int[16];
@@ -145,23 +160,85 @@ public class GetData {
             gameCount = result.size();
             updateGameScoreView();
         }
-        private void updateGameScoreView()
+        private String getFullTeamName(String acr)
         {
-            ListView lv = (ListView)activity.findViewById(R.id.listView);
+            switch(acr) {
+                case "ARI": return "ARI Cardinals";
+                case "ATL": return "ATL Falcons";
+                case "BAL": return "BAL Ravens";
+                case "BUF": return "BUF Bills";
+                case "CAR": return "CAR Panthers";
+                case "CHI": return "CHI Bears";
+                case "CIN": return "CIN Bengals";
+                case "CLE": return "CLE Browns";
+                case "DAL": return "DAL Cowboys";
+                case "DEN": return "DEN Broncos";
+                case "DET": return "DET Lions";
+                case "GB": return "GB Packers";
+                case "HOU": return "HOU Texans";
+                case "IND": return "IND Colts";
+                case "JAC": return "JAC Jaguars";
+                case "KC": return "KC Chiefs";
+                case "MIA": return "MIA Dolphins";
+                case "MIN": return "MIN Vikings";
+                case "NE": return "NEW Patriots";
+                case "NO": return "NO Saints";
+                case "NYG": return "NY Giants";
+                case "NYJ": return "NY Jets";
+                case "OAK": return "OAK Raiders";
+                case "PHI": return "PHI Eagles";
+                case "PIT": return "PIT Steelers";
+                case "SD": return "SD Chargers";
+                case "SEA": return "SEA Seahawks";
+                case "SF": return "SF 49ers";
+                case "STL": return "STL Rams";
+                case "TB": return "TB Buccaneers";
+                case "TEN": return "TEN Titans";
+                case "WAS": return "WAS Redskins";
+                default:
+                    return "Error";
+            }
+        }
+        protected void updateGameScoreView() {
+            ListView lv = (ListView) activity.findViewById(R.id.listView);
             ArrayList<String> gameList = new ArrayList<String>();
 
             String temp;
-            for(int i=0; i<this.getGame_count();i++)
-            {
+            for (int i = 0; i < getGame_count(); i++) {
                 temp = "";
-                temp+= this.getHome_team()[i] + ": " + this.getHome_score()[i];
-                temp+="    ";
-                temp+= this.getAway_team()[i] + ": " + this.getAway_score()[i];
-                gameList.add(i,temp);
+                temp += getFullTeamName(getHome_team()[i]) + ": " + getHome_score()[i];
+                temp += "    ";
+                temp += getFullTeamName(getAway_team()[i]) + ": " + getAway_score()[i];
+                gameList.add(i, temp);
             }
-            ArrayAdapter<String> la = new ArrayAdapter<String>(activity,R.layout.rowdef,gameList);
+            ArrayAdapter<String> la = new ArrayAdapter<String>(activity, R.layout.rowdef, gameList);
 
             lv.setAdapter(la);
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    final ArrayAdapter<String> optionAdapter= new ArrayAdapter<String>(activity.getApplicationContext(),android.R.layout.select_dialog_singlechoice);
+                    optionAdapter.add("View Details");
+                    optionAdapter.add("View Chat Room");
+
+                    AlertDialog.Builder builder= new AlertDialog.Builder(activity);
+                    builder.setTitle("Game Options");
+                    builder.setItems(R.array.optionMenuItems, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                        @Override
+                        public void onShow(DialogInterface dialog2) {
+
+                        }
+                    });
+                    dialog.show();
+                }
+            });
         }
     }
 }
