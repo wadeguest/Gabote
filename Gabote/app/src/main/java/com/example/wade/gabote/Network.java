@@ -32,25 +32,40 @@ class GetNetworkConn extends AsyncTask<String,Void,ArrayList> {
             props.setProperty("user","nfldb");
             props.setProperty("password", "Wg2002!");
             cn = DriverManager.getConnection(url, props);
-
+            ResultSet rs;
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query[0]);
+            if(query[0].contains("SELECT")){
 
+                rs = st.executeQuery(query[0]);
+            } else {
+                rs=null;
+                st.executeUpdate(query[0]);
 
-            int columnCount = rs.getMetaData().getColumnCount();
-
-            while(rs.next()) {
-                String[] temp = new String[columnCount+1];
-                for(int i=0;i<columnCount;i++)
-                {
-                    temp[i] = rs.getString(i+1);
-                }
-                gameList.add(temp);
-                temp=null;
             }
+
+
+            if(rs!=null) {
+               int columnCount = rs.getMetaData().getColumnCount();
+
+                while (rs.next()) {
+                    String[] temp = new String[columnCount + 1];
+                    for (int i = 0; i < columnCount; i++) {
+                        temp[i] = rs.getString(i + 1);
+                    }
+                    gameList.add(temp);
+                    temp = null;
+                }
+            }
+            if(rs==null) {
+                String[] success_query={"success"};
+                gameList.add(success_query);
+            }
+
+
             return gameList;
         } catch (Exception e) {
             e.printStackTrace();
+            gameList.add(new String[]{e.getLocalizedMessage()});
         }
         return gameList;
 

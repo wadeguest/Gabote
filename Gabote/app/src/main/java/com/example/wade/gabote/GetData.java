@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.wade.gabote.GameScores;
 
+import javax.xml.transform.Result;
+
 import static android.app.PendingIntent.getActivity;
 
 public class GetData {
@@ -239,6 +241,150 @@ public class GetData {
                     dialog.show();
                 }
             });
+        }
+    }
+    protected static class UserTeamPlayers implements ResultListener {
+
+        private String teamName;
+        private String email;
+        private String username;
+
+        private String[] names;
+        private String[] position;
+        private String[] team;
+
+
+        public UserTeamPlayers(Activity activity) {
+            names = new String[20];
+            position = new String[20];
+            team = new String[20];
+
+            GetNetworkConn task = new GetNetworkConn();
+            task.setOnResultsListener(this);
+            task.execute("SELECT * FROM game WHERE week=3 AND season_year='2015' AND season_type='Regular' ORDER BY start_time");
+
+        }
+
+        @Override
+        public void onResultSuccess(ArrayList<String[]> result) {
+
+        }
+    }
+    protected static class checkUserSignUp implements ResultListener {
+        private String userName;
+        private String email;
+        private String password;
+        private Activity activity;
+
+        public checkUserSignUp(Activity activity, String userName, String email, String password) {
+            this.userName = userName;
+            this.email = email;
+            this.password = password;
+            this.activity = activity;
+
+            GetNetworkConn task = new GetNetworkConn();
+            task.setOnResultsListener(this);
+            task.execute("INSERT INTO t_user(username,password,user_email) VALUES('"+this.userName+"','"+this.password+"','"+this.email+"')");
+        }
+
+        @Override
+        public void onResultSuccess(ArrayList<String[]> result) {
+            String success = result.get(0)[0].toString();
+            if(success=="success") {
+
+                final ArrayAdapter<String> optionAdapter= new ArrayAdapter<String>(activity.getApplicationContext(),android.R.layout.select_dialog_singlechoice);
+                optionAdapter.add("Signup Success");
+
+                AlertDialog.Builder builder= new AlertDialog.Builder(activity);
+                builder.setTitle("Success!");
+                builder.setMessage("Account Created Successfully");
+                builder.setPositiveButton("Go To Login", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(activity.getApplicationContext(),UserLogin.class);
+                        activity.startActivity(i);
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog2) {
+
+                    }
+                });
+                dialog.show();
+
+
+            } else {
+                final ArrayAdapter<String> optionAdapter= new ArrayAdapter<String>(activity.getApplicationContext(),android.R.layout.select_dialog_singlechoice);
+                optionAdapter.add("Signup Failed");
+
+                AlertDialog.Builder builder= new AlertDialog.Builder(activity);
+                builder.setTitle("Error with Signup.");
+                builder.setMessage("Account not created. Please review fields.");
+                builder.setPositiveButton("Hide.", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog2) {
+
+                    }
+                });
+                dialog.show();
+            }
+
+
+        }
+    }
+    protected static class checkUserLogin implements ResultListener{
+        private String username;
+        private String password;
+        private Activity activity;
+        public checkUserLogin(Activity activity, String username, String password)
+        {
+            this.activity = activity;
+            this.username = username;
+            this.password = password;
+
+            GetNetworkConn task = new GetNetworkConn();
+            task.setOnResultsListener(this);
+            task.execute("SELECT username FROM t_user WHERE username='"+ this.username +"' AND password='"+ this.password +"'");
+        }
+
+        @Override
+        public void onResultSuccess(ArrayList<String[]> result) {
+            if(result.size() == 1){
+
+                Intent i= new Intent(activity.getApplicationContext(),GameScores.class);
+                activity.startActivity(i);
+
+            } else {
+                final ArrayAdapter<String> optionAdapter= new ArrayAdapter<String>(activity.getApplicationContext(),android.R.layout.select_dialog_singlechoice);
+                optionAdapter.add("Login Failed.");
+
+                AlertDialog.Builder builder= new AlertDialog.Builder(activity);
+                builder.setTitle("Invalid Login");
+                builder.setMessage("Please enter correct account information.");
+                builder.setPositiveButton("Hide", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog2) {
+
+                    }
+                });
+                dialog.show();
+            }
         }
     }
 }
