@@ -9,14 +9,24 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class userFantasyTeam extends AppCompatActivity {
 
+    ActiveSession userSession = new ActiveSession();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_fantasy_team);
 
+        Bundle b = getIntent().getExtras();
+        userSession.setActiveUserId(b.getInt("userSession"));
+        getTeam();
+    }
+
+    public void getTeam() {
+        FacadeController fc = new FacadeController();
+        fc.getUserTeam(this,userSession);
     }
 
     @Override

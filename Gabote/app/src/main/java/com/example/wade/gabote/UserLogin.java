@@ -15,7 +15,7 @@ public class UserLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-
+        final ActiveSession userSession = new ActiveSession();
         Button b = (Button)findViewById(R.id.bLogin);
         final Activity activity=this;
         b.setOnClickListener(new View.OnClickListener() {
@@ -24,7 +24,7 @@ public class UserLogin extends AppCompatActivity {
                 EditText user = (EditText)findViewById(R.id.usernameEmailField);
                 EditText pass = (EditText)findViewById(R.id.passwordField);
                 FacadeController fc = new FacadeController();
-                fc.checkLoginUser(activity,user.getText().toString(),pass.getText().toString());
+                fc.checkLoginUser(activity,user.getText().toString(),pass.getText().toString(), userSession);
             }
         });
 

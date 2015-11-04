@@ -7,6 +7,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.MainThread;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -345,23 +346,27 @@ public class GetData {
         private String username;
         private String password;
         private Activity activity;
-        public checkUserLogin(Activity activity, String username, String password)
+        private ActiveSession userSession;
+        public checkUserLogin(Activity activity, String username, String password, ActiveSession userSession)
         {
             this.activity = activity;
             this.username = username;
             this.password = password;
-
+            this.userSession = userSession;
             GetNetworkConn task = new GetNetworkConn();
             task.setOnResultsListener(this);
-            task.execute("SELECT username FROM t_user WHERE username='"+ this.username +"' AND password='"+ this.password +"'");
+            task.execute("SELECT user_id FROM t_user WHERE username='"+ this.username +"' AND password='"+ this.password +"'");
         }
 
         @Override
         public void onResultSuccess(ArrayList<String[]> result) {
             if(result.size() == 1){
 
-                Intent i= new Intent(activity.getApplicationContext(),GameScores.class);
+                Intent i= new Intent(activity.getApplicationContext(),userFantasyTeam.class);
+                userSession.setActiveUserId(Integer.parseInt(result.get(0)[0]));
+                i.putExtra("userSession", userSession.getActiveUserId());
                 activity.startActivity(i);
+
 
             } else {
                 final ArrayAdapter<String> optionAdapter= new ArrayAdapter<String>(activity.getApplicationContext(),android.R.layout.select_dialog_singlechoice);
@@ -385,6 +390,47 @@ public class GetData {
                 });
                 dialog.show();
             }
+        }
+    }
+    protected static class UserTeam implements ResultListener
+    {
+        Activity activity;
+        private String[] p_first_name;
+        private String[] p_last_name;
+        private String[] p_position;
+        private String[] p_team;
+        public UserTeam(Activity activity, ActiveSession userSession)
+        {
+            this.activity=activity;
+            this.p_first_name = new String[50];
+            this.p_last_name = new String[50];
+            this.p_position = new String[50];
+            this.p_team = new String[50];
+            GetNetworkConn task = new GetNetworkConn();
+            task.setOnResultsListener(this);
+            task.execute("SELECT P.first_name, P.last_name, P.position,P.team FROM player P, user_player U WHERE U.user_id='"+ userSession.getActiveUserId() +"' AND U.player_id=P.player_id");
+
+        }
+        @Override
+        public void onResultSuccess(ArrayList<String[]> result) {
+            for(int i=0;i<result.size();i++)
+            {
+                p_first_name[i] = result.get(i)[0];
+                p_last_name[i] = result.get(i)[1];
+                p_position[i] = result.get(i)[2];
+                p_team[i] = result.get(i)[3];
+            }
+            ListView lv = (ListView)activity.findViewById(R.id.teamList);
+            ArrayList<String> userPlayerList = new ArrayList<String>();
+            String temp;
+            for(int i=0; i<result.size();i++)
+            {
+                temp="";
+                temp += p_first_name[i].toString() + " " + p_last_name[i].toString() + "    " + p_position.toString() + "     " + p_position[i].toString();
+                userPlayerList.add(i,temp);
+            }
+            ArrayAdapter<String> la = new ArrayAdapter<String>(activity,R.layout.rowdef,userPlayerList);
+            lv.setAdapter(la);
         }
     }
 }

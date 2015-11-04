@@ -5,6 +5,9 @@ package com.example.wade.gabote;
  */
 public class ActiveSession {
     private int activeUserId;
-    public void setActiveUserId(int id){activeUserId=id;}
-    public int getActiveUserId(int id){return activeUserId;}
+    public ActiveSession(){activeUserId=0;}
+    public void setActiveUserId(int id){
+        activeUserId=id;
+    }
+    public int getActiveUserId(){return activeUserId;}
 }
