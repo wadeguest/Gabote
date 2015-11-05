@@ -1,49 +1,22 @@
 package com.example.wade.gabote;
 import android.app.Activity;
-import android.app.ActivityOptions;
-import android.content.Context;
-import android.database.DataSetObserver;
-import android.os.Handler;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
-import com.example.wade.gabote.GetData;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 
 public class GameScores extends Activity {
 
-    ListView mDrawerList;
-    RelativeLayout mDrawerPane;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
-    ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_scores);
+        DrawerListController dla= new DrawerListController(this);
         Spinner wk = (Spinner)findViewById(R.id.weekDropDown);
         ArrayAdapter<CharSequence> adsp = ArrayAdapter.createFromResource(this,R.array.spinnerWeeks,android.R.layout.simple_spinner_item);
         adsp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -51,7 +24,7 @@ public class GameScores extends Activity {
         wk.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                displayGameScores(position+1);
+                displayGameScores(position + 1);
             }
 
             @Override
@@ -59,21 +32,12 @@ public class GameScores extends Activity {
                 displayGameScores(1);
             }
         });
-        mNavItems.add(new NavItem("Game Scores", "Display Scores of NFL Games", 0));
-        mNavItems.add(new NavItem("Fantasy Menu", "Show all Fantasy Football Options", 0));
-        mNavItems.add(new NavItem("Chat Rooms","Show Active Chat Rooms",0));
-        mNavItems.add(new NavItem("Messaging","View/Send Messages to other users",0));
 
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
-
-        mDrawerPane = (RelativeLayout)findViewById(R.id.drawerPane);
-        mDrawerList = (ListView)findViewById(R.id.navList);
-        DrawerListAdapter adapter = new DrawerListAdapter(this, mNavItems);
-        mDrawerList.setAdapter(adapter);
         displayGameScores(1);
 }
     public void displayGameScores(int week){
-        GetData.WeekDataTable tableView = new GetData.WeekDataTable(week, this);
+        FacadeController fc= new FacadeController();
+        fc.getGameScoreWeekData(this,week);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,61 +60,5 @@ public class GameScores extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-    class NavItem{
-        String mTitle;
-        String mSubtitle;
-        int mIcon;
 
-        public NavItem(String title,String subtitle, int icon){
-            mTitle=title;
-            mSubtitle=subtitle;
-            mIcon=icon;
-        }
-    }
-    class DrawerListAdapter extends BaseAdapter{
-
-        Context mContext;
-        ArrayList<NavItem> mNavItems;
-
-        public DrawerListAdapter(Context context, ArrayList<NavItem> navItems){
-            mContext =context;
-            mNavItems = navItems;
-        }
-
-        @Override
-        public int getCount() {
-            return mNavItems.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return mNavItems.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View view;
-
-            if (convertView == null) {
-                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater.inflate(R.layout.drawer_item, null);
-            } else {
-                view= convertView;
-            }
-
-            TextView titleView = (TextView)view.findViewById(R.id.title);
-            TextView subtitleView = (TextView)view.findViewById(R.id.subTitle);
-            //ImageView iconView = (ImageView)view.findViewById(R.id.icon);
-
-            titleView.setText(mNavItems.get(position).mTitle);
-            subtitleView.setText(mNavItems.get(position).mSubtitle);
-            //iconView.setImageResource(mNavItems.get(position).mIcon);
-            return view;
-        }
-    }
 }
