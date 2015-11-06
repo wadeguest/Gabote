@@ -53,14 +53,25 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <ListView
+    <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/teamList"
-        android:layout_marginTop="64dp"
+        android:id="@+id/teamPlayerTable"
+        android:background="@drawable/table_borders"
         android:layout_below="@+id/teamHeader"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="64dp"
+        android:stretchColumns="1,2"
+        android:divider="@drawable/table_borders"
+        android:showDividers="middle">
 
-    </ListView>
+   <!--     <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/display_row">
+        </TableRow>
+-->
+
+    </TableLayout>
 </RelativeLayout>

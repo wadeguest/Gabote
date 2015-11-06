@@ -1,5 +1,6 @@
 package com.example.wade.gabote;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
@@ -7,16 +8,22 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.MainThread;
+import android.support.design.widget.TabLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -420,17 +427,75 @@ public class GetData {
                 p_position[i] = result.get(i)[2];
                 p_team[i] = result.get(i)[3];
             }
-            ListView lv = (ListView)activity.findViewById(R.id.teamList);
+            TableLayout tl = (TableLayout)activity.findViewById(R.id.teamPlayerTable);
+       //     tl.setBackgroundColor(Color.BLACK);
             ArrayList<String> userPlayerList = new ArrayList<String>();
             String temp;
+            boolean firstRun = false;
             for(int i=0; i<result.size();i++)
             {
-                temp="";
-                temp += p_first_name[i].toString() + " " + p_last_name[i].toString() + "    " + p_position.toString() + "     " + p_position[i].toString();
-                userPlayerList.add(i,temp);
+                TableLayout.LayoutParams lp = new TableLayout.LayoutParams();
+                TableRow tr = new TableRow(activity);
+                lp.setMargins(25, 0, 0, 0);
+                tr.setLayoutParams(lp);
+
+
+                if(i%2 == 0){
+              //      tr.setBackgroundColor(Color.GRAY);
+                } else {
+              //      tr.setBackgroundColor(Color.WHITE);
+                }
+              //  tr.setBackgroundResource(R.drawable.table_borders);
+
+                if(!firstRun){
+                    TextView ch1 = new TextView(activity);
+                    TextView ch2 = new TextView(activity);
+                    TextView ch3 = new TextView(activity);
+
+                    ch1.setText("POSITION");
+                    ch2.setText("PLAYER NAME");
+                    ch3.setText("TEAM");
+                    ch1.setGravity(Gravity.CENTER);
+                    ch2.setGravity(Gravity.CENTER);
+                    ch3.setGravity(Gravity.CENTER);
+
+                    tr.addView(ch1);
+                    tr.addView(ch2);
+                    tr.addView(ch3);
+                    firstRun=true;
+                    i--;
+                } else {
+                    TextView posTV = new TextView(activity);
+                    posTV.setText(p_position[i].toString());
+                    posTV.setGravity(Gravity.CENTER);
+                    posTV.setBackgroundResource(R.drawable.table_borders);
+                    tr.addView(posTV);
+
+                    TextView nameTV = new TextView(activity);
+                    nameTV.setText(p_first_name[i].toString() + " " + p_last_name[i].toString());
+                    nameTV.setGravity(Gravity.CENTER);
+                    nameTV.setBackgroundResource(R.drawable.table_borders);
+                    tr.addView(nameTV);
+
+                    TextView tmTV = new TextView(activity);
+                    tmTV.setText(p_team[i].toString());
+                    tmTV.setGravity(Gravity.CENTER);
+                    tmTV.setBackgroundResource(R.drawable.table_borders);
+                    tr.addView(tmTV);
+
+                    Button rm = new Button(activity);
+                    rm.setGravity(Gravity.CENTER);
+                    rm.setText("Remove");
+                    rm.setBackgroundColor(android.graphics.Color.RED);
+                    rm.setBackgroundResource(R.drawable.table_borders);
+                    tr.addView(rm);
+                }
+                if(tr.getParent()!=null)
+                    ((ViewGroup)tr.getParent()).removeView(tr);
+
+                tl.addView(tr,new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             }
             ArrayAdapter<String> la = new ArrayAdapter<String>(activity,R.layout.rowdef,userPlayerList);
-            lv.setAdapter(la);
         }
     }
 }
