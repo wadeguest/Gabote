@@ -24,4 +24,5 @@
         completions."
     </string>
     <string name="title_activity_user_sign_up">UserSignUp</string>
+    <string name="title_activity_scoring_settings">Scoring Settings</string>
 </resources>

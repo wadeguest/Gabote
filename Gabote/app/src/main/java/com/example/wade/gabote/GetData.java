@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -369,7 +370,7 @@ public class GetData {
         public void onResultSuccess(ArrayList<String[]> result) {
             if(result.size() == 1){
 
-                Intent i= new Intent(activity.getApplicationContext(),userFantasyTeam.class);
+                Intent i= new Intent(activity.getApplicationContext(),ScoringSettings.class);
                 userSession.setActiveUserId(Integer.parseInt(result.get(0)[0]));
                 i.putExtra("userSession", userSession.getActiveUserId());
                 activity.startActivity(i);
@@ -399,8 +400,7 @@ public class GetData {
             }
         }
     }
-    protected static class UserTeam implements ResultListener
-    {
+    protected static class UserTeam implements ResultListener {
         Activity activity;
         private String[] p_first_name;
         private String[] p_last_name;
@@ -496,6 +496,229 @@ public class GetData {
                 tl.addView(tr,new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             }
             ArrayAdapter<String> la = new ArrayAdapter<String>(activity,R.layout.rowdef,userPlayerList);
+        }
+    }
+    protected static class getUserScoringSettings implements ResultListener {
+        Activity activity;
+        private int p_yds;
+        private int p_td;
+        private int p_int;
+        private int ru_yds;
+        private int ru_td;
+        private int re_yds;
+        private int re_td;
+        private int two_pt_conv;
+        private int fumble_lost;
+        private int k_pat;
+        private int fg_0;
+        private int fg_20;
+        private int fg_30;
+        private int fg_40;
+        private int fg_50;
+        private int off_fumble_td;
+        private int def_sack;
+        private int def_int;
+        private int def_fumble_rec;
+        private int def_safety;
+        private int def_td;
+        private int def_k_p_td;
+        private int def_ptall_0;
+        private int def_ptall_1;
+        private int def_ptall_7;
+        private int def_ptall_14;
+        private int def_ptall_21;
+        private int def_ptall_28;
+        private int def_ptall_35;
+
+        public getUserScoringSettings(Activity activity, ActiveSession userSession) {
+            this.activity = activity;
+            p_yds = 0;
+            p_td = 0;
+            p_int = 0;
+            ru_yds = 0;
+            ru_td = 0;
+            re_yds = 0;
+            re_td = 0;
+            two_pt_conv = 0;
+            fumble_lost = 0;
+            k_pat = 0;
+            fg_0 = 0;
+            fg_20 = 0;
+            fg_30 = 0;
+            fg_40 = 0;
+            fg_50 = 0;
+            off_fumble_td = 0;
+            def_sack = 0;
+            def_int = 0;
+            def_fumble_rec = 0;
+            def_safety = 0;
+            def_td = 0;
+            def_k_p_td = 0;
+            def_ptall_0 = 0;
+            def_ptall_1 = 0;
+            def_ptall_7 = 0;
+            def_ptall_14 = 0;
+            def_ptall_21 = 0;
+            def_ptall_28 = 0;
+            def_ptall_35 = 0;
+
+            GetNetworkConn task = new GetNetworkConn();
+            task.setOnResultsListener(this);
+            task.execute("SELECT * FROM t_user_scoring, t_user U WHERE U.user_id='"+ userSession.getActiveUserId() +"'");
+        }
+        public int getP_yds(){return p_yds;}
+        public int getP_td(){return p_td;}
+        public int getP_int(){return p_int;}
+        public int getRu_yds(){return ru_yds;}
+        public int getRu_td(){return ru_td;}
+        public int getRe_yds(){return re_yds;}
+        public int getRe_td(){return re_td;}
+        public int getTwo_pt_conv(){return two_pt_conv;}
+        public int getFumble_lost(){return fumble_lost;}
+        public int getK_pat(){return k_pat;}
+        public int getFg_0(){return fg_0;}
+        public int getFg_20(){return fg_20;}
+        public int getFg_30(){return fg_30;}
+        public int getFg_40(){return fg_40;}
+        public int getFg_50(){return fg_50;}
+        public int getOff_fumble_td(){return off_fumble_td;}
+        public int getDef_sack(){return def_sack;}
+        public int getDef_int(){return def_int;}
+        public int getDef_fumble_rec(){return def_fumble_rec;}
+        public int getDef_safety(){return def_safety;}
+        public int getDef_td(){return def_td;}
+        public int getDef_k_p_td(){return def_k_p_td;}
+        public int getDef_ptall_0(){return def_ptall_0;}
+        public int getDef_ptall_1(){return def_ptall_1;}
+        public int getDef_ptall_7(){return def_ptall_7;}
+        public int getDef_ptall_14(){return def_ptall_14;}
+        public int getDef_ptall_21(){return def_ptall_21;}
+        public int getDef_ptall_28(){return def_ptall_28;}
+        public int getDef_ptall_35(){return def_ptall_35;}
+
+
+
+        @Override
+        public void onResultSuccess(ArrayList<String[]> result) {
+            if(result.size()>0){
+                p_yds =Integer.parseInt(result.get(0)[0]);
+                p_td =Integer.parseInt(result.get(0)[1]);
+                p_int =Integer.parseInt(result.get(0)[2]);
+                ru_yds =Integer.parseInt(result.get(0)[3]);
+                ru_td =Integer.parseInt(result.get(0)[4]);
+                re_yds =Integer.parseInt(result.get(0)[5]);
+                re_td =Integer.parseInt(result.get(0)[6]);
+                two_pt_conv =Integer.parseInt(result.get(0)[7]);
+                fumble_lost =Integer.parseInt(result.get(0)[8]);
+                k_pat =Integer.parseInt(result.get(0)[9]);
+                fg_0 =Integer.parseInt(result.get(0)[10]);
+                fg_20 =Integer.parseInt(result.get(0)[11]);
+                fg_30 =Integer.parseInt(result.get(0)[12]);
+                fg_40 =Integer.parseInt(result.get(0)[13]);
+                fg_50 =Integer.parseInt(result.get(0)[14]);
+                off_fumble_td =Integer.parseInt(result.get(0)[15]);
+                def_sack =Integer.parseInt(result.get(0)[16]);
+                def_int =Integer.parseInt(result.get(0)[17]);
+                def_fumble_rec =Integer.parseInt(result.get(0)[18]);
+                def_safety =Integer.parseInt(result.get(0)[19]);
+                def_td =Integer.parseInt(result.get(0)[20]);
+                def_k_p_td =Integer.parseInt(result.get(0)[21]);
+                def_ptall_0 =Integer.parseInt(result.get(0)[22]);
+                def_ptall_1 =Integer.parseInt(result.get(0)[23]);
+                def_ptall_7 =Integer.parseInt(result.get(0)[24]);
+                def_ptall_14 =Integer.parseInt(result.get(0)[25]);
+                def_ptall_21 =Integer.parseInt(result.get(0)[26]);
+                def_ptall_28 =Integer.parseInt(result.get(0)[27]);
+                def_ptall_35 =Integer.parseInt(result.get(0)[28]);
+            }
+
+            EditText et_p_yds = (EditText)activity.findViewById(R.id.et_p_yds);
+            et_p_yds.setText(Integer.toString(p_yds));
+
+            EditText et_p_td = (EditText)activity.findViewById(R.id.et_p_td);
+            et_p_td.setText(Integer.toString(p_td));
+
+            EditText et_p_int = (EditText)activity.findViewById(R.id.et_p_int);
+            et_p_int.setText(Integer.toString(p_int));
+
+            EditText et_ru_yds = (EditText)activity.findViewById(R.id.et_ru_yds);
+            et_ru_yds.setText(Integer.toString(ru_yds));
+
+            EditText et_ru_td = (EditText)activity.findViewById(R.id.et_ru_td);
+            et_ru_td.setText(Integer.toString(ru_td));
+
+            EditText et_re_yds = (EditText)activity.findViewById(R.id.et_re_yds);
+            et_re_yds.setText(Integer.toString(re_yds));
+
+            EditText et_re_td = (EditText)activity.findViewById(R.id.et_re_td);
+            et_re_td.setText(Integer.toString(re_td));
+
+            EditText et_two_pt_conv = (EditText)activity.findViewById(R.id.et_two_pt_conv);
+            et_two_pt_conv.setText(Integer.toString(two_pt_conv));
+
+            EditText et_fumble_lost = (EditText)activity.findViewById(R.id.et_fumble_lost);
+            et_fumble_lost.setText(Integer.toString(fumble_lost));
+
+            EditText et_k_pat = (EditText)activity.findViewById(R.id.et_k_pat);
+            et_k_pat.setText(Integer.toString(k_pat));
+
+            EditText et_fg_0 = (EditText)activity.findViewById(R.id.et_fg_0);
+            et_fg_0.setText(Integer.toString(fg_0));
+
+            EditText et_fg_20 = (EditText)activity.findViewById(R.id.et_fg_20);
+            et_fg_20.setText(Integer.toString(fg_20));
+
+            EditText et_fg_30 = (EditText)activity.findViewById(R.id.et_fg_30);
+            et_fg_30.setText(Integer.toString(fg_30));
+
+            EditText et_fg_40 = (EditText)activity.findViewById(R.id.et_fg_40);
+            et_fg_40.setText(Integer.toString(fg_40));
+
+            EditText et_fg_50 = (EditText)activity.findViewById(R.id.et_fg_50);
+            et_fg_50.setText(Integer.toString(fg_50));
+
+            EditText et_off_fumble_td = (EditText)activity.findViewById(R.id.et_off_fumble_td);
+            et_off_fumble_td.setText(Integer.toString(off_fumble_td));
+
+            EditText et_def_sack = (EditText)activity.findViewById(R.id.et_def_sack);
+            et_def_sack.setText(Integer.toString(def_sack));
+
+            EditText et_def_int = (EditText)activity.findViewById(R.id.et_def_int);
+            et_def_int.setText(Integer.toString(def_int));
+
+            EditText et_def_fumble_rec = (EditText)activity.findViewById(R.id.et_def_fumble_rec);
+            et_def_fumble_rec.setText(Integer.toString(def_fumble_rec));
+
+            EditText et_def_safety = (EditText)activity.findViewById(R.id.et_def_safety);
+            et_def_sack.setText(Integer.toString(def_safety));
+
+            EditText et_def_td = (EditText)activity.findViewById(R.id.et_def_td);
+            et_def_td.setText(Integer.toString(def_td));
+
+            EditText et_def_k_p_td = (EditText)activity.findViewById(R.id.et_def_k_p_td);
+            et_def_k_p_td.setText(Integer.toString(def_k_p_td));
+
+            EditText et_def_ptall_0 = (EditText)activity.findViewById(R.id.et_def_ptall_0);
+            et_def_ptall_0.setText(Integer.toString(def_ptall_0));
+
+            EditText et_def_ptall_1 = (EditText)activity.findViewById(R.id.et_def_ptall_1);
+            et_def_ptall_1.setText(Integer.toString(def_ptall_1));
+
+            EditText et_def_ptall_7 = (EditText)activity.findViewById(R.id.et_def_ptall_7);
+            et_def_ptall_7.setText(Integer.toString(def_ptall_7));
+
+            EditText et_def_ptall_14 = (EditText)activity.findViewById(R.id.et_def_ptall_14);
+            et_def_ptall_14.setText(Integer.toString(def_ptall_14));
+
+            EditText et_def_ptall_21 = (EditText)activity.findViewById(R.id.et_def_ptall_21);
+            et_def_ptall_21.setText(Integer.toString(def_ptall_21));
+
+            EditText et_def_ptall_28 = (EditText)activity.findViewById(R.id.et_def_ptall_28);
+            et_def_ptall_28.setText(Integer.toString(def_ptall_28));
+
+            EditText et_def_ptall_35 = (EditText)activity.findViewById(R.id.et_def_ptall_35);
+            et_def_ptall_35.setText(Integer.toString(def_ptall_35));
+
         }
     }
 }

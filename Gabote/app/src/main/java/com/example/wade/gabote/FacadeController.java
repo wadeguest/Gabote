@@ -12,6 +12,8 @@ public class FacadeController {
     private UserTeamController utc = new UserTeamController();
     private GameScoreController gsc = new GameScoreController();
     private DrawerListController dlc = new DrawerListController();
+    private ScoringSettingsController ssc = new ScoringSettingsController();
+
     public FacadeController(){
     }
     public void checkLoginUser(Activity activity,String user, String pass, ActiveSession userSession)
@@ -26,5 +28,8 @@ public class FacadeController {
     }
     public void getDrawerList(Activity activity) {
         dlc = new DrawerListController(activity);
+    }
+    public void getScoringSettings(Activity activity, ActiveSession userSession) {
+        ssc.getScoringSettings(activity,userSession);
     }
 }

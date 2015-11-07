@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wade.gabote" >
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -32,7 +33,7 @@
         </activity>
         <activity
             android:name=".userFantasyTeam"
-            android:label="@string/title_activity_user_fantasy_team">
+            android:label="@string/title_activity_user_fantasy_team" >
         </activity>
         <activity android:name=".UserLogin" >
             <intent-filter>
@@ -42,8 +43,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UserSignUp"
-            android:label="@string/title_activity_user_sign_up">
+            android:name=".ScoringSettings"
+            android:label="@string/title_activity_scoring_settings">
         </activity>
     </application>
 

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.wade.gabote.ScoringSettings">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/bSubmitSettings">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:stretchColumns="1">
+
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Passing Settings"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:id="@+id/passing_points_header"
+                android:layout_marginBottom="5dp"/>
+
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Passing Yards(1/10): " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_p_yds" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Passing Touchdowns: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_p_td" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TextView android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="Rushing and Receiving Settings"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:id="@+id/rushing_points_header"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Rushing Yards(1/10): " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_ru_yds" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Rushing Touchdowns: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_ru_td" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Receiving Yards(1/10): " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_re_yds" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Receiving Touchdowns: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_re_td" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TextView android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="Other Settings"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:id="@+id/other_off_header"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Two-point Conversions: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_two_pt_conv" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Pass Intercepted: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_p_int" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Lost Fumble: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_fumble_lost" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Offensive Fumble TD: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_off_fumble_td" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TextView android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="Kicking Settings"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:id="@+id/kick_pts_header"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Made PAT: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_k_pat" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="FG Made 0-20: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_fg_0" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="FG Made 21-30: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_fg_20" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="FG Made 31-40: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_fg_30" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="FG Made 41-50: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_fg_40" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="FG Made 50+: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_fg_50" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TextView android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="Defensive Settings"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:id="@+id/def_pts_header"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Sack: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_sack" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Interception: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_int" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Fumble Recovery: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_fumble_rec" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Safety: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_safety" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Defensive Touchdown: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_td" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="Kick/Punt Return TD: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_k_p_td" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="0 Points Allowed: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_ptall_0" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="1-6 Points Allowed: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_ptall_1" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="7-13 Points Allowed: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_ptall_7" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="14-20 Points Allowed: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_ptall_14" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="21-27 Points Allowed: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_ptall_21" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="28-34 Points Allowed: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_ptall_28" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView android:layout_height="match_parent" android:layout_width="wrap_content"
+                    android:text="35+ Points Allowed: " android:textSize="20dp" android:gravity="center_vertical"/>
+                <EditText android:id="@+id/et_def_ptall_35" android:textAlignment="center" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+
+            </TableRow>
+
+        </TableLayout>
+        </ScrollView>
+
+
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/bSubmitSettings" />
+
+</RelativeLayout>
