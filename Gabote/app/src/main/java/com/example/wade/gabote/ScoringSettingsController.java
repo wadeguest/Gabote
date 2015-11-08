@@ -10,6 +10,9 @@ public class ScoringSettingsController {
     }
     protected void getScoringSettings(Activity activity, ActiveSession userSession)
     {
-        new GetData.getUserScoringSettings(activity,userSession);
+        new GetData.UserScoringSettings(activity,userSession,1);
+    }
+    protected void setScoringSettings(Activity activity, ActiveSession userSession) {
+        new GetData.UserScoringSettings(activity, userSession, 2);
     }
 }

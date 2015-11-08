@@ -32,4 +32,7 @@ public class FacadeController {
     public void getScoringSettings(Activity activity, ActiveSession userSession) {
         ssc.getScoringSettings(activity,userSession);
     }
+    public void setScoringSettings(Activity activity, ActiveSession userSession){
+        ssc.setScoringSettings(activity,userSession);
+    }
 }

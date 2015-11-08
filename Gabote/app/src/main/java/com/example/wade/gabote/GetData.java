@@ -498,8 +498,11 @@ public class GetData {
             ArrayAdapter<String> la = new ArrayAdapter<String>(activity,R.layout.rowdef,userPlayerList);
         }
     }
-    protected static class getUserScoringSettings implements ResultListener {
+    protected static class UserScoringSettings implements ResultListener {
+        ActiveSession userSession;
         Activity activity;
+        private boolean exists;
+        private int mode;
         private int p_yds;
         private int p_td;
         private int p_int;
@@ -530,8 +533,9 @@ public class GetData {
         private int def_ptall_28;
         private int def_ptall_35;
 
-        public getUserScoringSettings(Activity activity, ActiveSession userSession) {
+        public UserScoringSettings(Activity activity, ActiveSession userSession, int mode) {
             this.activity = activity;
+            this.userSession = userSession;
             p_yds = 0;
             p_td = 0;
             p_int = 0;
@@ -561,11 +565,20 @@ public class GetData {
             def_ptall_21 = 0;
             def_ptall_28 = 0;
             def_ptall_35 = 0;
-
+            this.mode = mode;
+            this.exists = false;
             GetNetworkConn task = new GetNetworkConn();
             task.setOnResultsListener(this);
-            task.execute("SELECT * FROM t_user_scoring, t_user U WHERE U.user_id='"+ userSession.getActiveUserId() +"'");
+
+            if (mode == 1) {
+                task.execute("SELECT * FROM t_user_scoring, t_user U WHERE U.user_id='" + userSession.getActiveUserId() + "'");
+            } else if (mode == 2) {
+                String SQL = updateScoringSettings();
+                task.execute(SQL);
+            }
         }
+
+
         public int getP_yds(){return p_yds;}
         public int getP_td(){return p_td;}
         public int getP_int(){return p_int;}
@@ -596,129 +609,329 @@ public class GetData {
         public int getDef_ptall_28(){return def_ptall_28;}
         public int getDef_ptall_35(){return def_ptall_35;}
 
+        public void setP_yds(int x){p_yds=x;}
+        public void setP_td(int x){p_td=x;}
+        public void setP_int(int x){p_int=x;}
+        public void setRu_yds(int x){ru_yds=x;}
+        public void setRu_td(int x){ru_td=x;}
+        public void setRe_yds(int x){re_yds=x;}
+        public void setRe_td(int x){re_td=x;}
+        public void setTwo_pt_conv(int x){two_pt_conv=x;}
+        public void setFumble_lost(int x){fumble_lost=x;}
+        public void setK_pat(int x){k_pat=x;}
+        public void setFg_0(int x){fg_0=x;}
+        public void setFg_20(int x){fg_20=x;}
+        public void setFg_30(int x){fg_30=x;}
+        public void setFg_40(int x){fg_40=x;}
+        public void setFg_50(int x){fg_50=x;}
+        public void setOff_fumble_td(int x){off_fumble_td=x;}
+        public void setDef_sack(int x){def_sack=x;}
+        public void setDef_int(int x){def_int=x;}
+        public void setDef_fumble_rec(int x){def_fumble_rec=x;}
+        public void setDef_safety(int x){def_safety=x;}
+        public void setDef_td(int x){def_td=x;}
+        public void setDef_k_p_td(int x){def_k_p_td=x;}
+        public void setDef_ptall_0(int x){def_ptall_0=x;}
+        public void setDef_ptall_1(int x){def_ptall_1=x;}
+        public void setDef_ptall_7(int x){def_ptall_7=x;}
+        public void setDef_ptall_14(int x){def_ptall_14=x;}
+        public void setDef_ptall_21(int x){def_ptall_21=x;}
+        public void setDef_ptall_28(int x){def_ptall_28=x;}
+        public void setDef_ptall_35(int x){def_ptall_35=x;}
 
+        public String updateScoringSettings() {
+
+            EditText et_p_yds = (EditText) activity.findViewById(R.id.et_p_yds);
+            setP_yds(Integer.parseInt(et_p_yds.getText().toString()));
+
+            EditText et_p_td = (EditText) activity.findViewById(R.id.et_p_td);
+            setP_td(Integer.parseInt(et_p_td.getText().toString()));
+
+            EditText et_p_int = (EditText) activity.findViewById(R.id.et_p_int);
+            setP_int(Integer.parseInt(et_p_int.getText().toString()));
+
+            EditText et_ru_yds = (EditText) activity.findViewById(R.id.et_ru_yds);
+            setRu_yds(Integer.parseInt(et_ru_yds.getText().toString()));
+
+            EditText et_ru_td = (EditText) activity.findViewById(R.id.et_ru_td);
+            setRu_td(Integer.parseInt(et_ru_td.getText().toString()));
+
+            EditText et_re_yds = (EditText) activity.findViewById(R.id.et_re_yds);
+            setRe_yds(Integer.parseInt(et_re_yds.getText().toString()));
+
+            EditText et_re_td = (EditText) activity.findViewById(R.id.et_re_td);
+            setRe_td(Integer.parseInt(et_re_td.getText().toString()));
+
+            EditText et_two_pt_conv = (EditText) activity.findViewById(R.id.et_two_pt_conv);
+            setTwo_pt_conv(Integer.parseInt(et_two_pt_conv.getText().toString()));
+
+            EditText et_fumble_lost = (EditText) activity.findViewById(R.id.et_fumble_lost);
+            setFumble_lost(Integer.parseInt(et_fumble_lost.getText().toString()));
+
+            EditText et_k_pat = (EditText) activity.findViewById(R.id.et_k_pat);
+            setK_pat(Integer.parseInt(et_k_pat.getText().toString()));
+
+            EditText et_fg_0 = (EditText) activity.findViewById(R.id.et_fg_0);
+            setFg_0(Integer.parseInt(et_fg_0.getText().toString()));
+
+            EditText et_fg_20 = (EditText) activity.findViewById(R.id.et_fg_20);
+            setFg_20(Integer.parseInt(et_fg_20.getText().toString()));
+
+            EditText et_fg_30 = (EditText) activity.findViewById(R.id.et_fg_30);
+            setFg_30(Integer.parseInt(et_fg_30.getText().toString()));
+
+            EditText et_fg_40 = (EditText) activity.findViewById(R.id.et_fg_40);
+            setFg_40(Integer.parseInt(et_fg_40.getText().toString()));
+
+            EditText et_fg_50 = (EditText) activity.findViewById(R.id.et_fg_50);
+            setFg_50(Integer.parseInt(et_fg_50.getText().toString()));
+
+            EditText et_off_fumble_td = (EditText) activity.findViewById(R.id.et_off_fumble_td);
+            setOff_fumble_td(Integer.parseInt(et_off_fumble_td.getText().toString()));
+
+            EditText et_def_sack = (EditText) activity.findViewById(R.id.et_def_sack);
+            setDef_sack(Integer.parseInt(et_def_sack.getText().toString()));
+
+            EditText et_def_int = (EditText) activity.findViewById(R.id.et_def_int);
+            setDef_int(Integer.parseInt(et_def_int.getText().toString()));
+
+            EditText et_def_fumble_rec = (EditText) activity.findViewById(R.id.et_def_fumble_rec);
+            setDef_fumble_rec(Integer.parseInt(et_def_fumble_rec.getText().toString()));
+
+            EditText et_def_safety = (EditText) activity.findViewById(R.id.et_def_safety);
+            setDef_safety(Integer.parseInt(et_def_safety.getText().toString()));
+
+            EditText et_def_td = (EditText) activity.findViewById(R.id.et_def_td);
+            setDef_td(Integer.parseInt(et_def_td.getText().toString()));
+
+            EditText et_def_k_p_td = (EditText) activity.findViewById(R.id.et_def_k_p_td);
+            setDef_k_p_td(Integer.parseInt(et_def_k_p_td.getText().toString()));
+
+            EditText et_def_ptall_0 = (EditText) activity.findViewById(R.id.et_def_ptall_0);
+            setDef_ptall_0(Integer.parseInt(et_def_ptall_0.getText().toString()));
+
+            EditText et_def_ptall_1 = (EditText) activity.findViewById(R.id.et_def_ptall_1);
+            setDef_ptall_1(Integer.parseInt(et_def_ptall_1.getText().toString()));
+
+            EditText et_def_ptall_7 = (EditText) activity.findViewById(R.id.et_def_ptall_7);
+            setDef_ptall_7(Integer.parseInt(et_def_ptall_7.getText().toString()));
+
+            EditText et_def_ptall_14 = (EditText) activity.findViewById(R.id.et_def_ptall_14);
+            setDef_ptall_14(Integer.parseInt(et_def_ptall_14.getText().toString()));
+
+            EditText et_def_ptall_21 = (EditText) activity.findViewById(R.id.et_def_ptall_21);
+            setDef_ptall_21(Integer.parseInt(et_def_ptall_21.getText().toString()));
+
+            EditText et_def_ptall_28 = (EditText) activity.findViewById(R.id.et_def_ptall_28);
+            setDef_ptall_28(Integer.parseInt(et_def_ptall_28.getText().toString()));
+
+            EditText et_def_ptall_35 = (EditText) activity.findViewById(R.id.et_def_ptall_35);
+            setDef_ptall_35(Integer.parseInt(et_def_ptall_35.getText().toString()));
+
+            String SQL;
+            if (exists) {
+                SQL = "UPDATE t_user_scoring SET " +
+                        "p_yds='" + p_yds + "'," +
+                        "p_td='" + p_td + "'," +
+                        "p_int='" + p_int + "'," +
+                        "ru_yds='" + ru_yds + "'," +
+                        "ru_td='" + ru_td + "'," +
+                        "re_yds='" + re_yds + "'," +
+                        "re_td='" + re_td + "'," +
+                        "two_pt_conv='" + two_pt_conv + "'," +
+                        "fumble_lost='" + fumble_lost + "'," +
+                        "k_pat='" + k_pat + "'," +
+                        "fg_0='" + fg_0 + "'," +
+                        "fg_20='" + fg_20 + "'," +
+                        "fg_30='" + fg_30 + "'," +
+                        "fg_40='" + fg_40 + "'," +
+                        "fg_50='" + fg_50 + "'," +
+                        "off_fumble_td='" + off_fumble_td + "'," +
+                        "def_sack='" + def_sack + "'," +
+                        "def_int='" + def_int + "'," +
+                        "def_fumble_rec='" + def_fumble_rec + "'," +
+                        "def_safety='" + def_safety + "'," +
+                        "def_td='" + def_td + "'," +
+                        "def_k_p_td='" + def_k_p_td + "'," +
+                        "def_ptall_0='" + def_ptall_0 + "'," +
+                        "def_ptall_1='" + def_ptall_1 + "'," +
+                        "def_ptall_7='" + def_ptall_7 + "'," +
+                        "def_ptall_14='" + def_ptall_14 + "'," +
+                        "def_ptall_21='" + def_ptall_21 + "'," +
+                        "def_ptall_28='" + def_ptall_28 + "'," +
+                        "def_ptall_35='" + def_ptall_35 + "' " +
+                        "WHERE uid='" + userSession.getActiveUserId() + "'";
+            } else {
+                SQL = "INSERT INTO t_user_scoring VALUES(" +
+                        "'" + userSession.getActiveUserId() + "'," +
+                        "'" + p_yds + "'," +
+                        "'" + p_td + "'," +
+                        "'" + p_int + "'," +
+                        "'" + ru_yds + "'," +
+                        "'" + ru_td + "'," +
+                        "'" + re_yds + "'," +
+                        "'" + re_td + "'," +
+                        "'" + two_pt_conv + "'," +
+                        "'" + fumble_lost + "'," +
+                        "'" + k_pat + "'," +
+                        "'" + fg_0 + "'," +
+                        "'" + fg_20 + "'," +
+                        "'" + fg_30 + "'," +
+                        "'" + fg_40 + "'," +
+                        "'" + fg_50 + "'," +
+                        "'" + off_fumble_td + "'," +
+                        "'" + def_sack + "'," +
+                        "'" + def_int + "'," +
+                        "'" + def_fumble_rec + "'," +
+                        "'" + def_safety + "'," +
+                        "'" + def_td + "'," +
+                        "'" + def_k_p_td + "'," +
+                        "'" + def_ptall_0 + "'," +
+                        "'" + def_ptall_1 + "'," +
+                        "'" + def_ptall_7 + "'," +
+                        "'" + def_ptall_14 + "'," +
+                        "'" + def_ptall_21 + "'," +
+                        "'" + def_ptall_28 + "'," +
+                        "'" + def_ptall_35 + "'" +
+                        ")";
+            }
+            return SQL;
+        }
 
         @Override
         public void onResultSuccess(ArrayList<String[]> result) {
-            if(result.size()>0){
-                p_yds =Integer.parseInt(result.get(0)[0]);
-                p_td =Integer.parseInt(result.get(0)[1]);
-                p_int =Integer.parseInt(result.get(0)[2]);
-                ru_yds =Integer.parseInt(result.get(0)[3]);
-                ru_td =Integer.parseInt(result.get(0)[4]);
-                re_yds =Integer.parseInt(result.get(0)[5]);
-                re_td =Integer.parseInt(result.get(0)[6]);
-                two_pt_conv =Integer.parseInt(result.get(0)[7]);
-                fumble_lost =Integer.parseInt(result.get(0)[8]);
-                k_pat =Integer.parseInt(result.get(0)[9]);
-                fg_0 =Integer.parseInt(result.get(0)[10]);
-                fg_20 =Integer.parseInt(result.get(0)[11]);
-                fg_30 =Integer.parseInt(result.get(0)[12]);
-                fg_40 =Integer.parseInt(result.get(0)[13]);
-                fg_50 =Integer.parseInt(result.get(0)[14]);
-                off_fumble_td =Integer.parseInt(result.get(0)[15]);
-                def_sack =Integer.parseInt(result.get(0)[16]);
-                def_int =Integer.parseInt(result.get(0)[17]);
-                def_fumble_rec =Integer.parseInt(result.get(0)[18]);
-                def_safety =Integer.parseInt(result.get(0)[19]);
-                def_td =Integer.parseInt(result.get(0)[20]);
-                def_k_p_td =Integer.parseInt(result.get(0)[21]);
-                def_ptall_0 =Integer.parseInt(result.get(0)[22]);
-                def_ptall_1 =Integer.parseInt(result.get(0)[23]);
-                def_ptall_7 =Integer.parseInt(result.get(0)[24]);
-                def_ptall_14 =Integer.parseInt(result.get(0)[25]);
-                def_ptall_21 =Integer.parseInt(result.get(0)[26]);
-                def_ptall_28 =Integer.parseInt(result.get(0)[27]);
-                def_ptall_35 =Integer.parseInt(result.get(0)[28]);
+            if (mode == 1) {
+                if (result.size() > 0) {
+                    this.exists = true;
+                    p_yds = Integer.parseInt(result.get(0)[1]);
+                    p_td = Integer.parseInt(result.get(0)[2]);
+                    p_int = Integer.parseInt(result.get(0)[3]);
+                    ru_yds = Integer.parseInt(result.get(0)[4]);
+                    ru_td = Integer.parseInt(result.get(0)[5]);
+                    re_yds = Integer.parseInt(result.get(0)[6]);
+                    re_td = Integer.parseInt(result.get(0)[7]);
+                    two_pt_conv = Integer.parseInt(result.get(0)[8]);
+                    fumble_lost = Integer.parseInt(result.get(0)[9]);
+                    k_pat = Integer.parseInt(result.get(0)[10]);
+                    fg_0 = Integer.parseInt(result.get(0)[11]);
+                    fg_20 = Integer.parseInt(result.get(0)[12]);
+                    fg_30 = Integer.parseInt(result.get(0)[13]);
+                    fg_40 = Integer.parseInt(result.get(0)[14]);
+                    fg_50 = Integer.parseInt(result.get(0)[15]);
+                    off_fumble_td = Integer.parseInt(result.get(0)[16]);
+                    def_sack = Integer.parseInt(result.get(0)[17]);
+                    def_int = Integer.parseInt(result.get(0)[18]);
+                    def_fumble_rec = Integer.parseInt(result.get(0)[19]);
+                    def_safety = Integer.parseInt(result.get(0)[20]);
+                    def_td = Integer.parseInt(result.get(0)[21]);
+                    def_k_p_td = Integer.parseInt(result.get(0)[22]);
+                    def_ptall_0 = Integer.parseInt(result.get(0)[23]);
+                    def_ptall_1 = Integer.parseInt(result.get(0)[24]);
+                    def_ptall_7 = Integer.parseInt(result.get(0)[25]);
+                    def_ptall_14 = Integer.parseInt(result.get(0)[26]);
+                    def_ptall_21 = Integer.parseInt(result.get(0)[27]);
+                    def_ptall_28 = Integer.parseInt(result.get(0)[28]);
+                    def_ptall_35 = Integer.parseInt(result.get(0)[29]);
+                }
+
+                EditText et_p_yds = (EditText) activity.findViewById(R.id.et_p_yds);
+                et_p_yds.setText(Integer.toString(p_yds));
+
+                EditText et_p_td = (EditText) activity.findViewById(R.id.et_p_td);
+                et_p_td.setText(Integer.toString(p_td));
+
+                EditText et_p_int = (EditText) activity.findViewById(R.id.et_p_int);
+                et_p_int.setText(Integer.toString(p_int));
+
+                EditText et_ru_yds = (EditText) activity.findViewById(R.id.et_ru_yds);
+                et_ru_yds.setText(Integer.toString(ru_yds));
+
+                EditText et_ru_td = (EditText) activity.findViewById(R.id.et_ru_td);
+                et_ru_td.setText(Integer.toString(ru_td));
+
+                EditText et_re_yds = (EditText) activity.findViewById(R.id.et_re_yds);
+                et_re_yds.setText(Integer.toString(re_yds));
+
+                EditText et_re_td = (EditText) activity.findViewById(R.id.et_re_td);
+                et_re_td.setText(Integer.toString(re_td));
+
+                EditText et_two_pt_conv = (EditText) activity.findViewById(R.id.et_two_pt_conv);
+                et_two_pt_conv.setText(Integer.toString(two_pt_conv));
+
+                EditText et_fumble_lost = (EditText) activity.findViewById(R.id.et_fumble_lost);
+                et_fumble_lost.setText(Integer.toString(fumble_lost));
+
+                EditText et_k_pat = (EditText) activity.findViewById(R.id.et_k_pat);
+                et_k_pat.setText(Integer.toString(k_pat));
+
+                EditText et_fg_0 = (EditText) activity.findViewById(R.id.et_fg_0);
+                et_fg_0.setText(Integer.toString(fg_0));
+
+                EditText et_fg_20 = (EditText) activity.findViewById(R.id.et_fg_20);
+                et_fg_20.setText(Integer.toString(fg_20));
+
+                EditText et_fg_30 = (EditText) activity.findViewById(R.id.et_fg_30);
+                et_fg_30.setText(Integer.toString(fg_30));
+
+                EditText et_fg_40 = (EditText) activity.findViewById(R.id.et_fg_40);
+                et_fg_40.setText(Integer.toString(fg_40));
+
+                EditText et_fg_50 = (EditText) activity.findViewById(R.id.et_fg_50);
+                et_fg_50.setText(Integer.toString(fg_50));
+
+                EditText et_off_fumble_td = (EditText) activity.findViewById(R.id.et_off_fumble_td);
+                et_off_fumble_td.setText(Integer.toString(off_fumble_td));
+
+                EditText et_def_sack = (EditText) activity.findViewById(R.id.et_def_sack);
+                et_def_sack.setText(Integer.toString(def_sack));
+
+                EditText et_def_int = (EditText) activity.findViewById(R.id.et_def_int);
+                et_def_int.setText(Integer.toString(def_int));
+
+                EditText et_def_fumble_rec = (EditText) activity.findViewById(R.id.et_def_fumble_rec);
+                et_def_fumble_rec.setText(Integer.toString(def_fumble_rec));
+
+                EditText et_def_safety = (EditText) activity.findViewById(R.id.et_def_safety);
+                et_def_safety.setText(Integer.toString(def_safety));
+
+                EditText et_def_td = (EditText) activity.findViewById(R.id.et_def_td);
+                et_def_td.setText(Integer.toString(def_td));
+
+                EditText et_def_k_p_td = (EditText) activity.findViewById(R.id.et_def_k_p_td);
+                et_def_k_p_td.setText(Integer.toString(def_k_p_td));
+
+                EditText et_def_ptall_0 = (EditText) activity.findViewById(R.id.et_def_ptall_0);
+                et_def_ptall_0.setText(Integer.toString(def_ptall_0));
+
+                EditText et_def_ptall_1 = (EditText) activity.findViewById(R.id.et_def_ptall_1);
+                et_def_ptall_1.setText(Integer.toString(def_ptall_1));
+
+                EditText et_def_ptall_7 = (EditText) activity.findViewById(R.id.et_def_ptall_7);
+                et_def_ptall_7.setText(Integer.toString(def_ptall_7));
+
+                EditText et_def_ptall_14 = (EditText) activity.findViewById(R.id.et_def_ptall_14);
+                et_def_ptall_14.setText(Integer.toString(def_ptall_14));
+
+                EditText et_def_ptall_21 = (EditText) activity.findViewById(R.id.et_def_ptall_21);
+                et_def_ptall_21.setText(Integer.toString(def_ptall_21));
+
+                EditText et_def_ptall_28 = (EditText) activity.findViewById(R.id.et_def_ptall_28);
+                et_def_ptall_28.setText(Integer.toString(def_ptall_28));
+
+                EditText et_def_ptall_35 = (EditText) activity.findViewById(R.id.et_def_ptall_35);
+                et_def_ptall_35.setText(Integer.toString(def_ptall_35));
+
+            } else if(mode==2) {
+                if(result.get(0)[0].toString().contains("ERROR")){
+                    exists = true;
+                    String temp = updateScoringSettings();
+                    GetNetworkConn task = new GetNetworkConn();
+                    task.setOnResultsListener(this);
+                    task.execute(temp);
+                }else{
+
+                }
             }
-
-            EditText et_p_yds = (EditText)activity.findViewById(R.id.et_p_yds);
-            et_p_yds.setText(Integer.toString(p_yds));
-
-            EditText et_p_td = (EditText)activity.findViewById(R.id.et_p_td);
-            et_p_td.setText(Integer.toString(p_td));
-
-            EditText et_p_int = (EditText)activity.findViewById(R.id.et_p_int);
-            et_p_int.setText(Integer.toString(p_int));
-
-            EditText et_ru_yds = (EditText)activity.findViewById(R.id.et_ru_yds);
-            et_ru_yds.setText(Integer.toString(ru_yds));
-
-            EditText et_ru_td = (EditText)activity.findViewById(R.id.et_ru_td);
-            et_ru_td.setText(Integer.toString(ru_td));
-
-            EditText et_re_yds = (EditText)activity.findViewById(R.id.et_re_yds);
-            et_re_yds.setText(Integer.toString(re_yds));
-
-            EditText et_re_td = (EditText)activity.findViewById(R.id.et_re_td);
-            et_re_td.setText(Integer.toString(re_td));
-
-            EditText et_two_pt_conv = (EditText)activity.findViewById(R.id.et_two_pt_conv);
-            et_two_pt_conv.setText(Integer.toString(two_pt_conv));
-
-            EditText et_fumble_lost = (EditText)activity.findViewById(R.id.et_fumble_lost);
-            et_fumble_lost.setText(Integer.toString(fumble_lost));
-
-            EditText et_k_pat = (EditText)activity.findViewById(R.id.et_k_pat);
-            et_k_pat.setText(Integer.toString(k_pat));
-
-            EditText et_fg_0 = (EditText)activity.findViewById(R.id.et_fg_0);
-            et_fg_0.setText(Integer.toString(fg_0));
-
-            EditText et_fg_20 = (EditText)activity.findViewById(R.id.et_fg_20);
-            et_fg_20.setText(Integer.toString(fg_20));
-
-            EditText et_fg_30 = (EditText)activity.findViewById(R.id.et_fg_30);
-            et_fg_30.setText(Integer.toString(fg_30));
-
-            EditText et_fg_40 = (EditText)activity.findViewById(R.id.et_fg_40);
-            et_fg_40.setText(Integer.toString(fg_40));
-
-            EditText et_fg_50 = (EditText)activity.findViewById(R.id.et_fg_50);
-            et_fg_50.setText(Integer.toString(fg_50));
-
-            EditText et_off_fumble_td = (EditText)activity.findViewById(R.id.et_off_fumble_td);
-            et_off_fumble_td.setText(Integer.toString(off_fumble_td));
-
-            EditText et_def_sack = (EditText)activity.findViewById(R.id.et_def_sack);
-            et_def_sack.setText(Integer.toString(def_sack));
-
-            EditText et_def_int = (EditText)activity.findViewById(R.id.et_def_int);
-            et_def_int.setText(Integer.toString(def_int));
-
-            EditText et_def_fumble_rec = (EditText)activity.findViewById(R.id.et_def_fumble_rec);
-            et_def_fumble_rec.setText(Integer.toString(def_fumble_rec));
-
-            EditText et_def_safety = (EditText)activity.findViewById(R.id.et_def_safety);
-            et_def_sack.setText(Integer.toString(def_safety));
-
-            EditText et_def_td = (EditText)activity.findViewById(R.id.et_def_td);
-            et_def_td.setText(Integer.toString(def_td));
-
-            EditText et_def_k_p_td = (EditText)activity.findViewById(R.id.et_def_k_p_td);
-            et_def_k_p_td.setText(Integer.toString(def_k_p_td));
-
-            EditText et_def_ptall_0 = (EditText)activity.findViewById(R.id.et_def_ptall_0);
-            et_def_ptall_0.setText(Integer.toString(def_ptall_0));
-
-            EditText et_def_ptall_1 = (EditText)activity.findViewById(R.id.et_def_ptall_1);
-            et_def_ptall_1.setText(Integer.toString(def_ptall_1));
-
-            EditText et_def_ptall_7 = (EditText)activity.findViewById(R.id.et_def_ptall_7);
-            et_def_ptall_7.setText(Integer.toString(def_ptall_7));
-
-            EditText et_def_ptall_14 = (EditText)activity.findViewById(R.id.et_def_ptall_14);
-            et_def_ptall_14.setText(Integer.toString(def_ptall_14));
-
-            EditText et_def_ptall_21 = (EditText)activity.findViewById(R.id.et_def_ptall_21);
-            et_def_ptall_21.setText(Integer.toString(def_ptall_21));
-
-            EditText et_def_ptall_28 = (EditText)activity.findViewById(R.id.et_def_ptall_28);
-            et_def_ptall_28.setText(Integer.toString(def_ptall_28));
-
-            EditText et_def_ptall_35 = (EditText)activity.findViewById(R.id.et_def_ptall_35);
-            et_def_ptall_35.setText(Integer.toString(def_ptall_35));
-
         }
     }
 }
