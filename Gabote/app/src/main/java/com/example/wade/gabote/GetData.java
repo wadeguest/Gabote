@@ -498,6 +498,18 @@ public class GetData {
             ArrayAdapter<String> la = new ArrayAdapter<String>(activity,R.layout.rowdef,userPlayerList);
         }
     }
+    protected static class DraftHelpPlayers implements ResultListener {
+        Activity activity;
+        String typeOfDraft;
+        public DraftHelpPlayers(Activity activity, String typeOfDraft){
+            this.activity = activity;
+            this.typeOfDraft = typeOfDraft;
+        }
+        @Override
+        public void onResultSuccess(ArrayList<String[]> result) {
+
+        }
+    }
     protected static class UserScoringSettings implements ResultListener {
         ActiveSession userSession;
         Activity activity;

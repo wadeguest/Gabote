@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <RelativeLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:id="@+id/top_control_bar">
+        <Spinner android:id="@+id/dhTypeOfDraft" android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:entries="@string/app_name" />
+    </RelativeLayout>
+    <LinearLayout android:id="@+id/bottom_control_bar"
+        android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:weightSum="1">
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Add Player"
+            android:id="@+id/dhAddPlayer"
+            android:layout_weight=".33" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Repick"
+            android:id="@+id/dhRepick"
+            android:layout_weight="0.33" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Veto"
+            android:id="@+id/dhVeto"
+            android:layout_weight=".33" />
+    </LinearLayout>
+    <ListView android:id="@+id/dhPlayerList" android:layout_width="fill_parent"
+        android:layout_height="0dip" android:choiceMode="multipleChoice"
+        android:layout_below="@id/top_control_bar" android:layout_above="@id/bottom_control_bar"/>
+    <TextView android:id="@android:id/empty" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text=""
+        android:layout_below="@id/top_control_bar" android:layout_above="@id/bottom_control_bar" />
+</RelativeLayout>

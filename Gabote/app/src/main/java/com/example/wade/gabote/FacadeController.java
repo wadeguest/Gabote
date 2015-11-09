@@ -13,6 +13,7 @@ public class FacadeController {
     private GameScoreController gsc = new GameScoreController();
     private DrawerListController dlc = new DrawerListController();
     private ScoringSettingsController ssc = new ScoringSettingsController();
+    private DraftHelpController dhc = new DraftHelpController();
 
     public FacadeController(){
     }
@@ -32,7 +33,10 @@ public class FacadeController {
     public void getScoringSettings(Activity activity, ActiveSession userSession) {
         ssc.getScoringSettings(activity,userSession);
     }
-    public void setScoringSettings(Activity activity, ActiveSession userSession){
-        ssc.setScoringSettings(activity,userSession);
+    public void setScoringSettings(Activity activity, ActiveSession userSession) {
+        ssc.setScoringSettings(activity, userSession);
+    }
+    public void getDraftablePlayers(Activity activity, String typeOfDraft){
+        dhc.getDraftablePlayers(activity,typeOfDraft);
     }
 }
