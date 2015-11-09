@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -39,3 +44,4 @@
         android:layout_height="wrap_content" android:text=""
         android:layout_below="@id/top_control_bar" android:layout_above="@id/bottom_control_bar" />
 </RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

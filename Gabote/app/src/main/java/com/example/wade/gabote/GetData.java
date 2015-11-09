@@ -501,13 +501,34 @@ public class GetData {
     protected static class DraftHelpPlayers implements ResultListener {
         Activity activity;
         String typeOfDraft;
+        private String full_name;
+        private String team;
+        private String position;
         public DraftHelpPlayers(Activity activity, String typeOfDraft){
             this.activity = activity;
             this.typeOfDraft = typeOfDraft;
+
+            GetNetworkConn task = new GetNetworkConn();
+            task.setOnResultsListener(this);
+            task.execute("SELECT * FROM player WHERE team != 'UNK' and status = 'Active' LIMIT 15");
         }
         @Override
         public void onResultSuccess(ArrayList<String[]> result) {
-
+            ListView lv = (ListView) activity.findViewById(R.id.dhPlayerList);
+            ArrayList<String> playerDetails = new ArrayList<String>();
+            //
+            String temp = "";
+            for (int i = 0; i < result.size(); i++) {
+                temp += full_name = result.get(i)[2];
+                temp += " ";
+                temp += team = result.get(i)[5];
+                temp += " ";
+                temp += position = result.get(i)[6];
+                playerDetails.add(temp);
+                temp = "";
+            }
+            ArrayAdapter<String> la = new ArrayAdapter<String>(activity, R.layout.rowdef, playerDetails);
+            lv.setAdapter(la);
         }
     }
     protected static class UserScoringSettings implements ResultListener {
