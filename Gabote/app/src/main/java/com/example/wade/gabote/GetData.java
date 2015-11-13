@@ -718,7 +718,7 @@ public class GetData {
                         temp = "BRONCOS DST";
                     }
                     else if(answer == 2){
-                        temp = "SEAHWAKS DST";
+                        temp = "SEAHAWKS DST";
                     }
                     else if(answer == 3){
                         temp = "CARDINALS DST";
@@ -757,6 +757,12 @@ public class GetData {
                         playerDetails.remove(bestPos);
                         return item;
         }
+        /*
+        Taken from: http://stackoverflow.com/questions/1187352/find-closest-value-in-an-ordererd-list
+        username: DFA
+        Link to username: http://stackoverflow.com/users/89266/dfa
+        Modified algorithm made by:  Chris Richards 11/12/2015
+         */
         public int closest(int of, String posDraft) {
             int min = Integer.MAX_VALUE;
             int closest = of;
