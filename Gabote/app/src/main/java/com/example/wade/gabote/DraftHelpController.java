@@ -7,7 +7,7 @@ import android.app.Activity;
  */
 public class DraftHelpController {
 
-    protected void getDraftablePlayers(Activity activity, String typeOfDraft){
-        new GetData.DraftHelpPlayers(activity, typeOfDraft);
+    protected void getDraftablePlayers(Activity activity, String typeOfDraft, int pos){
+        new GetData.DraftHelpPlayers(activity, typeOfDraft, pos);
     }
 }

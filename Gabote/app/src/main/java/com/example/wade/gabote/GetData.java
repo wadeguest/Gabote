@@ -27,10 +27,18 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import android.content.res.AssetManager;
+import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Random;
+
+import static java.lang.Math.*;
 import com.example.wade.gabote.GameScores;
 
 import javax.xml.transform.Result;
@@ -504,31 +512,295 @@ public class GetData {
         private String full_name;
         private String team;
         private String position;
-        public DraftHelpPlayers(Activity activity, String typeOfDraft){
+        private List<String> lines = new ArrayList<>();
+        List<String> oneToFour = new ArrayList<String>();
+        List<String> fiveToEight =  new ArrayList<String>();
+        List<String> nineToTwelve = new ArrayList<String>();
+        List<String> draftingStrat;
+        List<player> playerDetails;
+        List<Integer> draftPosition = new ArrayList<Integer>();
+        List<String> finalList = new ArrayList<String>();
+        private final int roundSize = 15;
+        private int draftPos;
+
+        public List<String> readAllLines(Activity activity,String path) {
+            List<String> mLines = new ArrayList<>();
+
+            AssetManager am = activity.getAssets();
+
+            try {
+                InputStream is = am.open(path);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                String line;
+
+                while ((line = reader.readLine()) != null)
+                    mLines.add(line);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return mLines;
+        }
+        public void parseAndUpdate(List<String> lines){
+            String name;
+            String temp;
+            int charFound;
+            int spaceFound;
+            double adp;
+            int adp_DB;
+            boolean defense = false;
+        for(int i = 0; i < lines.size(); i++){
+            if(i == 9){
+                i = 9;
+            }
+            try {
+                name = lines.get(i);
+                temp = name;
+                charFound = name.indexOf(",");
+                if(charFound == -1){
+                    // no team, player has been cut from current team.  No need to to draft a player without a team
+                    // or defense team.  See case below if defense
+                    if(name.contains("Defense")){
+                        defense = true;
+                    }else{
+                        defense = false;
+                        continue;
+                    }
+
+                }
+                if(defense){
+                    spaceFound = name.indexOf('\t');
+                    charFound = name.indexOf("Defense");
+                    name = name.substring(spaceFound,charFound + 7);
+                    defense = false;
+                }else {
+                    spaceFound = name.indexOf('\t');
+                    name = name.substring(spaceFound, charFound - 3);
+                }
+                if(name.indexOf("'")!= -1){
+                    name = name.replace("'","''");
+                }
+                name = name.trim();
+                temp = temp.replace(name, "");
+                charFound = temp.indexOf(".");
+                temp = temp.substring(charFound - 3, charFound + 2);
+                spaceFound = temp.indexOf('\t');
+                if(spaceFound == -1){
+                    //player has a adp of 3 digits. (>99)
+                    spaceFound = 0;
+                }
+                charFound = temp.indexOf(".");
+                temp = temp.substring(spaceFound, charFound + 2);
+                temp = temp.trim();
+                adp = Double.parseDouble(temp);
+                adp_DB = (int) Math.round(adp);
+
+                GetNetworkConn task = new GetNetworkConn();
+                task.setOnResultsListener(this);
+                task.execute("UPDATE player set adp = " + adp_DB + " WHERE full_name = '" + name + "' AND team != 'UNK'");
+            }catch (Exception e){
+                int j = 0;
+            }
+        }
+        }
+        public DraftHelpPlayers(Activity activity, String typeOfDraft, int pos) {
             this.activity = activity;
             this.typeOfDraft = typeOfDraft;
-
+            //lines = readAllLines(activity,"adp.txt");
+            //parseAndUpdate(lines);
+            loadVals(pos);
             GetNetworkConn task = new GetNetworkConn();
             task.setOnResultsListener(this);
-            task.execute("SELECT * FROM player WHERE team != 'UNK' and status = 'Active' LIMIT 15");
+            task.execute("SELECT * FROM player WHERE team != 'UNK' and status = 'Active' and adp != -1 order by adp asc");
+           // buildList();
+        }
+        public void loadVals(int position){
+            int mult;
+            int placeHolder = -1;
+            this.draftingStrat = new ArrayList<String>();
+            if(position > 0 && position <=4) {
+                draftingStrat.add("RB");
+                draftingStrat.add("RB");
+                draftingStrat.add("WR");
+                draftingStrat.add("WR");
+                draftingStrat.add("WR");
+                draftingStrat.add("RB");
+                draftingStrat.add("QB");
+                draftingStrat.add("WR");
+                draftingStrat.add("TE");
+                draftingStrat.add("QB");
+                draftingStrat.add("RB");
+                draftingStrat.add("WR");
+                draftingStrat.add("WR");
+                draftingStrat.add("DEF");
+                draftingStrat.add("K");
+            }
+            else if(position > 4 && position <=8) {
+
+                draftingStrat.add("RB");
+                draftingStrat.add("WR");
+                draftingStrat.add("WR");
+                draftingStrat.add("RB");
+                draftingStrat.add("WR");
+                draftingStrat.add("RB");
+                draftingStrat.add("QB");
+                draftingStrat.add("WR");
+                draftingStrat.add("TE");
+                draftingStrat.add("WR");
+                draftingStrat.add("QB");
+                draftingStrat.add("RB");
+                draftingStrat.add("WR");
+                draftingStrat.add("DEF");
+                draftingStrat.add("K");
+            }
+            else {
+                draftingStrat.add("WR");
+                draftingStrat.add("WR");
+                draftingStrat.add("RB");
+                draftingStrat.add("RB");
+                draftingStrat.add("WR");
+                draftingStrat.add("RB");
+                draftingStrat.add("QB");
+                draftingStrat.add("RB");
+                draftingStrat.add("TE");
+                draftingStrat.add("RB");
+                draftingStrat.add("WR");
+                draftingStrat.add("QB");
+                draftingStrat.add("WR");
+                draftingStrat.add("DEF");
+                draftingStrat.add("K");
+            }
+            draftPosition.add(1);
+            draftPosition.add(24);
+            draftPosition.add(25);
+            draftPosition.add(48);
+            draftPosition.add(49);
+            draftPosition.add(72);
+            draftPosition.add(73);
+            draftPosition.add(96);
+            draftPosition.add(97);
+            draftPosition.add(120);
+            draftPosition.add(121);
+            draftPosition.add(144);
+            draftPosition.add(145);
+            draftPosition.add(168);
+            draftPosition.add(169);
+            mult = position - 1;
+            if(position > 1){
+                for(int i = 0; i < draftPosition.size(); i++){
+                    if((i%2)==0) {
+                        // add mult
+                       placeHolder = draftPosition.get(i);
+                        placeHolder = placeHolder + mult;
+                        draftPosition.set(i, placeHolder);
+                    }
+                    else {
+                        // minus mult
+                        placeHolder = draftPosition.get(i);
+                        placeHolder = placeHolder - mult;
+                        draftPosition.set(i, placeHolder);
+                    }
+                }
+            }
+
+        }
+        public void buildList(){
+            String positionStrat;
+            int currDraftPos;
+            player p;
+            String temp;
+            for(int i = 0; i < roundSize; i++){
+                temp = "";
+                if(i == 13){
+                    Random rn = new Random();
+                    int answer = rn.nextInt(4) + 1;
+                    if(answer == 1){
+                        temp = "BRONCOS DST";
+                    }
+                    else if(answer == 2){
+                        temp = "SEAHWAKS DST";
+                    }
+                    else if(answer == 3){
+                        temp = "CARDINALS DST";
+                    }
+                    else if(answer == 4){
+                        temp = "RAMS DST";
+                    }
+                    temp += " - Round 14";
+                    finalList.add(temp);
+                    continue;
+                }
+                positionStrat = draftingStrat.get(i);
+                currDraftPos = draftPosition.get(i);
+                p = retPlayer(positionStrat, currDraftPos);
+                temp += p.full_name;
+                temp += ", ";
+                temp += p.position;
+                temp += ", ";
+                temp += p.team;
+                temp += " - ";
+                temp += "Round " + (i+1);
+                finalList.add(temp);
+            }
+            ListView lv = (ListView) activity.findViewById(R.id.dhPlayerList);
+            ArrayAdapter<String> la = new ArrayAdapter<String>(activity, R.layout.rowdef, finalList);
+            lv.setAdapter(la);
+        }
+        public player retPlayer(String posDraft, int adpDraft){
+            player item;
+            String pos;
+            int adpHolder;
+            int bestPos;
+
+            bestPos = closest(adpDraft, posDraft);
+                item = playerDetails.get(bestPos);
+                        playerDetails.remove(bestPos);
+                        return item;
+        }
+        public int closest(int of, String posDraft) {
+            int min = Integer.MAX_VALUE;
+            int closest = of;
+            int closestADP;
+            for (int i = 0; i < playerDetails.size(); i ++) {
+                if(!(playerDetails.get(i).position.equals(posDraft))){
+                    continue;
+                }
+                final int diff = Math.abs(playerDetails.get(i).adp - of);
+
+                if (diff < min) {
+                    min = diff;
+                    closest = i;
+                }
+            }
+
+            return closest;
         }
         @Override
         public void onResultSuccess(ArrayList<String[]> result) {
-            ListView lv = (ListView) activity.findViewById(R.id.dhPlayerList);
-            ArrayList<String> playerDetails = new ArrayList<String>();
-            //
+            playerDetails = new ArrayList<player>();
+
             String temp = "";
+            int tempADP;
+            player p;
             for (int i = 0; i < result.size(); i++) {
-                temp += full_name = result.get(i)[2];
-                temp += " ";
-                temp += team = result.get(i)[5];
-                temp += " ";
-                temp += position = result.get(i)[6];
-                playerDetails.add(temp);
-                temp = "";
+                tempADP = Integer.parseInt(result.get(i)[16]);
+                p = new player(result.get(i)[2],result.get(i)[6],tempADP,result.get(i)[5]);
+                playerDetails.add(p);
             }
-            ArrayAdapter<String> la = new ArrayAdapter<String>(activity, R.layout.rowdef, playerDetails);
-            lv.setAdapter(la);
+            buildList();
+        }
+
+    }
+    public static class player {
+        public String full_name;
+        public String position;
+        public int adp;
+        public String team;
+        public player(String f, String p, int a, String t){
+            this.full_name = f;
+            this.position = p;
+            this.adp = a;
+            this.team = t;
         }
     }
     protected static class UserScoringSettings implements ResultListener {

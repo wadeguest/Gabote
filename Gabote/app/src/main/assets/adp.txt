@@ -1,0 +1,420 @@
+1	Adrian Peterson MIN, 5 	RB1	1	1	1	1	1	1	1.0
+2	Le'Veon Bell PIT, 11 	RB2	5	3	4	2	2	2	3.0
+3	Eddie Lacy GB, 7 	RB3	4	2	2	3	3	4	3.0
+4	Jamaal Charles KC, 9 	RB4	2	4	3	4	4	3	3.3
+5	Marshawn Lynch SEA, 9 	RB5	3	5	5	5	5	6	4.8
+6	Antonio Brown PIT, 11 	WR1	6	6	7	6	8	8	6.8
+7	Dez Bryant DAL, 6 	WR2	7	13	13	8	11	9	10.2
+8	Andrew Luck IND, 10 	QB1	14	14	6	11	15	5	10.8
+9	Matt Forte CHI, 7 	RB6	15	9	8	16	7	10	10.8
+10	C.J. Anderson DEN, 7 	RB7	17	7	9	7	13	15	11.3
+11	DeMarco Murray PHI, 8 	RB8	11	8	10	14	17	12	12.0
+12	Rob Gronkowski NE, 4 	TE1	8	12	14	13	10	16	12.2
+13	Aaron Rodgers GB, 7 	QB2	18	10	11	22	6	7	12.3
+14	Demaryius Thomas DEN, 7 	WR3	10	11	12	12	19	11	12.5
+15	Jeremy Hill CIN, 7 	RB9	12	18	17	10	9	18	14.0
+16	Julio Jones ATL, 10 	WR4	13	16	16	9	16	14	14.0
+17	Odell Beckham Jr. NYG, 11 	WR5	9	17	15	15	18	13	14.5
+18	Calvin Johnson DET, 9 	WR6	16	19	18	17	14	17	16.8
+19	LeSean McCoy BUF, 8 	RB10	21	15	21	20	12	19	18.0
+20	Randall Cobb GB, 7 	WR7	22	21	19	18	21	21	20.3
+21	A.J. Green CIN, 7 	WR8	20	20	23	19	20	20	20.3
+22	T.Y. Hilton IND, 10 	WR9	25	22	25	24	24	25	24.2
+23	Justin Forsett BAL, 9 	RB11	24	31	22	21	26	23	24.5
+24	Alshon Jeffery CHI, 7 	WR10	23	23	30	28	22	26	25.3
+25	Jimmy Graham SEA, 9 	TE2	27	26	27	33	28	24	27.5
+26	Lamar Miller MIA, 5 	RB12	38	27	24	23	27	33	28.7
+27	Mike Evans TB, 6 	WR11	26	29	32	30	29	29	29.2
+28	Mark Ingram NO, 11 	RB13	39	24	34	29	23	30	29.8
+29	Peyton Manning DEN, 7 	QB3	37	25	20	45	31	22	30.0
+30	Brandin Cooks NO, 11 	WR12	31	34	31	25	34	34	31.5
+31	Frank Gore IND, 10 	RB14	30	39	35	26	35	28	32.2
+32	Emmanuel Sanders DEN, 7 	WR13	35	30	29	36	30	36	32.7
+33	DeAndre Hopkins HOU, 9 	WR14	29	35	43	32	32	37	34.7
+34	Russell Wilson SEA, 9 	QB4	28	28	36	64	25	32	35.5
+35	Drew Brees NO, 11 	QB5	34	36	26	52	38	27	35.5
+36	Alfred Morris WAS, 8 	RB15	43	33	37	34	33	35	35.8
+37	Jordan Matthews PHI, 8 	WR15	33	38	40	27	39	39	36.0
+38	Melvin Gordon SD, 10 	RB16	32	40	28	41	46	31	36.3
+39	Latavius Murray OAK, 6 	RB17	41	47	33	31	40	43	39.2
+40	Carlos Hyde SF, 10 	RB18	50	37	44	38	37	40	41.0
+41	Andre Johnson IND, 10 	WR16	40	51	42	40	48	42	43.8
+42	Amari Cooper OAK, 6 	WR17	49	44	57	44	47	41	47.0
+43	Greg Olsen CAR, 5 	TE3	44	45	45	54	45	49	47.0
+44	Ben Roethlisberger PIT, 11 	QB6	42	48	38	61	56	38	47.2
+45	Julian Edelman NE, 4 	WR18	52	41	41	57	41	51	47.2
+46	Andre Ellington ARI, 9 	RB19	56	53	39	53	44	45	48.3
+47	Golden Tate DET, 9 	WR19	48	46	46	47	73	44	50.7
+48	Jonathan Stewart CAR, 5 	RB20	77	43	65	48	36	46	52.5
+49	Travis Kelce KC, 9 	TE4	45	55	52	58	52	53	52.5
+50	Keenan Allen SD, 10 	WR20	54	42	59	55	65	50	54.2
+51	Jeremy Maclin KC, 9 	WR21	61	58	47	43	61	57	54.5
+52	Joseph Randle 	RB21	53	60	51	49	58	59	55.0
+53	DeSean Jackson WAS, 8 	WR22	46	49	67	72	42	55	55.2
+54	Matt Ryan ATL, 10 	QB7	55	67	48	77	43	52	57.0
+55	Arian Foster HOU, 9 	RB22	63	50	54	39	78	65	58.2
+56	Tony Romo DAL, 6 	QB8	51	68	50	79	54	47	58.2
+57	Sammy Watkins BUF, 8 	WR23	58	65	72	63	49	48	59.2
+58	Tom Brady NE, 4 	QB9	66	32	56	65	59	88	61.0
+59	Brandon Marshall NYJ, 5 	WR24	47	59	69	51	84	56	61.0
+60	Jarvis Landry MIA, 5 	WR25	82	70	63	50	50	62	62.8
+61	Martellus Bennett CHI, 7 	TE5	57	64	61	68	66	68	64.0
+62	Davante Adams GB, 7 	WR26	74	54	58	35	104	67	65.3
+63	T.J. Yeldon JAC, 8 	RB23	81	61	60	59	85	54	66.7
+64	Seattle Seahawks Defense 	DST1	59	62	74	101	53	58	67.8
+65	Todd Gurley STL, 6 	RB24	72	56	68	56	72	94	69.7
+66	Vincent Jackson TB, 6 	WR27	62	52	78	76	90	64	70.3
+67	Christopher Ivory NYJ, 5 	RB25	92	66	71	42	86	71	71.3
+68	Ameer Abdullah DET, 9 	RB26	78	83	62	46	105	60	72.3
+69	LeGarrette Blount NE, 4 	RB27	90	72	77	62	67	69	72.8
+70	Rashad Jennings NYG, 11 	RB28	102	74	55	70	69	70	73.3
+71	Joique Bell DET, 9 	RB29	108	57	53	75	57	91	73.5
+72	Doug Martin TB, 6 	RB30	93	76	66	37	114	63	74.8
+73	Matthew Stafford DET, 9 	QB10	99	99	64	90	51	61	77.3
+74	Jason Witten DAL, 6 	TE6	60	63	73	91	106	73	77.7
+75	Martavis Bryant PIT, 11 	WR28	64	90	89	69	112	66	81.7
+76	C.J. Spiller NO, 11 	RB31	88	75	80	67	95	87	82.0
+77	Buffalo Bills Defense 	DST2	68	80	95	115	62	74	82.3
+78	Giovani Bernard CIN, 7 	RB32	107	69	76	85	82	75	82.3
+79	Allen Robinson JAC, 8 	WR29	65	77	90	66	125	78	83.5
+80	Houston Texans Defense 	DST3	70	81	101	112	60	81	84.2
+81	Mike Wallace MIN, 5 	WR30	84	71	70	89	128	72	85.7
+82	Nelson Agholor PHI, 8 	WR31	103	79	79	60	122	77	86.7
+83	Eli Manning NYG, 11 	QB11	69	101	85	107	97	76	89.2
+84	Cam Newton CAR, 5 	QB12	71	89	75	120	79	102	89.3
+85	Steve Smith BAL, 9 	WR32	98	95	82	80	91	92	89.7
+86	Jordan Cameron MIA, 5 	TE7	67	78	86	78	124	116	91.5
+87	Ryan Tannehill MIA, 5 	QB13	97	92	87	94	55	131	92.7
+88	Stephen Gostkowski NE, 4 	K1	73	88	106	151	63	89	95.0
+89	Charles Johnson MIN, 5 	WR33	112	85	104	71	129	83	97.3
+90	Tevin Coleman ATL, 10 	RB33	111	87	88	87	126	85	97.3
+91	Isaiah Crowell CLE, 11 	RB34	131	73	98	84	119	80	97.5
+92	Larry Fitzgerald ARI, 9 	WR34	101	82	103	92	127	86	98.5
+93	Roddy White ATL, 10 	WR35	94	115	81	108	113	84	99.2
+94	St. Louis Rams Defense 	DST4	79	103	110	129	96	82	99.8
+95	Philip Rivers SD, 10 	QB14	110	105	99	117	87	90	101.3
+96	John Brown ARI, 9 	WR36	109	96	111	74	115	107	102.0
+97	Alfred Blue HOU, 9 	RB35	129	111	94	81	117	93	104.2
+98	Victor Cruz NYG, 11 	WR37	117	123	100	88	123	79	105.0
+99	Ryan Mathews PHI, 8 	RB36	135	86	93	73	110	135	105.3
+100	Sam Bradford PHI, 8 	QB15	133	98	92	82	142	99	107.7
+101	Eric Decker NYJ, 5 	WR38	85	84	120	106	158	95	108.0
+102	Tre Mason STL, 6 	RB37	150	97	84	93	111	121	109.3
+103	Torrey Smith SF, 10 	WR39	114	91	142	130	89	96	110.3
+104	Anquan Boldin SF, 10 	WR40	105	109	83	114	151	101	110.5
+105	Delanie Walker TEN, 4 	TE8	96	94	126	105	118	127	111.0
+106	Adam Vinatieri IND, 10 	K2	80	108	147	155	74	106	111.7
+107	Julius Thomas JAC, 8 	TE9	86	160	96	133	70	132	112.8
+108	Darren McFadden DAL, 6 	RB38	125	117	105	83	100	147	112.8
+109	Shane Vereen NYG, 11 	RB39	143	102	112	99	149	97	117.0
+110	Devonta Freeman ATL, 10 	RB40	164	107	91	104	132	118	119.3
+111	Arizona Cardinals Defense 	DST5	83	159	149	146	77	104	119.7
+112	Zach Ertz PHI, 8 	TE10	89	104	131	134	146	117	120.2
+113	Philadelphia Eagles Defense 	DST6	75	148	153	140	81	126	120.5
+114	Marques Colston NO, 11 	WR41	113	100	108	124	178	103	121.0
+115	Michael Floyd ARI, 9 	WR42	145	93	97	132	143	119	121.5
+116	Devin Funchess CAR, 5 	WR43	132	120	119	97	159	108	122.5
+117	Dwayne Allen IND, 10 	TE11	 	118	107	141	64	105	107.0
+118	Teddy Bridgewater MIN, 5 	QB16	141	126	123	128	116	109	123.8
+119	Pierre Garcon WAS, 8 	WR44	118	128	133	125	155	111	128.3
+120	Owen Daniels DEN, 7 	TE12	127	116	129	86	165	149	128.7
+121	Kendall Wright TEN, 4 	WR45	175	112	118	116	136	124	130.2
+122	Bishop Sankey TEN, 4 	RB41	173	114	125	103	171	100	131.0
+123	Green Bay Packers Defense 	DST7	120	162	148	187	75	112	134.0
+124	Antonio Gates SD, 10 	TE13	144	131	152	152	121	114	135.7
+125	Steven Hauschka SEA, 9 	K3	100	106	162	175	138	134	135.8
+126	Darren Sproles PHI, 8 	RB42	126	138	132	127	172	122	136.2
+127	Mason Crosby GB, 7 	K4	104	181	137	183	98	115	136.3
+128	Joe Flacco BAL, 9 	QB17	 	130	109	149	109	123	124.0
+129	Brandon LaFell NE, 4 	WR46	115	 	115	135	80	183	125.6
+130	Miami Dolphins Defense 	DST8	 	125	113	119	131	140	125.6
+131	Dan Bailey DAL, 6 	K5	91	169	181	178	88	128	139.2
+132	DeAngelo Williams PIT, 11 	RB43	146	142	156	131	133	129	139.5
+133	Terrance Williams DAL, 6 	WR47	182	154	121	102	183	98	140.0
+134	Colin Kaepernick SF, 10 	QB18	166	129	139	154	137	120	140.8
+135	Baltimore Ravens Defense 	DST9	106	147	157	188	92	157	141.2
+136	Eddie Royal CHI, 7 	WR48	123	134	135	100	 	154	129.2
+137	Justin Tucker BAL, 9 	K6	140	139	130	185	107	146	141.2
+138	Reggie Bush SF, 10 	RB44	128	166	136	142	163	113	141.3
+139	New England Patriots Defense 	DST10	95	121	192	186	103	155	142.0
+140	Duke Johnson CLE, 11 	RB45	179	110	143	113	176	136	142.8
+141	Tyler Eifert CIN, 7 	TE14	119	153	150	98	190	152	143.7
+142	Danny Woodhead SD, 10 	RB46	157	113	141	96	161	244	152.0
+143	Coby Fleener IND, 10 	TE15	159	155	127	 	68	168	135.4
+144	Devante Parker MIA, 5 	WR49	190	136	155	118	160	125	147.3
+145	Carson Palmer ARI, 9 	QB19	198	156	128	138	120	144	147.3
+146	Charles Sims TB, 6 	RB47	176	145	117	162	145	143	148.0
+147	Denver Broncos Defense 	DST11	162	119	166	148	153	141	148.2
+148	Jay Cutler CHI, 7 	QB20	 	150	114	161	108	156	137.8
+149	New York Jets Defense 	DST12	 	124	145	144	168	110	138.2
+150	Kyle Rudolph MIN, 5 	TE16	193	144	102	123	182	161	150.8
+151	Vernon Davis DEN, 7 	TE17	197	127	164	163	135	153	156.5
+152	Cody Parkey PHI, 8 	K7	 	178	161	168	71	165	148.6
+153	Knile Davis KC, 9 	RB48	184	157	134	122	 	150	149.4
+154	Percy Harvin BUF, 8 	WR50	154	176	138	164	181	138	158.5
+155	Ronnie Hillman DEN, 7 	RB49	158	149	158	110	 	177	150.4
+156	Andre Williams NYG, 11 	RB50	156	132	193	159	175	148	160.5
+157	David Johnson ARI, 9 	RB51	183	171	168	126	186	133	161.2
+158	Michael Crabtree OAK, 6 	WR51	172	172	185	153	134	151	161.2
+159	Dan Carpenter BUF, 8 	K8	87	 	207	 	83	195	143.0
+160	Breshad Perriman BAL, 9 	WR52	192	191	167	143	130	145	161.3
+161	Marcus Mariota TEN, 4 	QB21	161	140	178	177	164	158	163.0
+162	Alex Smith KC, 9 	QB22	148	152	170	 	154	160	156.8
+163	Heath Miller PIT, 11 	TE18	165	135	146	 	162	185	158.6
+164	Markus Wheaton PIT, 11 	WR53	 	151	151	95	 	273	167.5
+165	Jameis Winston TB, 6 	QB23	160	143	171	 	169	162	161.0
+166	David Cobb TEN, 4 	RB52	177	163	144	121	 	210	163.0
+167	Doug Baldwin SEA, 9 	WR54	181	165	124	 	197	139	161.2
+168	Carolina Panthers Defense 	DST13	 	179	116	179	170	163	161.4
+169	Kansas City Chiefs Defense 	DST14	187	168	140	170	166	178	168.2
+170	Jonas Gray MIA, 5 	RB53	152	 	122	137	 	 	137.0
+171	Steve Johnson SD, 10 	WR55	196	173	172	109	 	169	163.8
+172	Kevin White CHI, 7 	WR56	116	 	 	 	102	238	152.0
+173	Derek Carr OAK, 6 	QB24	149	141	174	 	185	182	166.2
+174	Brian Quick STL, 6 	WR57	 	167	165	111	 	188	157.8
+175	Cody Latimer DEN, 7 	WR58	191	170	177	181	156	159	172.3
+176	Matt Bryant ATL, 10 	K9	188	184	203	192	101	173	173.5
+177	Tyler Lockett SEA, 9 	WR59	136	137	 	166	199	226	172.8
+178	Matt Prater DET, 9 	K10	121	188	232	189	173	181	180.7
+179	Dallas Cowboys Defense 	DST15	138	 	210	 	177	137	165.5
+180	Josh Hill NO, 11 	TE19	 	 	160	157	 	142	153.0
+181	Connor Barth TB, 6 	K11	76	 	183	 	 	301	186.7
+182	Nick Foles STL, 6 	QB25	153	 	179	 	140	192	166.0
+183	Charles Clay BUF, 8 	TE20	189	 	176	 	99	211	168.8
+184	Sebastian Janikowski OAK, 6 	K12	151	146	236	190	187	194	184.0
+185	Matt Jones WAS, 8 	RB54	 	180	175	139	 	174	167.0
+186	Kenny Stills MIA, 5 	WR60	195	 	194	 	157	130	169.0
+187	Dorial Green-Beckham TEN, 4 	WR61	199	177	208	160	152	189	180.8
+188	Richard Rodgers GB, 7 	TE21	167	164	190	169	 	190	176.0
+189	Montee Ball 	RB55	139	 	182	 	198	170	172.3
+190	Randy Bullock 	K13	 	 	 	 	93	203	148.0
+191	Andy Dalton CIN, 7 	QB26	185	 	163	 	189	164	175.3
+192	Malcom Floyd SD, 10 	WR62	 	182	159	 	 	166	169.0
+193	Brandon Coleman NO, 11 	WR63	 	189	197	136	 	187	177.3
+194	Fred Jackson SEA, 9 	RB56	 	192	206	167	150	265	196.0
+195	Rueben Randle NYG, 11 	WR64	 	133	209	176	 	214	183.0
+196	Terrance West 	RB57	 	193	221	 	147	172	183.3
+197	Larry Donnell NYG, 11 	TE22	 	122	195	 	 	197	171.3
+198	New York Giants Defense 	DST16	134	 	230	 	 	179	181.0
+199	James Jones GB, 7 	WR65	 	158	 	180	 	176	171.3
+200	Marvin Jones CIN, 7 	WR66	 	185	187	145	 	202	179.8
+201	Cincinnati Bengals Defense 	DST17	170	 	184	 	167	212	183.3
+202	Jared Cook STL, 6 	TE23	168	 	154	 	 	319	213.7
+203	Ahmad Bradshaw IND, 10 	RB58	122	 	 	 	 	381	251.5
+204	Wes Welker 	WR67	124	 	 	 	 	368	246.0
+205	Pittsburgh Steelers Defense 	DST18	137	 	218	 	188	207	187.5
+206	Ty Montgomery GB, 7 	WR68	 	 	201	147	 	180	176.0
+207	Chicago Bears Defense 	DST19	130	 	 	 	 	201	165.5
+208	Christine Michael DAL, 6 	RB59	 	174	 	158	 	221	184.3
+209	San Francisco 49ers Defense 	DST20	 	161	 	 	174	199	178.0
+210	Denard Robinson JAC, 8 	RB60	 	186	219	174	 	175	188.5
+211	Donte Moncrief IND, 10 	WR69	174	183	 	 	179	204	185.0
+212	Indianapolis Colts Defense 	DST21	 	 	235	 	139	208	194.0
+213	Stevan Ridley NYJ, 5 	RB61	 	 	 	 	141	280	210.5
+214	Robbie Gould CHI, 7 	K14	142	 	 	 	 	241	191.5
+215	Jaelen Strong HOU, 9 	WR70	 	 	 	 	144	282	213.0
+216	Reggie Wayne 	WR71	147	 	200	 	 	233	193.3
+217	Nick Folk NYJ, 5 	K15	 	 	245	 	148	268	220.3
+218	Cameron Artis-Payne CAR, 5 	RB62	 	 	 	150	 	216	183.0
+219	Roy Helu OAK, 6 	RB63	 	 	180	171	 	236	195.7
+220	Blake Bortles JAC, 8 	QB27	163	 	189	 	 	289	213.7
+221	Minnesota Vikings Defense 	DST22	178	194	225	191	191	217	199.3
+222	Tyrod Taylor BUF, 8 	QB28	 	 	198	156	 	223	192.3
+223	Mohamed Sanu CIN, 7 	WR72	155	 	 	 	 	206	180.5
+224	Austin Seferian-Jenkins TB, 6 	TE24	 	187	169	 	 	218	191.3
+225	Eric Ebron DET, 9 	TE25	186	 	213	 	 	171	190.0
+226	Detroit Lions Defense 	DST23	 	190	215	 	184	184	193.3
+227	Khiry Robinson NO, 11 	RB64	 	197	 	165	 	263	208.3
+228	Phillip Dorsett IND, 10 	WR73	180	 	205	182	 	213	195.0
+229	Kirk Cousins WAS, 8 	QB29	 	 	196	 	 	167	181.5
+230	Brandon McManus DEN, 7 	K16	 	199	173	193	 	234	199.8
+231	Robert Griffin III WAS, 8 	QB30	169	 	 	 	 	243	206.0
+232	Cecil Shorts HOU, 9 	WR74	171	 	 	 	 	219	195.0
+233	Jeff Janis GB, 7 	WR75	 	 	217	172	 	338	242.3
+234	James Starks GB, 7 	RB65	 	 	204	173	 	232	203.0
+235	Jordan Reed WAS, 8 	TE26	 	175	202	 	 	229	202.0
+236	Bobby Rainey TB, 6 	RB66	 	 	 	 	180	327	253.5
+237	Dwayne Bowe CLE, 11 	WR76	194	 	188	 	 	269	217.0
+238	Allen Hurns JAC, 8 	WR77	 	 	234	184	 	283	233.7
+239	Blair Walsh MIN, 5 	K17	 	200	237	194	192	205	205.6
+240	Virgil Green DEN, 7 	TE27	 	 	186	 	 	308	247.0
+241	Josh Scobee 	K18	 	 	216	 	 	186	201.0
+242	Cordarrelle Patterson MIN, 5 	WR78	 	 	191	 	 	198	194.5
+243	Jerick McKinnon MIN, 5 	RB67	 	195	226	 	 	196	205.7
+244	Brandon Bolden NE, 4 	RB68	 	 	 	 	 	191	191.0
+245	Nick Novak HOU, 9 	K19	 	 	250	 	193	261	234.7
+246	Jay Ajayi MIA, 5 	RB69	 	 	 	 	 	193	193.0
+247	Caleb Sturgis PHI, 8 	K20	 	 	246	 	194	293	244.3
+248	Josh Brown NYG, 11 	K21	 	 	243	 	195	302	246.7
+249	Phil Dawson SF, 10 	K22	 	196	244	 	200	235	218.8
+250	Ladarius Green SD, 10 	TE28	 	 	229	 	196	230	218.3
+251	Lorenzo Taliaferro BAL, 9 	RB70	 	198	 	 	 	275	236.5
+252	Chandler Catanzaro ARI, 9 	K23	 	 	199	 	 	259	229.0
+253	New Orleans Saints Defense 	DST24	 	 	 	 	 	200	200.0
+254	Stedman Bailey STL, 6 	WR79	 	 	 	 	 	209	209.0
+255	Tavon Austin STL, 6 	WR80	 	 	211	 	 	267	239.0
+256	Daniel Herron BUF, 8 	RB71	 	 	212	 	 	279	245.5
+257	Theo Riddick DET, 9 	RB72	 	 	214	 	 	245	229.5
+258	Greg Zuerlein STL, 6 	K24	 	 	241	 	 	215	228.0
+259	Danny Amendola NE, 4 	WR81	 	 	220	 	 	295	257.5
+260	Cole Beasley DAL, 6 	WR82	 	 	 	 	 	220	220.0
+261	Andrew Hawkins CLE, 11 	WR83	 	 	222	 	 	272	247.0
+262	Kenny Britt STL, 6 	WR84	 	 	231	 	 	222	226.5
+263	Greg Jennings MIA, 5 	WR85	 	 	223	 	 	300	261.5
+264	Branden Oliver SD, 10 	RB73	 	 	224	 	 	225	224.5
+265	Sammie Coates PIT, 11 	WR86	 	 	 	 	 	224	224.0
+266	San Diego Chargers Defense 	DST25	 	 	227	 	 	277	252.0
+267	Leonard Hankerson ATL, 10 	WR87	 	 	239	 	 	227	233.0
+268	Atlanta Falcons Defense 	DST26	 	 	228	 	 	361	294.5
+269	Ryan Mallett 	QB31	 	 	 	 	 	228	228.0
+270	Ryan Fitzpatrick NYJ, 5 	QB32	 	 	 	 	 	231	231.0
+271	Garrett Hartley 	K25	 	 	233	 	 	314	273.5
+272	Aaron Dobson NE, 4 	WR88	 	 	 	 	 	237	237.0
+273	Washington Redskins Defense 	DST27	 	 	238	 	 	260	249.0
+274	Ray Rice 	RB74	 	 	 	 	 	239	239.0
+275	Chris Johnson ARI, 9 	RB75	 	 	240	 	 	257	248.5
+276	Chris Polk HOU, 9 	RB76	 	 	 	 	 	240	240.0
+277	Mychal Rivera OAK, 6 	TE29	 	 	242	 	 	334	288.0
+278	Trent Richardson 	RB77	 	 	 	 	 	246	246.0
+279	Lance Dunbar DAL, 6 	RB78	 	 	247	 	 	254	250.5
+280	Taylor Gabriel CLE, 11 	WR89	 	 	 	 	 	247	247.0
+281	Dustin Hopkins WAS, 8 	K26	 	 	248	 	 	252	250.0
+282	Tampa Bay Buccaneers Defense	DST28	 	 	 	 	 	248	248.0
+283	Damien Williams MIA, 5 	RB79	 	 	249	 	 	350	299.5
+284	James White NE, 4 	RB80	 	 	 	 	 	249	249.0
+285	Graham Gano CAR, 5 	K27	 	 	251	 	 	250	250.5
+286	Jacksonville Jaguars Defense 	DST29	 	 	 	 	 	251	251.0
+287	Brian Hoyer HOU, 9 	QB33	 	 	 	 	 	253	253.0
+288	Jeremy Langford CHI, 7 	RB81	 	 	 	 	 	255	255.0
+289	Josh McCown CLE, 11 	QB34	 	 	 	 	 	256	256.0
+290	Cleveland Browns Defense 	DST30	 	 	 	 	 	258	258.0
+291	Riley Cooper PHI, 8 	WR90	 	 	 	 	 	262	262.0
+292	Justin Hardy ATL, 10 	WR91	 	 	 	 	 	264	264.0
+293	Javorius Allen BAL, 9 	RB82	 	 	 	 	 	266	266.0
+294	Mark Sanchez PHI, 8 	QB35	 	 	 	 	 	270	270.0
+295	Maxx Williams BAL, 9 	TE30	 	 	 	 	 	271	271.0
+296	Fozzy Whittaker CAR, 5 	RB83	 	 	 	 	 	274	274.0
+297	Johnny Manziel CLE, 11 	QB36	 	 	 	 	 	276	276.0
+298	Jacquizz Rodgers CHI, 7 	RB84	 	 	 	 	 	278	278.0
+299	Brandon Weeden DAL, 6 	QB37	 	 	 	 	 	281	281.0
+300	Zac Stacy NYJ, 5 	RB85	 	 	 	 	 	284	284.0
+301	Jermaine Kearse SEA, 9 	WR92	 	 	 	 	 	285	285.0
+302	Marqise Lee JAC, 8 	WR93	 	 	 	 	 	286	286.0
+303	Brock Osweiler DEN, 7 	QB38	 	 	 	 	 	287	287.0
+304	Scott Chandler NE, 4 	TE31	 	 	 	 	 	288	288.0
+305	Josh Robinson IND, 10 	RB86	 	 	 	 	 	290	290.0
+306	Robert Turbin CLE, 11 	RB87	 	 	 	 	 	291	291.0
+307	Benjamin Watson NO, 11 	TE32	 	 	 	 	 	292	292.0
+308	Dri Archer 	RB88	 	 	 	 	 	294	294.0
+309	Devin Smith NYJ, 5 	WR94	 	 	 	 	 	296	296.0
+310	Mike Nugent CIN, 7 	K28	 	 	 	 	 	297	297.0
+311	Kamar Aiken BAL, 9 	WR95	 	 	 	 	 	298	298.0
+312	Andrew Quarless GB, 7 	TE33	 	 	 	 	 	299	299.0
+313	Geno Smith NYJ, 5 	QB39	 	 	 	 	 	303	303.0
+314	Jamison Crowder WAS, 8 	WR96	 	 	 	 	 	304	304.0
+315	Jimmy Garoppolo NE, 4 	QB40	 	 	 	 	 	305	305.0
+316	De'Anthony Thomas KC, 9 	RB89	 	 	 	 	 	306	306.0
+317	Marlon Brown BAL, 9 	WR97	 	 	 	 	 	309	309.0
+318	Harry Douglas TEN, 4 	WR98	 	 	 	 	 	310	310.0
+319	Chris Conley KC, 9 	WR99	 	 	 	 	 	311	311.0
+320	Benny Cunningham STL, 6 	RB90	 	 	 	 	 	312	312.0
+321	Brian Hartline CLE, 11 	WR100	 	 	 	 	 	313	313.0
+322	Josh Gordon CLE, 11 	WR101	 	 	 	 	 	315	315.0
+323	Robert Woods BUF, 8 	WR102	 	 	 	 	 	316	316.0
+324	Jimmy Clausen CHI, 7 	QB41	 	 	 	 	 	317	317.0
+325	Justin Hunter TEN, 4 	WR103	 	 	 	 	 	318	318.0
+326	Cairo Santos KC, 9 	K29	 	 	 	 	 	320	320.0
+327	Garrett Graham HOU, 9 	TE34	 	 	 	 	 	321	321.0
+328	E.J. Manuel BUF, 8 	QB42	 	 	 	 	 	322	322.0
+329	Clive Walford OAK, 6 	TE35	 	 	 	 	 	323	323.0
+330	Tim Tebow 	QB43	 	 	 	 	 	324	324.0
+331	Matt Cassel DAL, 6 	QB44	 	 	 	 	 	325	325.0
+332	Jarius Wright MIN, 5 	WR104	 	 	 	 	 	326	326.0
+333	Hakeem Nicks 	WR105	 	 	 	 	 	328	328.0
+334	Gavin Escobar DAL, 6 	TE36	 	 	 	 	 	329	329.0
+335	Jacob Tamme ATL, 10 	TE37	 	 	 	 	 	330	330.0
+336	Marquess Wilson CHI, 7 	WR106	 	 	 	 	 	332	332.0
+337	Ryan Succop TEN, 4 	K30	 	 	 	 	 	333	333.0
+338	Ka'Deem Carey CHI, 7 	RB91	 	 	 	 	 	335	335.0
+339	James Casey 	TE38	 	 	 	 	 	336	336.0
+340	Philly Brown CAR, 5 	WR107	 	 	 	 	 	337	337.0
+341	Nate Washington HOU, 9 	WR108	 	 	 	 	 	339	339.0
+342	Lance Kendricks STL, 6 	TE39	 	 	 	 	 	340	340.0
+343	Toby Gerhart JAC, 8 	RB92	 	 	 	 	 	341	341.0
+344	Kai Forbath NO, 11 	K31	 	 	 	 	 	342	342.0
+345	Bilal Powell NYJ, 5 	RB93	 	 	 	 	 	343	343.0
+346	Mike Tolbert CAR, 5 	RB94	 	 	 	 	 	344	344.0
+347	Dion Sims MIA, 5 	TE40	 	 	 	 	 	345	345.0
+348	Dexter McCluster TEN, 4 	WR109	 	 	 	 	 	346	346.0
+349	Brent Celek PHI, 8 	TE41	 	 	 	 	 	347	347.0
+350	Marcedes Lewis JAC, 8 	TE42	 	 	 	 	 	348	348.0
+351	Matt Asiata MIN, 5 	RB95	 	 	 	 	 	349	349.0
+352	Crockett Gillmore BAL, 9 	TE43	 	 	 	 	 	351	351.0
+353	Blaine Gabbert SF, 10 	QB45	 	 	 	 	 	353	353.0
+354	Devin Hester ATL, 10 	WR110	 	 	 	 	 	354	354.0
+355	Jerricho Cotchery CAR, 5 	WR111	 	 	 	 	 	356	356.0
+356	Josh Lambo SD, 10 	K32	 	 	 	 	 	357	357.0
+357	Drew Stanton ARI, 9 	QB46	 	 	 	 	 	358	358.0
+358	AJ McCarron CIN, 7 	QB47	 	 	 	 	 	359	359.0
+359	Travis Coons CLE, 11 	K33	 	 	 	 	 	360	360.0
+360	Tyler Clutts DAL, 6 	RB96	 	 	 	 	 	362	362.0
+361	Chris Hogan BUF, 8 	WR112	 	 	 	 	 	363	363.0
+362	Derek Anderson CAR, 5 	QB48	 	 	 	 	 	364	364.0
+363	Shaun Hill MIN, 5 	QB49	 	 	 	 	 	365	365.0
+364	Rashad Ross WAS, 8 	WR113	 	 	 	 	 	366	366.0
+365	Tennessee Titans Defense 	DST31	 	 	 	 	 	367	367.0
+366	Ricardo Lockette SEA, 9 	WR114	 	 	 	 	 	369	369.0
+367	Jarryd Hayne 	RB97	 	 	 	 	 	370	370.0
+368	Travaris Cadet 	RB98	 	 	 	 	 	371	371.0
+369	Jeff Cumberland NYJ, 5 	TE44	 	 	 	 	 	372	372.0
+370	Oakland Raiders Defense 	DST32	 	 	 	 	 	373	373.0
+371	Andre Caldwell DEN, 7 	WR115	 	 	 	 	 	374	374.0
+372	Jonathan Grimes HOU, 9 	RB99	 	 	 	 	 	375	375.0
+373	Juwan Thompson DEN, 7 	RB100	 	 	 	 	 	376	376.0
+374	Dion Lewis NE, 4 	RB101	 	 	 	 	 	377	377.0
+375	J.J. Nelson ARI, 9 	WR116	 	 	 	 	 	378	378.0
+376	Zach Zenner DET, 9 	RB102	 	 	 	 	 	379	379.0
+377	Joseph Fauria 	TE45	 	 	 	 	 	380	380.0
+378	David Akers 	K34	 	 	 	 	 	382	382.0
+379	Bryce Brown SEA, 9 	RB103	 	 	 	 	 	383	383.0
+380	Ryan Williams 	RB104	 	 	 	 	 	384	384.0
+381	Tim Wright DET, 9 	TE46	 	 	 	 	 	385	385.0
+382	Zach Hocker 	K35	 	 	 	 	 	386	386.0
+383	Matt Hasselbeck IND, 10 	QB50	 	 	 	 	 	387	387.0
+384	Ted Ginn CAR, 5 	WR117	 	 	 	 	 	388	388.0
+385	Ryan Nassib NYG, 11 	QB51	 	 	 	 	 	389	389.0
+386	Luke McCown NO, 11 	QB52	 	 	 	 	 	390	390.0
+387	Matt McGloin OAK, 6 	QB53	 	 	 	 	 	391	391.0
+388	Andre Roberts WAS, 8 	WR118	 	 	 	 	 	392	392.0
+389	Kellen Clemens SD, 10 	QB54	 	 	 	 	 	393	393.0
+390	Colt McCoy WAS, 8 	QB55	 	 	 	 	 	394	394.0
+391	Vince Young 	QB56	 	 	 	 	 	395	395.0
+392	Sean Renfree ATL, 10 	QB57	 	 	 	 	 	396	396.0
+393	Matt Schaub BAL, 9 	QB58	 	 	 	 	 	398	398.0
+394	Matt Moore MIA, 5 	QB59	 	 	 	 	 	399	399.0
+395	Steven Jackson 	RB105	 	 	 	 	 	400	400.0
+396	Michael Vick PIT, 11 	QB60	 	 	 	 	 	401	401.0
+397	Josh Huff PHI, 8 	WR119	 	 	 	 	 	402	402.0
+398	Deonte Thompson 	WR120	 	 	 	 	 	403	403.0
+399	Tarvaris Jackson SEA, 9 	QB61	 	 	 	 	 	404	404.0
+400	Scott Tolzien GB, 7 	QB62	 	 	 	 	 	405	405.0
+401	Miles Austin PHI, 8 	WR121	 	 	 	 	 	406	406.0
+402	Mike Glennon TB, 6 	QB63	 	 	 	 	 	407	407.0
+403	Jordan Gay BUF, 8 	K36	 	 	 	 	 	408	408.0
+404	T.J. Yates HOU, 9 	QB64	 	 	 	 	 	409	409.0
+405	Gary Barnidge CLE, 11 	TE47	 	 	 	 	 	410	410.0
+406	Michael Dyer 	RB106	 	 	 	 	 	411	411.0
+407	Rob Housler CLE, 11 	TE48	 	 	 	 	 	412	412.0
+408	Billy Cundiff 	K37	 	 	 	 	 	413	413.0
+409	Will Johnson PIT, 11 	RB107	 	 	 	 	 	414	414.0
+410	Antonio Andrews TEN, 4 	RB108	 	 	 	 	 	415	415.0
+411	Shonn Greene 	RB109	 	 	 	 	 	416	416.0
+412	Tyler Kroft CIN, 7 	TE49	 	 	 	 	 	417	417.0
+413	Brandon Pettigrew DET, 9 	TE50	 	 	 	 	 	418	418.0
+414	Kris Brown 	K38	 	 	 	 	 	419	419.0
+415	Landry Jones PIT, 11 	QB65	 	 	 	 	 	420	420.0
+416	Lance Moore DET, 9 	WR122	 	 	 	 	 	422	422.0
+417	Greg Salas 	WR123	 	 	 	 	 	423	423.0
+418	Corey Fuller DET, 9 	WR124	 	 	 	 	 	424	424.0
+419	Dan Gronkowski 	TE51	 	 	 	 	 	425	425.0
+420	Dan Orlovsky DET, 9 	QB66	 	 	 	 	 	426	426.0
