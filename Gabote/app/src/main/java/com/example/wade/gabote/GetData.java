@@ -509,19 +509,16 @@ public class GetData {
     protected static class DraftHelpPlayers implements ResultListener {
         Activity activity;
         String typeOfDraft;
-        private String full_name;
-        private String team;
-        private String position;
-        private List<String> lines = new ArrayList<>();
-        List<String> oneToFour = new ArrayList<String>();
-        List<String> fiveToEight =  new ArrayList<String>();
-        List<String> nineToTwelve = new ArrayList<String>();
+        List<String> holderForPlayer = new ArrayList<String>();
+
         List<String> draftingStrat;
         List<player> playerDetails;
         List<Integer> draftPosition = new ArrayList<Integer>();
         List<String> finalList = new ArrayList<String>();
         private final int roundSize = 15;
         private int draftPos;
+        CurrPlayerList currList;
+        playerHolder ph;
 
         public List<String> readAllLines(Activity activity,String path) {
             List<String> mLines = new ArrayList<>();
@@ -603,16 +600,128 @@ public class GetData {
             }
         }
         }
-        public DraftHelpPlayers(Activity activity, String typeOfDraft, int pos) {
+        public DraftHelpPlayers(Activity activity,playerHolder ph, CurrPlayerList curr, String typeOfDraft, int pos) {
             this.activity = activity;
             this.typeOfDraft = typeOfDraft;
+            this.currList = curr;
+            this.ph = ph;
+            this.currList.setCurrRound(0);
             //lines = readAllLines(activity,"adp.txt");
             //parseAndUpdate(lines);
             loadVals(pos);
             GetNetworkConn task = new GetNetworkConn();
             task.setOnResultsListener(this);
             task.execute("SELECT * FROM player WHERE team != 'UNK' and status = 'Active' and adp != -1 order by adp asc");
-           // buildList();
+            //buildList();
+        }
+        public DraftHelpPlayers(Activity activity, playerHolder ph,CurrPlayerList curr, String typeOfControl, int pos, int flag){
+            this.activity = activity;
+            String temp;
+            temp = typeOfControl;
+            this.currList = curr;
+            this.ph = ph;
+            loadVals(pos);
+            if(typeOfControl.equals("add")){
+                addPlayerButtonCalled();
+            }
+            else if(typeOfControl.equals("repick")){
+                repickOrVetoButtonCalled();
+            }
+            else if(typeOfControl.equals("veto")){
+                repickOrVetoButtonCalled();
+            }
+        }
+        public void addPlayerButtonCalled(){
+            List<String> It = new ArrayList<String>();
+            It = this.currList.getList();
+            int i = this.currList.returnRound();
+            if(It.size() <= 0){
+
+                return;
+            }else {
+
+                //It.remove(0);
+                //this.currList.clearList();
+                //this.currList.setList(It);
+                this.currList.updateList();
+                It = this.currList.getList();
+                //this.currList.setCurrRound(i++);
+                updateLV(It);
+                if(It.size() == 0){
+                    new AlertDialog.Builder(activity)
+                            .setTitle("Draft Complete")
+                            .setMessage("Gabote wishes you the best of luck in the upcoming season!")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // continue with delete
+                                }
+                            })
+                            .setIcon(android.R.drawable.dialog_holo_dark_frame)
+                            .show();
+                }
+            }
+        }
+        public void repickOrVetoButtonCalled(){
+            List<String> repickList = new ArrayList<String>();
+            List<String> It = new ArrayList<String>();
+            String personToRemove;
+            String fullName;
+            String position;
+            int adp;
+            String tempADP;
+            String team;
+            String holder;
+            int index;
+            playerDetails = new ArrayList<player>();
+            It = this.currList.getList();
+            personToRemove = It.get(0);
+            index = personToRemove.indexOf(",");
+            personToRemove = personToRemove.substring(0, index);
+            repickList = ph.getList();
+            for(int i = 0; i < repickList.size(); i++){
+                try {
+                    if (repickList.get(i).contains(personToRemove)) {
+                        repickList.remove(i);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                     i = i;
+                }
+            }
+           // playerDetails.clear();
+            holderForPlayer.clear();
+            String temp;
+            player p;
+            holder = "";
+            //temp = "";
+
+            for (int i = 0; i < repickList.size(); i++) {
+                temp = repickList.get(i);
+               // fullName = temp;
+                index = temp.indexOf(",");
+                fullName = temp.substring(0, index);
+                fullName.trim();
+                temp = temp.replace(fullName + ",", "");
+                index = temp.indexOf(",");
+                position = temp.substring(0, index);
+                position.trim();
+                temp = temp.replace(position + ",", "");
+                index = temp.indexOf(",");
+                tempADP = temp.substring(0, index);
+                temp = temp.replace(tempADP + ",", "");
+                tempADP.trim();
+                adp = Integer.parseInt(tempADP);
+                team = temp;
+                holder += fullName + "," + position + "," + tempADP + "," + team;
+                holderForPlayer.add(holder);
+                p = new player(fullName,position,adp,team);
+                playerDetails.add(p);
+                holder = "";
+            }
+            temp = "";
+            ph.clearList();
+            ph.setList(holderForPlayer);
+            buildList();
         }
         public void loadVals(int position){
             int mult;
@@ -709,7 +818,9 @@ public class GetData {
             int currDraftPos;
             player p;
             String temp;
-            for(int i = 0; i < roundSize; i++){
+            int round = currList.returnRound();
+
+            for(int i = round; i < roundSize; i++){
                 temp = "";
                 if(i == 13){
                     Random rn = new Random();
@@ -742,9 +853,9 @@ public class GetData {
                 temp += "Round " + (i+1);
                 finalList.add(temp);
             }
-            ListView lv = (ListView) activity.findViewById(R.id.dhPlayerList);
-            ArrayAdapter<String> la = new ArrayAdapter<String>(activity, R.layout.rowdef, finalList);
-            lv.setAdapter(la);
+            this.currList.setList(finalList);
+            updateLV(finalList);
+
         }
         public player retPlayer(String posDraft, int adpDraft){
             player item;
@@ -756,6 +867,12 @@ public class GetData {
                 item = playerDetails.get(bestPos);
                         playerDetails.remove(bestPos);
                         return item;
+        }
+        public void updateLV(List<String> list){
+            ListView lv = (ListView) activity.findViewById(R.id.dhPlayerList);
+            ArrayAdapter<String> la = new ArrayAdapter<String>(activity, R.layout.rowdef, list);
+            lv.setAdapter(la);
+            la.notifyDataSetChanged();
         }
         /*
         Taken from: http://stackoverflow.com/questions/1187352/find-closest-value-in-an-ordererd-list
@@ -785,14 +902,18 @@ public class GetData {
         public void onResultSuccess(ArrayList<String[]> result) {
             playerDetails = new ArrayList<player>();
 
-            String temp = "";
+            String temp;
             int tempADP;
             player p;
             for (int i = 0; i < result.size(); i++) {
+                temp = "";
+                temp += result.get(i)[2] +","+ result.get(i)[6] +","+ result.get(i)[16] +","+ result.get(i)[5];
+                holderForPlayer.add(temp);
                 tempADP = Integer.parseInt(result.get(i)[16]);
                 p = new player(result.get(i)[2],result.get(i)[6],tempADP,result.get(i)[5]);
                 playerDetails.add(p);
             }
+            ph.setList(holderForPlayer);
             buildList();
         }
 

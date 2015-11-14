@@ -36,7 +36,10 @@ public class FacadeController {
     public void setScoringSettings(Activity activity, ActiveSession userSession) {
         ssc.setScoringSettings(activity, userSession);
     }
-    public void getDraftablePlayers(Activity activity, String typeOfDraft, int pos){
-        dhc.getDraftablePlayers(activity,typeOfDraft, pos);
+    public void getDraftablePlayers(Activity activity,playerHolder ph,CurrPlayerList curr, String typeOfDraft, int pos){
+        dhc.getDraftablePlayers(activity,ph,curr, typeOfDraft, pos);
+    }
+    public void addDraftablePlayer(Activity activity,playerHolder ph,CurrPlayerList curr, String typeOfControl, int pos, int flag){
+     dhc.addDraftablePlayer(activity,ph, curr, typeOfControl, pos, flag);
     }
 }
