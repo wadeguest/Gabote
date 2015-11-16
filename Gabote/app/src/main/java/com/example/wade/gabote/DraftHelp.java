@@ -39,11 +39,11 @@ public class DraftHelp extends AppCompatActivity {
         dhOption.setOnItemSelectedListener(new spinnerValues(pH,curr,dhOption,dhPos));
         dhPos.setOnItemSelectedListener(new spinnerValues(pH,curr, dhOption, dhPos));
         Button addPlayer = (Button)findViewById(R.id.dhAddPlayer);
-        addPlayer.setOnClickListener(new buttonListener(pH,curr, "add"));
+        addPlayer.setOnClickListener(new buttonListener(pH,curr,dhPos, "add"));
         Button repickPlayer = (Button)findViewById(R.id.dhRepick);
-        repickPlayer.setOnClickListener(new buttonListener(pH,curr, "repick"));
+        repickPlayer.setOnClickListener(new buttonListener(pH,curr,dhPos, "repick"));
         Button vetoPlayer = (Button)findViewById(R.id.dhVeto);
-        vetoPlayer.setOnClickListener(new buttonListener(pH,curr, "veto"));
+        vetoPlayer.setOnClickListener(new buttonListener(pH,curr,dhPos, "veto"));
 
 
     }
@@ -92,16 +92,18 @@ public class DraftHelp extends AppCompatActivity {
         playerHolder ph;
         String type;
         int pos;
-        public buttonListener(playerHolder pH, CurrPlayerList curr, String type){
+        public buttonListener(playerHolder pH, CurrPlayerList curr, Spinner posDraft, String type){
             this.curr = curr;
             this.ph = pH;
             this.type = type;
-            Spinner posDraft = (Spinner)findViewById(R.id.dhPos);
-            this.pos = Integer.parseInt(posDraft.getSelectedItem().toString());
+            //Spinner posDraft = (Spinner)findViewById(R.id.dhPos);
+            //this.pos = Integer.parseInt(posDraft.getSelectedItem().toString());
         }
 
         public void onClick(View v) {
-        addDraftablePlayer(this.ph, this.curr, this.type, this.pos);
+            Spinner posDraft = (Spinner)findViewById(R.id.dhPos);
+            this.pos = Integer.parseInt(posDraft.getSelectedItem().toString());
+            addDraftablePlayer(this.ph, this.curr, this.type, this.pos);
         }
 
     }
