@@ -14,11 +14,11 @@ public class FacadeController {
     private GameScoreController gsc = new GameScoreController();
     private DrawerListController dlc = new DrawerListController();
     private ScoringSettingsController ssc = new ScoringSettingsController();
-    private DraftHelpController dhc = new DraftHelpController();
     private MatchupController mc = new MatchupController();
     private AddPlayerController ac = new AddPlayerController();
     private SignUpController suc = new SignUpController();
     private EditTeamSettingsController etsc = new EditTeamSettingsController();
+    private DraftHelpController dhc = new DraftHelpController();
 
     public FacadeController(){
     }
@@ -29,7 +29,7 @@ public class FacadeController {
     public void getUserTeam(Activity activity, ActiveSession userSession) {
         utc.displayUserTeam(activity, userSession);
     }
-    public void teamToSettings(Activity activity,ActiveSession userSession) {
+    public void teamToSettings(Activity activity, ActiveSession userSession) {
         utc.teamToSettings(activity, userSession);
     }
     public void UserTeamToAddPlayer(Activity activity, ActiveSession userSession) {
@@ -50,9 +50,6 @@ public class FacadeController {
     public void setScoringSettings(Activity activity, ActiveSession userSession) {
         ssc.setScoringSettings(activity, userSession);
     }
-    public void getDraftablePlayers(Activity activity, String typeOfDraft){
-        dhc.getDraftablePlayers(activity, typeOfDraft);
-    }
     public void getUserPlayerPoints(Activity activity, ActiveSession userSession, int week) {
         mc.getUserPlayerPoints(activity, userSession, week);
     }
@@ -70,6 +67,12 @@ public class FacadeController {
     }
     public void changePassword(Activity activity, ActiveSession userSession, String oldPass, String newPass, String newPassConfirm) {
         etsc.changePassword(activity,userSession,oldPass,newPass,newPassConfirm);
+    }
+    public void getDraftablePlayers(Activity activity,playerHolder ph,CurrPlayerList curr, String typeOfDraft, int pos) {
+        dhc.getDraftablePlayers(activity,ph,curr, typeOfDraft, pos);
+    }
+    public void addDraftablePlayer(Activity activity,playerHolder ph,CurrPlayerList curr, String typeOfControl, int pos, int flag) {
+        dhc.addDraftablePlayer(activity,ph, curr, typeOfControl, pos, flag);
     }
 
 }

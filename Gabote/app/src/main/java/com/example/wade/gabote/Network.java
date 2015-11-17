@@ -25,7 +25,7 @@ class GetNetworkConn extends AsyncTask<String,Void,ArrayList> {
 
     protected ArrayList doInBackground(String... query) {
         Connection cn = null;
-        try {
+        /*try {
             Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://172.16.1.74/";
             Properties props = new Properties();
@@ -41,7 +41,25 @@ class GetNetworkConn extends AsyncTask<String,Void,ArrayList> {
                 rs=null;
                 st.executeUpdate(query[0]);
 
+            }*/
+        try {
+            Class.forName("org.postgresql.Driver");
+            String url = "jdbc:postgresql://67.225.27.44/";
+            Properties props = new Properties();
+            props.setProperty("user","nfldb");
+            props.setProperty("password", "Wg2002!");
+            cn = DriverManager.getConnection(url, props);
+            ResultSet rs;
+            Statement st = cn.createStatement();
+            if(query[0].contains("SELECT")){
+
+                rs = st.executeQuery(query[0]);
+            } else {
+                rs=null;
+                st.executeUpdate(query[0]);
+
             }
+
 
 
             if(rs!=null) {
