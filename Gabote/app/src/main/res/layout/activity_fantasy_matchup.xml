@@ -9,41 +9,18 @@
     android:layout_width="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:text="Edit User Team"
-        android:id="@+id/bEditUserTeam"
-        android:gravity="left"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:text="Edit Opponent Team"
-        android:id="@+id/bEditOpponentTeam"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:gravity="right"/>
-<RelativeLayout
+    <RelativeLayout
     android:layout_width="150dp"
     android:layout_height="wrap_content"
     android:background="@drawable/back"
-    android:layout_below="@+id/bEditUserTeam"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true"
     android:id="@+id/relativeLayout"
-    android:layout_alignRight="@+id/bEditUserTeam"
-    android:layout_alignEnd="@+id/bEditUserTeam">
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="User Team Name"
             android:id="@+id/userTeamName"
             android:gravity="center_horizontal"
             android:layout_marginTop="5dp" />
@@ -52,104 +29,95 @@
             android:layout_height="wrap_content"
             android:text="150"
             android:textSize="50dp"
-            android:gravity="center_vertical"
             android:id="@+id/userTeamScore"
             android:layout_below="@+id/userTeamName"
-            android:layout_centerHorizontal="true" />
+            android:textAlignment="gravity"
+            android:layout_centerInParent="true"
+            android:elegantTextHeight="false"
+            android:gravity="center" />
 
 </RelativeLayout>
 
-<RelativeLayout
-    android:layout_width="150dp"
-    android:layout_height="wrap_content"
-    android:background="@drawable/back"
-    android:layout_alignTop="@+id/relativeLayout"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentEnd="true"
-    android:layout_alignBottom="@+id/relativeLayout"
-    android:layout_alignLeft="@+id/bEditOpponentTeam"
-    android:layout_alignStart="@+id/bEditOpponentTeam">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Opponent Team Name"
-        android:id="@+id/opponentTeamName"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="5dp" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="150"
-        android:textSize="50dp"
-        android:gravity="center_vertical"
-        android:id="@+id/opponentTeamScore"
-        android:layout_below="@+id/opponentTeamName"
-        android:layout_centerHorizontal="true" />
-
-</RelativeLayout>
-
-<RelativeLayout
+    <RelativeLayout
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="144dp"
-        android:layout_alignParentTop="true"
-        android:id="@+id/matchupTable"
+    android:layout_height="300dp"
+        android:layout_below="@+id/relativeLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:showDividers="middle"
-        android:stretchColumns="*"
-        android:divider="@android:color/darker_gray">
-<!--
-        <TableRow
-            android:layout_height="fill_parent"
-            android:layout_width="fill_parent">
-            <TextView
-                android:gravity="center_horizontal"
-                android:layout_column="1"
-                android:layout_height="wrap_content"
-                android:layout_width="125dp"
-                android:text="Player Name"
-                android:background="@drawable/back"/>
-            <TextView
-                android:gravity="center_horizontal"
-                android:layout_column="2"
-                android:layout_height="wrap_content"
-                android:layout_width="50dp"
-                android:text="Score"
-                android:background="@drawable/back"/>
-            <TextView
-                android:gravity="center_horizontal"
-                android:layout_column="3"
-                android:layout_height="wrap_content"
-                android:layout_width="30dp"
-                android:text="Role"
-                android:background="@drawable/back"/>
-            <TextView
-                android:gravity="center_horizontal"
-                android:layout_column="4"
-                android:layout_height="wrap_content"
-                android:layout_width="50dp"
-                android:text="Score"
-                android:background="@drawable/back" />
-            <TextView
-                android:gravity="center_horizontal"
-                android:layout_column="5"
-                android:layout_height="wrap_content"
-                android:layout_width="125dp"
-                android:text="Player Name"
-                android:background="@drawable/back"/>
+        android:layout_above="@+id/bEditUserTeam">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"></ScrollView>
 
-        </TableRow>
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/matchupTable"
+            android:showDividers="middle"
+            android:stretchColumns="*"
+            android:divider="@android:color/darker_gray"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+    <!--
+            <TableRow
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent">
+                <TextView
+                    android:gravity="center_horizontal"
+                    android:layout_column="1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="125dp"
+                    android:text="Player Name"
+                    android:background="@drawable/back"/>
+                <TextView
+                    android:gravity="center_horizontal"
+                    android:layout_column="2"
+                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:text="Score"
+                    android:background="@drawable/back"/>
+                <TextView
+                    android:gravity="center_horizontal"
+                    android:layout_column="3"
+                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:text="Role"
+                    android:background="@drawable/back"/>
+                <TextView
+                    android:gravity="center_horizontal"
+                    android:layout_column="4"
+                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:text="Score"
+                    android:background="@drawable/back" />
+                <TextView
+                    android:gravity="center_horizontal"
+                    android:layout_column="5"
+                    android:layout_height="wrap_content"
+                    android:layout_width="125dp"
+                    android:text="Player Name"
+                    android:background="@drawable/back"/>
 
--->
+            </TableRow>
 
-    </TableLayout>
+    -->
 
-</RelativeLayout>
+        </TableLayout>
+    </RelativeLayout>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit User Team"
+        android:id="@+id/bEditUserTeam"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="center"
+        android:gravity="center" />
+
 
 </RelativeLayout>
 

@@ -19,9 +19,10 @@ public class userFantasyTeam extends AppCompatActivity {
         setContentView(R.layout.activity_user_fantasy_team);
         final Activity activity =this;
         Bundle b = getIntent().getExtras();
-        DrawerListController dlc = new DrawerListController();
+
         final ActiveSession userSession = new ActiveSession();
         userSession.setActiveUserId(b.getInt("userSession"));
+        DrawerListController dlc = new DrawerListController(this,userSession);
         Button bAddPlayer = (Button)findViewById(R.id.bAddPlayer);
         Button bRefreshTeam = (Button)findViewById(R.id.bRefreshTeam);
         Button bEditSettings = (Button)findViewById(R.id.bEdit);

@@ -15,8 +15,7 @@ public class FantasyMatchup extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         final ActiveSession userSession = new ActiveSession();
         final Activity activity = this;
-
-        DrawerListController dlc = new DrawerListController(this);
+        DrawerListController dlc = new DrawerListController(this, userSession);
 
         userSession.setActiveUserId(b.getInt("userSession"));
         FacadeController fc = new FacadeController();

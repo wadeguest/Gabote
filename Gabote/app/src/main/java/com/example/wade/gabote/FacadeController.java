@@ -41,8 +41,8 @@ public class FacadeController {
     public void getGameScoreWeekData(Activity activity, int week) {
         gsc.getWeekData(activity, week);
     }
-    public void getDrawerList(Activity activity) {
-        dlc = new DrawerListController(activity);
+    public void getDrawerList(Activity activity, ActiveSession userSession) {
+        dlc = new DrawerListController(activity,userSession);
     }
     public void getScoringSettings(Activity activity, ActiveSession userSession) {
         ssc.getScoringSettings(activity,userSession);

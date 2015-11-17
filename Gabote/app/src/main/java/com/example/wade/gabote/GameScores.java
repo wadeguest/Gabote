@@ -16,7 +16,11 @@ public class GameScores extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_scores);
-        DrawerListController dla= new DrawerListController(this);
+        Bundle b = getIntent().getExtras();
+        final Activity activity = this;
+        final ActiveSession userSesssion = new ActiveSession();
+        userSesssion.setActiveUserId(b.getInt("userSession"));
+        DrawerListController dlc = new DrawerListController(activity,userSesssion);
         Spinner wk = (Spinner)findViewById(R.id.weekDropDown);
         ArrayAdapter<CharSequence> adsp = ArrayAdapter.createFromResource(this,R.array.spinnerWeeks,android.R.layout.simple_spinner_item);
         adsp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

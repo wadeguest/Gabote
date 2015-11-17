@@ -19,7 +19,8 @@ public class AddPlayer extends AppCompatActivity {
         final Activity activity = this;
         final ActiveSession userSesssion = new ActiveSession();
         userSesssion.setActiveUserId(b.getInt("userSession"));
-        DrawerListController dlc = new DrawerListController(this);
+
+        DrawerListController dlc = new DrawerListController(this, userSesssion);
 
         final Spinner pos = (Spinner)findViewById(R.id.spinnerPositions);
         final Spinner teams = (Spinner)findViewById(R.id.spinnerTeams);

@@ -1657,7 +1657,7 @@ public class GetData {
                 rushing_tds = 0;
                 rushing_yds = 0;
                 fumbles_lost = 0;
-
+                ft_name="";
             }
 
             protected String player_id;
@@ -1677,6 +1677,7 @@ public class GetData {
             protected int fumbles_lost;
 
             protected double total_fantasy_points;
+            protected String ft_name;
         }
 
         protected static class offScoring {
@@ -1727,7 +1728,7 @@ public class GetData {
             if (!getPlayers) {
                 GetNetworkConn task = new GetNetworkConn();
                 task.setOnResultsListener(this);
-                task.execute("SELECT UP.player_id, UP.player_team, PL.position, PL.full_name  FROM user_player UP, player PL WHERE PL.player_id=UP.player_id AND UP.user_id=" + userSession.getActiveUserId());
+                task.execute("SELECT UP.player_id, UP.player_team, PL.position, PL.full_name, TU.fantasy_team_name  FROM user_player UP, player PL, t_user TU WHERE PL.player_id=UP.player_id AND UP.user_id=" + userSession.getActiveUserId() + "AND TU.user_id=UP.user_id");
             }
 
             // task.execute("SELECT * FROM game WHERE week=3 AND season_year='2015' AND season_type='Regular' ORDER BY start_time");
@@ -1742,6 +1743,7 @@ public class GetData {
                     userPlayersOff[i].team = result.get(i)[1];
                     userPlayersOff[i].player_role =result.get(i)[2];
                     userPlayersOff[i].player_name = result.get(i)[3];
+                    userPlayersOff[i].ft_name = result.get(0)[4];
                 }
                 getPlayers = true;
             } else {
@@ -1783,7 +1785,7 @@ public class GetData {
                 getScoring = true;
                 task.execute("SELECT p_yds,p_td,re_yds,re_td,ru_yds,ru_td,p_int,fumble_lost FROM t_user_scoring WHERE uid=" + userSession.getActiveUserId());
             } else {
-                for (int i = 0; i < count; i++) {
+                for (int i = 0; i < (count-1); i++) {
                     userPlayersOff[i].total_fantasy_points =
                             (userPlayersOff[i].passing_yds * userOffScoring.passingYds_pts) +
                                     (userPlayersOff[i].passing_tds * userOffScoring.passingTds_pts) +
@@ -1805,6 +1807,8 @@ public class GetData {
                 totalUserScore += userPlayersOff[i].total_fantasy_points;
             }
             TableLayout tl = (TableLayout) activity.findViewById(R.id.matchupTable);
+            TextView teamName = (TextView) activity.findViewById(R.id.userTeamName);
+            teamName.setText(userPlayersOff[0].ft_name);
             TextView totalTeamScore = (TextView) activity.findViewById(R.id.userTeamScore);
             totalTeamScore.setText(String.format("%.2f", totalUserScore));
             boolean firstRun = false;
@@ -1818,45 +1822,26 @@ public class GetData {
                     TextView ch1 = new TextView(activity);
                     TextView ch2 = new TextView(activity);
                     TextView ch3 = new TextView(activity);
-                    TextView ch4 = new TextView(activity);
-                    TextView ch5 = new TextView(activity);
-                    TextView ch6 = new TextView(activity);
 
-                    ch1.setTextSize(12);
-                    ch2.setTextSize(12);
-                    ch3.setTextSize(12);
-                    ch4.setTextSize(12);
-                    ch5.setTextSize(12);
-                    ch6.setTextSize(12);
+                    ch1.setTextSize(25);
+                    ch2.setTextSize(25);
+                    ch3.setTextSize(25);
 
 
                     ch1.setText("PLAYER NAME");
                     ch2.setText("POINTS");
                     ch3.setText("ROLE");
-                    ch4.setText("ROLE");
-                    ch5.setText("POINTS");
-                    ch6.setText("PLAYER NAME");
                     ch1.setGravity(Gravity.CENTER);
                     ch2.setGravity(Gravity.CENTER);
                     ch3.setGravity(Gravity.CENTER);
-                    ch4.setGravity(Gravity.CENTER);
-                    ch5.setGravity(Gravity.CENTER);
-                    ch6.setGravity(Gravity.CENTER);
 
                     ch1.setBackgroundResource(R.drawable.cell_borders);
                     ch2.setBackgroundResource(R.drawable.cell_borders);
                     ch3.setBackgroundResource(R.drawable.cell_borders);
-                    ch4.setBackgroundResource(R.drawable.cell_borders);
-                    ch5.setBackgroundResource(R.drawable.cell_borders);
-                    ch6.setBackgroundResource(R.drawable.cell_borders);
-
 
                     tr.addView(ch1);
                     tr.addView(ch2);
                     tr.addView(ch3);
-                    tr.addView(ch4);
-                    tr.addView(ch5);
-                    tr.addView(ch6);
                     firstRun = true;
                     i--;
                 } else {
@@ -1864,45 +1849,23 @@ public class GetData {
                     TextView userPName = new TextView(activity);
                     userPName.setText(userPlayersOff[i].player_name.toString());
                     userPName.setGravity(Gravity.START);;
-                    userPName.setTextSize(10);
+                    userPName.setTextSize(20);
                     userPName.setBackgroundResource(R.drawable.cell_borders);
                     tr.addView(userPName);
 
                     TextView userPScore = new TextView(activity);
                     userPScore.setText(String.format("%.2f", userPlayersOff[i].total_fantasy_points));
                     userPScore.setGravity(Gravity.CENTER);
-                    userPScore.setTextSize(10);
+                    userPScore.setTextSize(20);
                     userPScore.setBackgroundResource(R.drawable.cell_borders);
                     tr.addView(userPScore);
 
                     TextView userPPos = new TextView(activity);
                     userPPos.setText(userPlayersOff[i].player_role.toString());
                     userPPos.setGravity(Gravity.CENTER);
-                    userPPos.setTextSize(10);
+                    userPPos.setTextSize(20);
                     userPPos.setBackgroundResource(R.drawable.cell_borders);
                     tr.addView(userPPos);
-
-                    TextView oppPPOS = new TextView(activity);
-                    oppPPOS.setText(userPlayersOff[i].player_role.toString());
-                    oppPPOS.setGravity(Gravity.CENTER);
-                    oppPPOS.setTextSize(10);
-                    oppPPOS.setBackgroundResource(R.drawable.cell_borders);
-                    tr.addView(oppPPOS);
-
-                    TextView oppPScore = new TextView(activity);
-                    oppPScore.setText(String.format("%.2f", userPlayersOff[i].total_fantasy_points));
-                    oppPScore.setGravity(Gravity.CENTER);
-                    oppPScore.setTextSize(10);
-                    oppPScore.setBackgroundResource(R.drawable.cell_borders);
-                    tr.addView(oppPScore);
-
-                    TextView oppPName = new TextView(activity);
-                    oppPName.setText(userPlayersOff[i].player_name.toString());
-                    oppPName.setGravity(Gravity.END);
-                    oppPName.setTextSize(10);
-                    oppPName.setBackgroundResource(R.drawable.cell_borders);
-                    tr.addView(oppPName);
-
                 }
                 if (tr.getParent() != null)
                     ((ViewGroup) tr.getParent()).removeView(tr);
@@ -1919,7 +1882,7 @@ public class GetData {
                 numOfPlayers= result.size();
                 fillPlayers(result);
             } else if(result.size()<50) {
-                if((count-1)<numOfPlayers) {
+                if(count<=numOfPlayers) {
                     userPlayersOff[count-1].passing_yds=Integer.parseInt(result.get(0)[0]);
                     userPlayersOff[count-1].passing_tds=Integer.parseInt(result.get(0)[1]);
                     userPlayersOff[count-1].receiving_tds=Integer.parseInt(result.get(0)[2]);
@@ -1928,12 +1891,12 @@ public class GetData {
                     userPlayersOff[count-1].rushing_tds=Integer.parseInt(result.get(0)[5]);
                     userPlayersOff[count-1].passing_int=Integer.parseInt(result.get(0)[6]);
                     userPlayersOff[count-1].fumbles_lost=Integer.parseInt(result.get(0)[7]);
-                    if(count<numOfPlayers) {
+                    if((count)<numOfPlayers) {
                         fillPlayers(result);
                     } else count++;
 
                 }
-                if((count-1)>=numOfPlayers){
+                if((count)>numOfPlayers){
                     if(getScoring){
                         userOffScoring.passingYds_pts= Double.parseDouble(result.get(0)[0]);
                         userOffScoring.passingTds_pts= Integer.parseInt(result.get(0)[1]);

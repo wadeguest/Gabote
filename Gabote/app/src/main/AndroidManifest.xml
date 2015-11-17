@@ -17,11 +17,6 @@
         <activity
             android:name=".GameScores"
             android:label="@string/game_scores" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".FantasyMenu"
@@ -48,6 +43,7 @@
         </activity>
         <activity android:name=".DraftHelp" >
         </activity>
+        <activity android:name=".AddPlayer" android:label="@string/title_activity_add_player"></activity>
     </application>
 
 </manifest>

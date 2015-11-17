@@ -1,11 +1,17 @@
 package com.example.wade.gabote;
 
 import android.app.Activity;
+import android.app.Application;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
+import android.preference.PreferenceFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -33,27 +39,68 @@ public class DrawerListController extends BaseAdapter {
     Context mContext;
     ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
     public DrawerListController(){;}
-    public DrawerListController(Activity activity){
+    public DrawerListController(final Activity activity, final ActiveSession userSession){
         mContext = activity.getApplicationContext();
         RelativeLayout mDrawerPane;
         DrawerLayout mDrawerLayout;
         ListView mDrawerList;
 
         mNavItems.add(new NavItem("Game Scores", "Display Scores of NFL Games", 0));
-        mNavItems.add(new NavItem("View User Team","View Team",0));
-        mNavItems.add(new NavItem("Add Player","Add Player to User Team",0));
-        mNavItems.add(new NavItem("Messaging","View/Send Messages to other users",0));
         mNavItems.add(new NavItem("Draft Helper","Help Selecting Draft Picks",0));
-        mNavItems.add(new NavItem("Fantasy Menu", "Show all Fantasy Football Options", 0));
-
+        mNavItems.add(new NavItem("View User Team","View Team",0));
+        mNavItems.add(new NavItem("View User Score","View User Team Score",0));
+        mNavItems.add(new NavItem("Add Player","Add Player to User Team",0));
+        mNavItems.add(new NavItem("Edit Scoring Settings","Change Scoring Settings",0));
+        mNavItems.add(new NavItem("Edit Account Settings","Change your account email/teamname/password",0));
+        mNavItems.add(new NavItem("Exit Application","Exit the GABOTE application",0));
 
         mDrawerPane = (RelativeLayout)activity.findViewById(R.id.drawerPane);
         mDrawerLayout = (DrawerLayout)activity.findViewById(R.id.drawerLayout);
         mDrawerList = (ListView)activity.findViewById(R.id.navList);
         mDrawerList.setAdapter(this);
-
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectItemFromDrawer(position,activity,userSession);
+            }
+        });
     }
 
+    private void selectItemFromDrawer(int position,Activity activity, ActiveSession userSession) {
+        Intent i = new Intent(activity.getApplicationContext(), DraftHelp.class);
+        switch(position) {
+            case 0:
+                i = new Intent(activity.getApplicationContext(), GameScores.class);
+                break;
+            case 1:
+                i = new Intent(activity.getApplicationContext(), DraftHelp.class);
+                break;
+            case 2:
+                i = new Intent(activity.getApplicationContext(), userFantasyTeam.class);
+                break;
+            case 3:
+                i = new Intent(activity.getApplicationContext(), FantasyMatchup.class);
+                break;
+            case 4:
+                i = new Intent(activity.getApplicationContext(), AddPlayer.class);
+                break;
+            case 5:
+                i = new Intent(activity.getApplicationContext(), ScoringSettings.class);
+                break;
+            case 6:
+                i = new Intent(activity.getApplicationContext(), EditTeam.class);
+                break;
+            case 7:
+                System.exit(0);
+                return;
+            default:
+                i = new Intent(activity.getApplicationContext(),activity.getClass());
+                break;
+
+        }
+        i.putExtra("userSession", userSession.getActiveUserId());
+        activity.startActivity(i);
+    }
     @Override
     public int getCount() {
         return mNavItems.size();
