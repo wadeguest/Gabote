@@ -8,9 +8,6 @@ import android.app.Activity;
 public class UserTeamController {
     protected void displayUserTeam(Activity activity,ActiveSession userSession)
     {
-        new GetData.UserTeam(activity,userSession,1);
-    }
-    protected void teamToSettings(Activity activity, ActiveSession userSession) {
-        new GetData.UserTeam(activity,userSession,2);
+        new GetData.UserTeam(activity,userSession);
     }
 }

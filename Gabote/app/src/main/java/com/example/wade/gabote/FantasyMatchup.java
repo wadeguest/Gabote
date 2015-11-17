@@ -1,6 +1,5 @@
 package com.example.wade.gabote;
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,16 +11,6 @@ public class FantasyMatchup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fantasy_matchup);
-        Bundle b = getIntent().getExtras();
-        final ActiveSession userSession = new ActiveSession();
-        final Activity activity = this;
-
-        DrawerListController dlc = new DrawerListController(this);
-
-        userSession.setActiveUserId(b.getInt("userSession"));
-        FacadeController fc = new FacadeController();
-        fc.getUserPlayerPoints(activity,userSession,9);
-
     }
 
     @Override

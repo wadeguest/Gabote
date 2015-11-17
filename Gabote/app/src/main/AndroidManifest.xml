@@ -24,6 +24,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".FantasyMenu"
+            android:label="@string/fantasy_menu" >
+        </activity>
+        <activity
             android:name=".FantasyMatchup"
             android:label="@string/fantasy_matchup" >
         </activity>
@@ -43,13 +47,6 @@
             android:label="@string/title_activity_scoring_settings" >
         </activity>
         <activity android:name=".DraftHelp" >
-        </activity>
-        <activity
-            android:name=".AddPlayer"
-            android:label="@string/title_activity_add_player" >
-        </activity>
-        <activity android:name=".UserSignUp" />
-        <activity android:name=".EditTeam" android:label="@string/title_activity_edit_team_settings">
         </activity>
     </application>
 

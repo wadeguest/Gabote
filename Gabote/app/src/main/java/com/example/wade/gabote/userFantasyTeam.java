@@ -1,53 +1,31 @@
 package com.example.wade.gabote;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class userFantasyTeam extends AppCompatActivity {
 
-    FacadeController fc = new FacadeController();
-
+    ActiveSession userSession = new ActiveSession();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_fantasy_team);
-        final Activity activity =this;
-        Bundle b = getIntent().getExtras();
-        DrawerListController dlc = new DrawerListController();
-        final ActiveSession userSession = new ActiveSession();
-        userSession.setActiveUserId(b.getInt("userSession"));
-        Button bAddPlayer = (Button)findViewById(R.id.bAddPlayer);
-        Button bRefreshTeam = (Button)findViewById(R.id.bRefreshTeam);
-        Button bEditSettings = (Button)findViewById(R.id.bEdit);
-        bAddPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fc.UserTeamToAddPlayer(activity, userSession);
-            }
-        });
-        bEditSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fc.teamToSettings(activity,userSession);
-            }
-        });
-        bRefreshTeam.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                activity.recreate();
-            }
-        });
-        getTeam(userSession);
+        Bundle b = getIntent().getExtras();
+        userSession.setActiveUserId(b.getInt("userSession"));
+        getTeam();
     }
 
-    public void getTeam(ActiveSession userSession) {
+    public void getTeam() {
+        FacadeController fc = new FacadeController();
         fc.getUserTeam(this,userSession);
     }
 

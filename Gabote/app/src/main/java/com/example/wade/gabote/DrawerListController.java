@@ -40,12 +40,9 @@ public class DrawerListController extends BaseAdapter {
         ListView mDrawerList;
 
         mNavItems.add(new NavItem("Game Scores", "Display Scores of NFL Games", 0));
-        mNavItems.add(new NavItem("View User Team","View Team",0));
-        mNavItems.add(new NavItem("Add Player","Add Player to User Team",0));
-        mNavItems.add(new NavItem("Messaging","View/Send Messages to other users",0));
-        mNavItems.add(new NavItem("Draft Helper","Help Selecting Draft Picks",0));
         mNavItems.add(new NavItem("Fantasy Menu", "Show all Fantasy Football Options", 0));
-
+        mNavItems.add(new NavItem("Chat Rooms","Show Active Chat Rooms",0));
+        mNavItems.add(new NavItem("Messaging","View/Send Messages to other users",0));
 
         mDrawerPane = (RelativeLayout)activity.findViewById(R.id.drawerPane);
         mDrawerLayout = (DrawerLayout)activity.findViewById(R.id.drawerLayout);
