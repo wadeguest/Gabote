@@ -1,3 +1,9 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
 <RelativeLayout
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
@@ -35,14 +41,14 @@
     android:layout_alignRight="@+id/bEditUserTeam"
     android:layout_alignEnd="@+id/bEditUserTeam">
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="User Team Name"
             android:id="@+id/userTeamName"
             android:gravity="center_horizontal"
             android:layout_marginTop="5dp" />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="150"
             android:textSize="50dp"
@@ -64,14 +70,14 @@
     android:layout_alignLeft="@+id/bEditOpponentTeam"
     android:layout_alignStart="@+id/bEditOpponentTeam">
     <TextView
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Opponent Team Name"
         android:id="@+id/opponentTeamName"
         android:gravity="center_horizontal"
         android:layout_marginTop="5dp" />
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="150"
         android:textSize="50dp"
@@ -81,6 +87,7 @@
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
+
 <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
@@ -90,10 +97,13 @@
         android:layout_height="fill_parent"
         android:layout_marginTop="144dp"
         android:layout_alignParentTop="true"
+        android:id="@+id/matchupTable"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:stretchColumns="3">
-
+        android:showDividers="middle"
+        android:stretchColumns="*"
+        android:divider="@android:color/darker_gray">
+<!--
         <TableRow
             android:layout_height="fill_parent"
             android:layout_width="fill_parent">
@@ -132,12 +142,30 @@
                 android:layout_width="125dp"
                 android:text="Player Name"
                 android:background="@drawable/back"/>
+
         </TableRow>
 
-
+-->
 
     </TableLayout>
 
 </RelativeLayout>
 
 </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:id="@+id/drawerPane"
+        android:layout_gravity="start">
+        <ListView
+            android:id="@+id/navList"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+            android:background="#ffffffff">
+
+        </ListView>
+    </RelativeLayout>
+
+</android.support.v4.widget.DrawerLayout>

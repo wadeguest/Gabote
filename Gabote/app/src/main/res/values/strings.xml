@@ -23,6 +23,9 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_user_sign_up">UserSignUp</string>
+    <string name="title_activity_user_sign_up">User Sign Up</string>
     <string name="title_activity_scoring_settings">Scoring Settings</string>
+    <string name="title_activity_add_player">Add Player</string>
+    <string name="title_activity_best_team">Best Team</string>
+    <string name="title_activity_edit_team_settings">Edit Team Settings</string>
 </resources>

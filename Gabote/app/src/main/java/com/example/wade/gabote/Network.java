@@ -17,8 +17,8 @@ import javax.xml.transform.Result;
 
 class GetNetworkConn extends AsyncTask<String,Void,ArrayList> {
 
-    ResultListener listener;
-    ArrayList<String[]> gameList = new ArrayList<>();
+    private ResultListener listener;
+    private ArrayList<String[]> gameList = new ArrayList<>();
     public void setOnResultsListener(ResultListener listener){
         this.listener = listener;
     }
@@ -55,10 +55,6 @@ class GetNetworkConn extends AsyncTask<String,Void,ArrayList> {
                     gameList.add(temp);
                     temp = null;
                 }
-            }
-            if(rs==null) {
-                String[] success_query={"success"};
-                gameList.add(success_query);
             }
 
 
