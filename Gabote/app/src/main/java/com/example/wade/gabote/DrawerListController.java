@@ -52,7 +52,6 @@ public class DrawerListController extends BaseAdapter {
         mNavItems.add(new NavItem("Add Player","Add Player to User Team",0));
         mNavItems.add(new NavItem("Edit Scoring Settings","Change Scoring Settings",0));
         mNavItems.add(new NavItem("Edit Account Settings","Change your account email/teamname/password",0));
-        mNavItems.add(new NavItem("Exit Application","Exit the GABOTE application",0));
 
         mDrawerPane = (RelativeLayout)activity.findViewById(R.id.drawerPane);
         mDrawerLayout = (DrawerLayout)activity.findViewById(R.id.drawerLayout);
@@ -90,9 +89,6 @@ public class DrawerListController extends BaseAdapter {
             case 6:
                 i = new Intent(activity.getApplicationContext(), EditTeam.class);
                 break;
-            case 7:
-                System.exit(0);
-                return;
             default:
                 i = new Intent(activity.getApplicationContext(),activity.getClass());
                 break;
