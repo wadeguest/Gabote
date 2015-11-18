@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.text.style.BackgroundColorSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -657,8 +658,8 @@ public class GetData {
                     Button rm = new Button(activity);
                     rm.setGravity(Gravity.CENTER);
                     rm.setText("Remove");
-                    rm.setBackgroundColor(android.graphics.Color.RED);
-                    rm.setOnClickListener(new RemoveOnClick(Integer.parseInt(result.get(i)[5]),result.get(i)[4], result.get(i)[0] + " " + result.get(i)[1],activity));
+                    rm.setTextColor(Color.BLACK);
+                    rm.setOnClickListener(new RemoveOnClick(Integer.parseInt(result.get(i)[5]), result.get(i)[4], result.get(i)[0] + " " + result.get(i)[1], activity));
                     tr.addView(rm);
                 }
                 if (tr.getParent() != null)
