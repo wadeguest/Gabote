@@ -114,6 +114,7 @@ public class DraftHelp extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_draft_help, menu);
+        menu.findItem(R.id.action_settings).setVisible(false);
         return true;
     }
     public void getDraftablePlayers(playerHolder ph, CurrPlayerList curr, String typeOfDraft, int pos){

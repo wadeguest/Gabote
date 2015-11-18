@@ -19,10 +19,6 @@
             android:label="@string/game_scores" >
         </activity>
         <activity
-            android:name=".FantasyMenu"
-            android:label="@string/fantasy_menu" >
-        </activity>
-        <activity
             android:name=".FantasyMatchup"
             android:label="@string/fantasy_matchup" >
         </activity>

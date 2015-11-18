@@ -56,6 +56,7 @@ public class userFantasyTeam extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_user_fantasy_team, menu);
+        menu.findItem(R.id.action_settings).setVisible(false);
         return true;
     }
 
