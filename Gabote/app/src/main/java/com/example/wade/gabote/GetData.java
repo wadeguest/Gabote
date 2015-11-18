@@ -458,26 +458,28 @@ public class GetData {
         private Activity activity;
         private ActiveSession userSession;
 
+        //QUERY TO CHECK IF LOGIN INFORMATION IS CORRECT
         public checkUserLogin(Activity activity, String username, String password, ActiveSession userSession) {
             this.activity = activity;
             this.username = username;
             this.password = password;
             this.userSession = userSession;
+
+            //SEND THE QUERY
             GetNetworkConn task = new GetNetworkConn();
             task.setOnResultsListener(this);
             task.execute("SELECT user_id FROM t_user WHERE username='" + this.username + "' AND password='" + this.password + "'");
         }
 
+        //THE onResultSuccess FUNCTION HANDLES THE RETURN OF THE QUERY
         @Override
         public void onResultSuccess(ArrayList<String[]> result) {
+            //UPDATE THE VIEW
             if (result.size() == 1) {
-
                 Intent i = new Intent(activity.getApplicationContext(), userFantasyTeam.class);
                 userSession.setActiveUserId(Integer.parseInt(result.get(0)[0]));
                 i.putExtra("userSession", userSession.getActiveUserId());
                 activity.startActivity(i);
-
-
             } else {
                 final ArrayAdapter<String> optionAdapter = new ArrayAdapter<String>(activity.getApplicationContext(), android.R.layout.select_dialog_singlechoice);
                 optionAdapter.add("Login Failed.");
@@ -1632,7 +1634,7 @@ public class GetData {
     protected static class getUserPoints implements ResultListener {
 
         protected static class player_off {
-            public void player_off() {
+            public player_off() {
                 player_id = "";
                 team = "";
                 player_name = "";

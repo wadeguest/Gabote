@@ -53,6 +53,9 @@ public class FacadeController {
     public void getUserPlayerPoints(Activity activity, ActiveSession userSession, int week) {
         mc.getUserPlayerPoints(activity, userSession, week);
     }
+    public void MatchupToTeam(Activity activity, ActiveSession userSession) {
+        mc.MatchupToTeam(activity,userSession);
+    }
     public void searchPlayers(Activity activity, ActiveSession userSession, String team, String position, String pname) {
         ac.searchPlayers(activity, userSession, team, position, pname);
     }

@@ -47,9 +47,7 @@ public class FantasyMatchup extends AppCompatActivity {
         bEditTeam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(activity.getApplicationContext(), userFantasyTeam.class);
-                i.putExtra("userSession", userSession.getActiveUserId());
-                activity.startActivity(i);
+                fc.MatchupToTeam(activity,userSession);
             }
         });
         String weekStr =wkSpinner.getSelectedItem().toString().substring(wkSpinner.getSelectedItem().toString().length()-2).trim();
