@@ -394,34 +394,6 @@ public class GetData {
         }
     }
 
-    protected static class UserTeamPlayers implements ResultListener {
-
-        private String teamName;
-        private String email;
-        private String username;
-
-        private String[] names;
-        private String[] position;
-        private String[] team;
-
-
-        public UserTeamPlayers(Activity activity) {
-            names = new String[20];
-            position = new String[20];
-            team = new String[20];
-
-            GetNetworkConn task = new GetNetworkConn();
-            task.setOnResultsListener(this);
-            task.execute("SELECT * FROM game WHERE week=3 AND season_year='2015' AND season_type='Regular' ORDER BY start_time");
-
-        }
-
-        @Override
-        public void onResultSuccess(ArrayList<String[]> result) {
-
-        }
-    }
-
     protected static class checkUserSignUp implements ResultListener {
         private String userName;
         private String email;
@@ -2222,10 +2194,24 @@ public class GetData {
             task.execute("SELECT fantasy_team_name,user_email FROM t_user WHERE user_id=" + userSession.getActiveUserId());
         }
         public void setNewValues(String newEmail, String newTeamName) {
-            bSelectCurrData=true;
-            GetNetworkConn task = new GetNetworkConn();
-            task.setOnResultsListener(this);
-            task.execute("UPDATE t_user SET user_email='"+ newEmail +"', fantasy_team_name='"+ newTeamName +"' WHERE user_id="+userSession.getActiveUserId());
+            if(newEmail.isEmpty() || newTeamName.isEmpty()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setTitle("Empty Fields");
+                builder.setMessage("Please do not leave empty fields..");
+                builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                bSelectCurrData = true;
+                GetNetworkConn task = new GetNetworkConn();
+                task.setOnResultsListener(this);
+                task.execute("UPDATE t_user SET user_email='" + newEmail + "', fantasy_team_name='" + newTeamName + "' WHERE user_id=" + userSession.getActiveUserId());
+            }
         }
         public void changePassword(String oldPass, String newPass, String newPassConfirm) {
             if(newPass.equals(newPassConfirm)) {
@@ -2245,7 +2231,7 @@ public class GetData {
                     }
                 });
                 AlertDialog dialog = builder.create();
-                builder.show();
+                dialog.show();
             }
         }
         @Override
