@@ -633,32 +633,31 @@ public class GetData {
                     TextView posTV = new TextView(activity);
                     posTV.setText(p_position[i].toString());
                     posTV.setGravity(Gravity.CENTER);
-                    posTV.setBackgroundResource(R.drawable.table_borders);
+                    posTV.setBackgroundResource(R.drawable.cell_borders);
                     tr.addView(posTV);
 
                     TextView nameTV = new TextView(activity);
                     nameTV.setText(p_first_name[i].toString() + " " + p_last_name[i].toString());
                     nameTV.setGravity(Gravity.CENTER);
-                    nameTV.setBackgroundResource(R.drawable.table_borders);
+                    posTV.setBackgroundResource(R.drawable.cell_borders);
                     tr.addView(nameTV);
 
                     TextView tmTV = new TextView(activity);
                     tmTV.setText(p_team[i].toString());
                     tmTV.setGravity(Gravity.CENTER);
-                    tmTV.setBackgroundResource(R.drawable.table_borders);
+                    posTV.setBackgroundResource(R.drawable.cell_borders);
                     tr.addView(tmTV);
 
                     TextView stTV = new TextView(activity);
                     stTV.setText(p_status[i].toString());
                     stTV.setGravity(Gravity.CENTER);
-                    stTV.setBackgroundResource(R.drawable.table_borders);
+                    posTV.setBackgroundResource(R.drawable.cell_borders);
                     tr.addView(stTV);
 
                     Button rm = new Button(activity);
                     rm.setGravity(Gravity.CENTER);
                     rm.setText("Remove");
                     rm.setBackgroundColor(android.graphics.Color.RED);
-                    rm.setBackgroundResource(R.drawable.table_borders);
                     rm.setOnClickListener(new RemoveOnClick(Integer.parseInt(result.get(i)[5]),result.get(i)[4], result.get(i)[0] + " " + result.get(i)[1],activity));
                     tr.addView(rm);
                 }
@@ -1630,15 +1629,29 @@ public class GetData {
                 et_def_ptall_35.setText(Integer.toString(def_ptall_35));
 
             } else if (mode == 2) {
-                if (result.get(0)[0].toString().contains("ERROR")) {
-                    exists = true;
-                    String temp = updateScoringSettings();
-                    GetNetworkConn task = new GetNetworkConn();
-                    task.setOnResultsListener(this);
-                    task.execute(temp);
-                } else {
+                try {
+                    if (result.get(0)[0].toString().contains("ERROR")) {
+                        exists = true;
+                        String temp = updateScoringSettings();
+                        GetNetworkConn task = new GetNetworkConn();
+                        task.setOnResultsListener(this);
+                        task.execute(temp);
+                    }
+                } catch (Exception e) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                    builder.setTitle("Scoring Updated");
+                    builder.setMessage("Your scoring settings have been updated.");
+                    builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
+
             }
         }
     }

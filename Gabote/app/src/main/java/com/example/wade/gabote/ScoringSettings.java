@@ -16,10 +16,10 @@ public class ScoringSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoring_settings);
         Bundle b = getIntent().getExtras();
-//        DrawerListController dla= new DrawerListController(this);
         final ActiveSession userSession = new ActiveSession();
         final Activity activity = this;
         userSession.setActiveUserId(b.getInt("userSession"));
+        DrawerListController dlc = new DrawerListController(activity,userSession);
         FacadeController fc = new FacadeController();
         fc.getScoringSettings(this,userSession);
         Button bSaveScoreSettings = (Button)findViewById(R.id.bSubmitSettings);
