@@ -23,10 +23,10 @@
     android:textAppearance="?android:attr/textAppearanceSmall"
     android:text="Username:"
     android:id="@+id/newUsername"
-        android:layout_marginTop="35dp"
         android:layout_below="@+id/tSignUp"
-        android:layout_toLeftOf="@+id/tSignUp"
-        android:layout_toStartOf="@+id/tSignUp" />
+        android:layout_toLeftOf="@+id/et_username"
+        android:layout_toStartOf="@+id/et_username"
+        android:layout_marginTop="25dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,9 +34,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Email:"
         android:id="@+id/newEmail"
-        android:layout_below="@+id/et_userpass"
-        android:layout_alignLeft="@+id/newPassword"
-        android:layout_alignStart="@+id/newPassword" />
+        android:layout_alignLeft="@+id/newUsername"
+        android:layout_alignStart="@+id/newUsername"
+        android:layout_below="@+id/newUsername"
+        android:layout_marginTop="25dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,9 +45,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Password:"
         android:id="@+id/newPassword"
-        android:layout_below="@+id/et_username"
-        android:layout_alignLeft="@+id/newUsername"
-        android:layout_alignStart="@+id/newUsername" />
+        android:layout_below="@+id/et_useremail"
+        android:layout_toLeftOf="@+id/et_useremail"
+        android:layout_toStartOf="@+id/et_useremail"
+        android:layout_marginTop="25dp"/>
 
     <EditText
         android:layout_width="200dp"
@@ -82,7 +84,7 @@
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:id="@+id/button"
-        android:layout_marginTop="27dp"
-        android:layout_below="@+id/et_useremail"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="79dp" />
 </RelativeLayout>

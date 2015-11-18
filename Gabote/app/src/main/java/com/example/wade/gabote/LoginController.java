@@ -14,4 +14,8 @@ public class LoginController {
     {
         new GetData.checkUserLogin(activity,username,pass, userSession);
     }
+    protected  void loginToSignup(Activity activity) {
+        Intent i = new Intent(activity.getApplicationContext(), UserSignUp.class);
+        activity.startActivity(i);
+    }
 }

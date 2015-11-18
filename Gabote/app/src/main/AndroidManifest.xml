@@ -30,6 +30,10 @@
             android:name=".userFantasyTeam"
             android:label="@string/title_activity_user_fantasy_team" >
         </activity>
+        <activity android:name=".UserSignUp"
+            android:label="@string/title_activity_user_sign_up">
+
+        </activity>
         <activity android:name=".UserLogin" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,6 +48,7 @@
         <activity android:name=".DraftHelp" >
         </activity>
         <activity android:name=".AddPlayer" android:label="@string/title_activity_add_player"></activity>
+        <activity android:name=".EditTeam" android:label="@string/title_activity_edit_team_settings"></activity>
     </application>
 
 </manifest>

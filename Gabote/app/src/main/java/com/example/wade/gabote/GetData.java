@@ -1156,12 +1156,12 @@ public class GetData {
         private Activity activity;
         private boolean exists;
         private int mode;
-        private int p_yds;
+        private double p_yds;
         private int p_td;
         private int p_int;
-        private int ru_yds;
+        private double ru_yds;
         private int ru_td;
-        private int re_yds;
+        private double re_yds;
         private int re_td;
         private int two_pt_conv;
         private int fumble_lost;
@@ -1231,7 +1231,7 @@ public class GetData {
             }
         }
 
-        public void setP_yds(int x) {
+        public void setP_yds(double x) {
             p_yds = x;
         }
 
@@ -1243,7 +1243,7 @@ public class GetData {
             p_int = x;
         }
 
-        public void setRu_yds(int x) {
+        public void setRu_yds(double x) {
             ru_yds = x;
         }
 
@@ -1251,7 +1251,7 @@ public class GetData {
             ru_td = x;
         }
 
-        public void setRe_yds(int x) {
+        public void setRe_yds(double x) {
             re_yds = x;
         }
 
@@ -1350,7 +1350,7 @@ public class GetData {
         public String updateScoringSettings() {
 
             EditText et_p_yds = (EditText) activity.findViewById(R.id.et_p_yds);
-            setP_yds(Integer.parseInt(et_p_yds.getText().toString()));
+            setP_yds(Double.parseDouble(et_p_yds.getText().toString()));
 
             EditText et_p_td = (EditText) activity.findViewById(R.id.et_p_td);
             setP_td(Integer.parseInt(et_p_td.getText().toString()));
@@ -1359,13 +1359,13 @@ public class GetData {
             setP_int(Integer.parseInt(et_p_int.getText().toString()));
 
             EditText et_ru_yds = (EditText) activity.findViewById(R.id.et_ru_yds);
-            setRu_yds(Integer.parseInt(et_ru_yds.getText().toString()));
+            setRu_yds(Double.parseDouble(et_ru_yds.getText().toString()));
 
             EditText et_ru_td = (EditText) activity.findViewById(R.id.et_ru_td);
             setRu_td(Integer.parseInt(et_ru_td.getText().toString()));
 
             EditText et_re_yds = (EditText) activity.findViewById(R.id.et_re_yds);
-            setRe_yds(Integer.parseInt(et_re_yds.getText().toString()));
+            setRe_yds(Double.parseDouble(et_re_yds.getText().toString()));
 
             EditText et_re_td = (EditText) activity.findViewById(R.id.et_re_td);
             setRe_td(Integer.parseInt(et_re_td.getText().toString()));
@@ -1511,12 +1511,12 @@ public class GetData {
             if (mode == 1) {
                 if (result.size() > 0) {
                     this.exists = true;
-                    p_yds = Integer.parseInt(result.get(0)[1]);
+                    p_yds = Double.parseDouble(result.get(0)[1]);
                     p_td = Integer.parseInt(result.get(0)[2]);
                     p_int = Integer.parseInt(result.get(0)[3]);
-                    ru_yds = Integer.parseInt(result.get(0)[4]);
+                    ru_yds = Double.parseDouble(result.get(0)[4]);
                     ru_td = Integer.parseInt(result.get(0)[5]);
-                    re_yds = Integer.parseInt(result.get(0)[6]);
+                    re_yds = Double.parseDouble(result.get(0)[6]);
                     re_td = Integer.parseInt(result.get(0)[7]);
                     two_pt_conv = Integer.parseInt(result.get(0)[8]);
                     fumble_lost = Integer.parseInt(result.get(0)[9]);
@@ -1543,7 +1543,7 @@ public class GetData {
                 }
 
                 EditText et_p_yds = (EditText) activity.findViewById(R.id.et_p_yds);
-                et_p_yds.setText(Integer.toString(p_yds));
+                et_p_yds.setText(Double.toString(p_yds));
 
                 EditText et_p_td = (EditText) activity.findViewById(R.id.et_p_td);
                 et_p_td.setText(Integer.toString(p_td));
@@ -1552,13 +1552,13 @@ public class GetData {
                 et_p_int.setText(Integer.toString(p_int));
 
                 EditText et_ru_yds = (EditText) activity.findViewById(R.id.et_ru_yds);
-                et_ru_yds.setText(Integer.toString(ru_yds));
+                et_ru_yds.setText(Double.toString(ru_yds));
 
                 EditText et_ru_td = (EditText) activity.findViewById(R.id.et_ru_td);
                 et_ru_td.setText(Integer.toString(ru_td));
 
                 EditText et_re_yds = (EditText) activity.findViewById(R.id.et_re_yds);
-                et_re_yds.setText(Integer.toString(re_yds));
+                et_re_yds.setText(Double.toString(re_yds));
 
                 EditText et_re_td = (EditText) activity.findViewById(R.id.et_re_td);
                 et_re_td.setText(Integer.toString(re_td));
@@ -2278,6 +2278,18 @@ public class GetData {
                         AlertDialog dialog = builder.create();
                         builder.show();
                     }
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                    builder.setTitle("Change Successful");
+                    builder.setMessage("Your password has been changed.");
+                    builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    builder.show();
                 }
             }
         }

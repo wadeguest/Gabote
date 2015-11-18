@@ -64,4 +64,18 @@
         </LinearLayout>
 
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:id="@+id/drawerPane"
+        android:layout_gravity="start">
+        <ListView
+            android:id="@+id/navList"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+            android:background="#ffffffff">
+
+        </ListView>
+    </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>

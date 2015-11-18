@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -17,11 +18,12 @@ public class EditTeam extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_team);
-        DrawerListController dlc = new DrawerListController();
         Bundle b = getIntent().getExtras();
+        final Activity activity = this;
         final ActiveSession userSession = new ActiveSession();
         userSession.setActiveUserId(b.getInt("userSession"));
-        final Activity activity = this;
+        DrawerListController dlc = new DrawerListController(activity,userSession);
+
         fc.getPrevValues(this, userSession);
 
         Button btnConfirm = (Button)findViewById(R.id.btnConfirmChanges);
@@ -45,6 +47,10 @@ public class EditTeam extends AppCompatActivity {
                 final EditText oldPass = (EditText) dialogView.findViewById(R.id.et_oldpass);
                 final EditText newPass = (EditText) dialogView.findViewById(R.id.et_newPass);
                 final EditText newPassConfirm = (EditText) dialogView.findViewById(R.id.et_confirmNewPass);
+                oldPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                newPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                newPassConfirm.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
                 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

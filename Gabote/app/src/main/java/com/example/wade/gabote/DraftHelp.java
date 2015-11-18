@@ -22,8 +22,10 @@ public class DraftHelp extends AppCompatActivity {
         playerHolder pH = new playerHolder();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draft_help);
-        DrawerListController dlc = new DrawerListController();
-        //DrawerListController dla= new DrawerListController(this);
+        Bundle b = getIntent().getExtras();
+        final ActiveSession userSesssion = new ActiveSession();
+        userSesssion.setActiveUserId(b.getInt("userSession"));
+        DrawerListController dlc = new DrawerListController(activity,userSesssion);
         Spinner dhOption = (Spinner)findViewById(R.id.dhTypeOfDraft);
         ArrayAdapter<CharSequence> adsp = ArrayAdapter.createFromResource(this,R.array.dhSpinner,android.R.layout.simple_spinner_item);
         adsp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

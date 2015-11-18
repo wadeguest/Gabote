@@ -26,6 +26,9 @@ public class FacadeController {
     {
         lc.checkLogin(activity,user,pass, userSession);
     }
+    public void loginToSignUp(Activity activity) {
+        lc.loginToSignup(activity);
+    }
     public void getUserTeam(Activity activity, ActiveSession userSession) {
         utc.displayUserTeam(activity, userSession);
     }
@@ -40,9 +43,6 @@ public class FacadeController {
     }
     public void getGameScoreWeekData(Activity activity, int week) {
         gsc.getWeekData(activity, week);
-    }
-    public void getDrawerList(Activity activity, ActiveSession userSession) {
-        dlc = new DrawerListController(activity,userSession);
     }
     public void getScoringSettings(Activity activity, ActiveSession userSession) {
         ssc.getScoringSettings(activity,userSession);
