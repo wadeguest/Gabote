@@ -87,6 +87,7 @@ class GetNetworkConn extends AsyncTask<String,Void,ArrayList> {
     }
 
     protected void onPostExecute(ArrayList result) {
+        this.cancel(true);
         listener.onResultSuccess(result);
     }
 

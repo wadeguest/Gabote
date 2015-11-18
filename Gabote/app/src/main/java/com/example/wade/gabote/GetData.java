@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -1731,6 +1732,14 @@ public class GetData {
                 task.execute("SELECT UP.player_id, UP.player_team, PL.position, PL.full_name, TU.fantasy_team_name  FROM user_player UP, player PL, t_user TU WHERE PL.player_id=UP.player_id AND UP.user_id=" + userSession.getActiveUserId() + "AND TU.user_id=UP.user_id");
             }
 
+            Spinner wkSpinner = (Spinner)activity.findViewById(R.id.wkSpin);
+            if(wkSpinner.isEnabled()) {
+                TableLayout tl = (TableLayout) activity.findViewById(R.id.matchupTable);
+                tl.removeAllViews();
+                TextView totalTeamScore = (TextView) activity.findViewById(R.id.userTeamScore);
+                totalTeamScore.setText("LOADING...");
+            }
+
             // task.execute("SELECT * FROM game WHERE week=3 AND season_year='2015' AND season_type='Regular' ORDER BY start_time");
 
         }
@@ -1767,8 +1776,8 @@ public class GetData {
                     "gsis_id=(SELECT gsis_id FROM game " +
                     "WHERE week=" + week + " AND " +
                     "(home_team='" + userPlayersOff[count].team + "' OR away_team='" + userPlayersOff[count].team + "') AND " +
-                    "season_year=2015);";
-            count++;
+                    "season_year=2015 AND season_type='Regular');";
+            count+=1;
             if (count == 1) {
                 getPID = true;
             } else if (count > 1) {
@@ -1808,6 +1817,7 @@ public class GetData {
             }
             TableLayout tl = (TableLayout) activity.findViewById(R.id.matchupTable);
             TextView teamName = (TextView) activity.findViewById(R.id.userTeamName);
+            teamName.setTextSize(22);
             teamName.setText(userPlayersOff[0].ft_name);
             TextView totalTeamScore = (TextView) activity.findViewById(R.id.userTeamScore);
             totalTeamScore.setText(String.format("%.2f", totalUserScore));
@@ -1848,7 +1858,7 @@ public class GetData {
 
                     TextView userPName = new TextView(activity);
                     userPName.setText(userPlayersOff[i].player_name.toString());
-                    userPName.setGravity(Gravity.START);;
+                    userPName.setGravity(Gravity.START);
                     userPName.setTextSize(20);
                     userPName.setBackgroundResource(R.drawable.cell_borders);
                     tr.addView(userPName);
@@ -1874,6 +1884,11 @@ public class GetData {
             }
 
             ArrayAdapter<String> la = new ArrayAdapter<String>(activity, R.layout.rowdef, result.get(0));
+            Spinner wkSpinner = (Spinner)activity.findViewById(R.id.wkSpin);
+            if(!wkSpinner.isEnabled()) {
+                tl.removeAllViews();
+                wkSpinner.setEnabled(true);
+            }
         }
 
         @Override
@@ -1881,7 +1896,24 @@ public class GetData {
             if(!getPlayers) {
                 numOfPlayers= result.size();
                 fillPlayers(result);
-            } else if(result.size()<50) {
+            } else if(result.size()<50 || result.equals(null)) {
+                try {
+                    if(count<=numOfPlayers) {
+                        int temp = Integer.parseInt(result.get(0)[0]);
+                        temp = 0;
+                    }
+                } catch(Exception e) {
+                    String[] nullRes = new String[8];
+                    nullRes[0]="0";
+                    nullRes[1]="0";
+                    nullRes[2]="0";
+                    nullRes[3]="0";
+                    nullRes[4]="0";
+                    nullRes[5]="0";
+                    nullRes[6]="0";
+                    nullRes[7]="0";
+                    result.set(0,nullRes);
+                }
                 if(count<=numOfPlayers) {
                     userPlayersOff[count-1].passing_yds=Integer.parseInt(result.get(0)[0]);
                     userPlayersOff[count-1].passing_tds=Integer.parseInt(result.get(0)[1]);
@@ -1916,6 +1948,7 @@ public class GetData {
             if(readyForUpdate==true) {
                 updateMatchupView(result);
             }
+
         }
     }
 
@@ -2055,7 +2088,33 @@ public class GetData {
                     tl.addView(tr, new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 150));
 
                 }
-                ArrayAdapter<String> la = new ArrayAdapter<String>(activity, R.layout.rowdef, result.get(0));
+                if(result.size()<1) {
+                    TableLayout.LayoutParams lp = new TableLayout.LayoutParams();
+                    final TableRow tr = new TableRow(activity);
+                    lp.setMargins(25, 0, 0, 0);
+                    tr.setLayoutParams(lp);
+
+                    TextView ch1 = new TextView(activity);
+
+
+                    ch1.setTextSize(17);
+
+                    ch1.setTextColor(Color.BLACK);
+
+                    ch1.setText("No players found with given criteria.");
+                    ch1.setGravity(Gravity.CENTER);
+
+                    ch1.setBackgroundResource(R.drawable.cell_borders);
+
+                    tr.addView(ch1);
+                    if (tr.getParent() != null) {
+                        ((ViewGroup) tr.getParent()).removeView(tr);
+                    }
+                    tl.addView(tr, new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 150));
+
+                }
+
+                ArrayAdapter<String> la = new ArrayAdapter<String>(activity, R.layout.rowdef, searchedPlayers);
             } else {
                 if(!playerInsert) {
 
@@ -2075,6 +2134,7 @@ public class GetData {
                         addPlayer();
                     }
                 } else {
+                    playerInsert=false;
                     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                     builder.setMessage("The player has been added to your roster.");
                     builder.setTitle("Player Added");
@@ -2086,6 +2146,7 @@ public class GetData {
                     });
                     AlertDialog dialog = builder.create();
                     dialog.show();
+
                 }
 
             }
